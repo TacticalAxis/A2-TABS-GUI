@@ -1,0 +1,17 @@
+##*.iml
+##.idea/*
+##.proj/
+##lib/
+##*.psd
+##/.proj/
+
+*.iml
+derby.log
+
+/.proj/
+/.idea/
+/out/
+/lib/
+/build/
+
+/resources/image/*.psd
