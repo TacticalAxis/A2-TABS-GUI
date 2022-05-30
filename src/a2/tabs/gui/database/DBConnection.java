@@ -1,11 +1,10 @@
 package a2.tabs.gui.database;
 
 import a2.tabs.gui.controller.Config;
+import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class DBConnection {
     public void createTable(String tableName, ColumnList columnList) {
         StringBuilder sb = new StringBuilder("CREATE TABLE \"" + tableName + "\" (");
         sb.append(columnList);
-        sb.deleteCharAt(sb.length() - 1);
+//        sb.deleteCharAt(sb.length() - 1);
         sb.append(")");
 
         String sql = sb.toString();
@@ -111,32 +110,56 @@ public class DBConnection {
 
         dbConnection.dropAllTables();
 
-        dbConnection.createTable(User.tableName, User.model());
+        dbConnection.createTable(Charge.TABLE_NAME, Charge.model());
+        dbConnection.createTable(User.TABLE_NAME, User.model());
 
         System.out.println(dbConnection.getTables());
 
-        User user = new User.UserBuilder(
-                    "somusername",
-                    "name",
-                    "email",
-                    "nathan",
-                    "rheem")
-                    .setAddress("asghdjasgdjh")
-                    .setPhone("123456789").setCarRego("123456").setSalary(123.45).setDateOfBirth(LocalDate.of(2002, Month.JANUARY, 23)).build();
-
-
-        User user2 = new User.UserBuilder(
-                "somusername",
-                "name",
-                "email",
-                "nathan",
-                "rheem")
-                .setAddress("asghdjasgdjh")
-                .setPhone("123456789").setCarRego("123456").setSalary(123.45).build();
-
-        dbConnection.push(user);
-        dbConnection.push(user2);
+//        Charge charge = new Charge();
 
         dbConnection.close();
+
+//
+//
+//        User user = new User(
+//                "nathand123",
+//                "nathan",
+//                "doe",
+//                "Nathan",
+//                "Dsouza",
+//                LocalDate.of(2002, 1, 23),
+//                "02102362281"
+//        );
+//
+//        User user2 = new User(
+//                "blakef26",
+//                "bf234",
+//                "doe2222",
+//                "Blake",
+//                "Fernandes",
+//                LocalDate.of(2002, 12, 14),
+//                "02102362281"
+//        );
+//
+//        dbConnection.push(user);
+//        dbConnection.push(user2);
+//
+//        User test = User.get(dbConnection, "nathand123");
+//        User test2 = User.get(dbConnection, "blakef26");
+//
+//        System.out.println(user);
+//        System.out.println(test);
+//        System.out.println(user2);
+//        System.out.println(test2);
+//
+//        System.out.println(user.equals(test));
+//        System.out.println(user2.equals(test2));
+//
+//        System.out.println(user.equals(user2));
+//        if (test != null) {
+//            System.out.println(test.equals(test2));
+//        }
+
+//        dbConnection.close();
     }
 }

@@ -1,6 +1,5 @@
 package a2.tabs.gui.model;
 
-
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
 import a2.tabs.gui.database.exception.DBException;
@@ -11,9 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
-public class User implements Databaseable<String> {
+@SuppressWarnings({"unused", "SqlResolve"})
+public class User extends DBModelBase implements Databaseable<String> {
 
-    public static String tableName = Config.DB_TABLE_USER;
+    public static final String TABLE_NAME = Config.DB_TABLE_USER;
 
     private final String username;
     private String password;
@@ -31,22 +31,20 @@ public class User implements Databaseable<String> {
     private boolean ownsHome;
     private String carRego;
 
-    public User(UserBuilder builder) {
-        this.username = builder.username;
-        this.password = builder.password;
-        this.email = builder.email;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
+    public User(String username, String password, String email, String firstName, String lastName, LocalDate dateOfBirth, String phone) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
 
-        this.dateOfBirth = builder.dateOfBirth;
-        this.phone = builder.phone;
-        this.address = builder.address;
-
-        this.irdNumber = builder.irdNumber;
-        this.salary = builder.salary;
-
-        this.ownsHome = builder.ownsHome;
-        this.carRego = builder.carRego;
+        this.address = null;
+        this.irdNumber = null;
+        this.salary = 0;
+        this.ownsHome = false;
+        this.carRego = null;
     }
 
     public String getUsername() {
@@ -130,6 +128,49 @@ public class User implements Databaseable<String> {
         this.carRego = carRego;
     }
 
+    public static User get(DBConnection db, String username) {
+        try (Statement stmt = db.getConnection().createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"" + TABLE_NAME + "\" WHERE username = '" + username + "'");
+            if (rs.next()) {
+                User user = new User(
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getDate("dateOfBirth").toLocalDate(),
+                        rs.getString("phone")
+                );
+
+                if (rs.getString("address") != null && !rs.getString("address").equals("null")) {
+                        user.setAddress(rs.getString("address"));
+                }
+
+                if (rs.getString("irdNumber") != null && !rs.getString("irdNumber").equals("null")) {
+                    user.setIrdNumber(rs.getString("irdNumber"));
+                }
+
+                if (rs.getDouble("salary") != 0) {
+                    user.setSalary(rs.getDouble("salary"));
+                }
+
+                if (rs.getBoolean("ownsHome")) {
+                    user.setOwnsHome(rs.getBoolean("ownsHome"));
+                }
+
+                if (rs.getString("carRego") != null && !rs.getString("carRego").equals("null")) {
+                    user.setCarRego(rs.getString("carRego"));
+                }
+
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Override
     public boolean create(DBConnection db) {
         if (keyExists(db, username)) {
@@ -137,7 +178,7 @@ public class User implements Databaseable<String> {
         }
 
         try(Statement stmt = db.getConnection().createStatement()) {
-            String query = "INSERT INTO \"" + tableName + "\" (username, password, email, first_name, last_name, date_of_birth, phone, address, ird_number, salary, owns_home, car_rego) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + firstName + "', '" + lastName + "', '" + Date.valueOf(dateOfBirth) + "', '" + phone + "', '" + address + "', '" + irdNumber + "', " + salary + ", " + ownsHome + ", '" + carRego + "')";
+            String query = String.format("INSERT INTO \"%s\" (username, password, email, firstName, lastName, dateOfBirth, phone, address, irdNumber, salary, ownsHome, carRego) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %f, %b, '%s')", TABLE_NAME, username, password, email, firstName, lastName, dateOfBirth, phone, address, irdNumber, salary, ownsHome, carRego);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -153,7 +194,7 @@ public class User implements Databaseable<String> {
         }
 
         try(Statement stmt = db.getConnection().createStatement()) {
-            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE username = '" + username + "'");
+            stmt.executeUpdate("DELETE FROM " + TABLE_NAME + " WHERE username = '" + username + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -162,28 +203,24 @@ public class User implements Databaseable<String> {
     }
 
     @Override
-    public boolean push(DBConnection db) {
+    public void push(DBConnection db) {
         if (!keyExists(db, username)) {
             create(db);
         } else {
             try (Statement stmt = db.getConnection().createStatement()) {
-                String query = "UPDATE \"" + tableName + "\" SET (password, email, first_name, last_name, date_of_birth, phone, address, ird_number, salary, owns_home, car_rego) = ('" + password + "', '" + email + "', '" + firstName + "', '" + lastName + "', '" + (Date.valueOf(dateOfBirth)) + "', '" + phone + "', '" + address + "', '" + irdNumber + "', " + salary + ", " + ownsHome + ", '" + carRego + "') WHERE username = '" + username + "'";
+                String query = String.format("UPDATE %s SET password = '%s', email = '%s', firstName = '%s', lastName = '%s', dateOfBirth = '%s', phone = '%s', address = '%s', irdNumber = '%s', salary = %s, ownsHome = %s, carRego = '%s' WHERE username = '%s'", TABLE_NAME, password, email, firstName, lastName, Date.valueOf(dateOfBirth), phone, address, irdNumber, salary, ownsHome, carRego, username);
                 stmt.executeUpdate(query);
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-        return true;
     }
 
     @Override
     public boolean keyExists(DBConnection db, String key) {
-        System.out.println("Checking if key exists: " + key);
+//        System.out.println("Checking if key exists: " + key);
         try (Statement stmt = db.getConnection().createStatement()) {
-            String query = "SELECT * FROM \"" + tableName + "\" WHERE username = '" + key + "'";
-            System.out.println(query);
+            String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE username = '" + key + "'";
             ResultSet rs = stmt.executeQuery(query);
 
             int size = 0;
@@ -201,120 +238,55 @@ public class User implements Databaseable<String> {
     }
 
     @Override
-    public boolean pull(DBConnection db) {
-        return false;
+    public void pull(DBConnection db) {
+        // Does not need to be implemented
     }
 
-    public static class UserBuilder {
-        private final String username;
-        private final String password;
-        private final String email;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
 
-        private final String firstName;
-        private final String lastName;
-        private LocalDate dateOfBirth;
+        boolean usernameEquals = username.equals(user.username);
+        boolean passwordEquals = password.equals(user.password);
+        boolean emailEquals = email.equals(user.email);
+        boolean firstNameEquals = firstName.equals(user.firstName);
+        boolean lastNameEquals = lastName.equals(user.lastName);
+        boolean dateOfBirthEquals = dateOfBirth.equals(user.dateOfBirth);
+        boolean phoneEquals = phone.equals(user.phone);
 
-        private String phone;
-        private String address;
-
-        private String irdNumber;
-        private double salary;
-        private boolean ownsHome;
-        private String carRego;
-
-        public UserBuilder(String username, String password, String email, String firstName, String lastName) {
-            this.username = username;
-            this.password = password;
-            this.email = email;
-            this.firstName = firstName;
-            this.lastName = lastName;
+        boolean addressEquals = false;
+        if (address != null && user.address != null) {
+            addressEquals = address.equals(user.address);
+        } else if (address == null && user.address == null) {
+            addressEquals = true;
         }
 
-        public UserBuilder setDateOfBirth(LocalDate dateOfBirth) {
-            this.dateOfBirth = dateOfBirth;
-            return this;
+        boolean irdNumberEquals = false;
+        if (irdNumber != null && user.irdNumber != null) {
+            irdNumberEquals = irdNumber.equals(user.irdNumber);
+        } else if (irdNumber == null && user.irdNumber == null) {
+            irdNumberEquals = true;
         }
 
-        public UserBuilder setPhone(String phone) {
-            this.phone = phone;
-            return this;
+        boolean salaryEquals = salary == user.salary;
+        boolean ownsHomeEquals = ownsHome == user.ownsHome;
+
+        boolean carRegoEquals = false;
+        if (carRego != null && user.carRego != null) {
+            carRegoEquals = carRego.equals(user.carRego);
+        } else if (carRego == null && user.carRego == null) {
+            carRegoEquals = true;
         }
 
-        public UserBuilder setAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public UserBuilder setIrdNumber(String irdNumber) {
-            this.irdNumber = irdNumber;
-            return this;
-        }
-
-        public UserBuilder setSalary(double salary) {
-            this.salary = salary;
-            return this;
-        }
-
-        public UserBuilder setOwnsHome(boolean ownsHome) {
-            this.ownsHome = ownsHome;
-            return this;
-        }
-
-        public UserBuilder setCarRego(String carRego) {
-            this.carRego = carRego;
-            return this;
-        }
-
-        private boolean validate(User user) {
-            if (user.username.isEmpty()) {
-                return false;
-            }
-            if (user.password.isEmpty()) {
-                return false;
-            }
-            if (user.email.isEmpty()) {
-                return false;
-            }
-            if (user.firstName.isEmpty()) {
-                return false;
-            }
-            return !user.lastName.isEmpty();
-        }
-
-        public User build() {
-            User user = new User(this);
-            return validate(user) ? user : null;
-        }
-    }
-
-    public static ColumnList model() {
-        return new ColumnList(
-            new Column[]{
-                    new Column("username", ColumnType.STRING, 50, false, true, false),
-                    new Column("password", ColumnType.STRING, 255, false),
-
-                    new Column("email", ColumnType.STRING, 255, false),
-                    new Column("first_name", ColumnType.STRING, 255, false),
-                    new Column("last_name", ColumnType.STRING, 255, false),
-
-                    new Column("date_of_birth", ColumnType.DATE, 0, false),
-                    new Column("phone", ColumnType.STRING, 255, false),
-                    new Column("address", ColumnType.STRING, 255, true),
-
-                    new Column("ird_number", ColumnType.STRING, 255, true),
-                    new Column("salary", ColumnType.DOUBLE, 0, false),
-
-                    new Column("owns_home", ColumnType.BOOLEAN, 0, false),
-                    new Column("car_rego", ColumnType.STRING, 6, true)
-            }
-        );
+        return usernameEquals && passwordEquals && emailEquals && firstNameEquals && lastNameEquals && dateOfBirthEquals && phoneEquals && addressEquals && irdNumberEquals && salaryEquals && ownsHomeEquals && carRegoEquals;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "tableName='" + tableName + '\'' +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
@@ -328,36 +300,32 @@ public class User implements Databaseable<String> {
                 ", carRego='" + carRego + '\'' +
                 '}';
     }
+
+    public static ColumnList model() {
+        return new ColumnList(
+            new Column[]{
+                    new Column("username", ColumnType.STRING, 50, false, true, false),
+                    new Column("password", ColumnType.STRING, 255, false),
+
+                    new Column("email", ColumnType.STRING, 255, false),
+                    new Column("firstName", ColumnType.STRING, 255, false),
+                    new Column("lastName", ColumnType.STRING, 255, false),
+
+                    new Column("dateOfBirth", ColumnType.DATE, 0, false),
+                    new Column("phone", ColumnType.STRING, 255, false),
+                    new Column("address", ColumnType.STRING, 255, true),
+
+                    new Column("irdNumber", ColumnType.STRING, 255, true),
+                    new Column("salary", ColumnType.DOUBLE, 0, false),
+
+                    new Column("ownsHome", ColumnType.BOOLEAN, 0, false),
+                    new Column("carRego", ColumnType.STRING, 6, true)
+            }
+        );
+    }
 }
 
-//    @Override
-//    public String toString() {
-//        return "user:" + this.username + "\n" +
-//                "hash:" + this.password + "\n" +
-//                "email:" + this.email + "\n" +
-//                "firstName:" + this.firstName + "\n" +
-//                "lastName:" + this.lastName + "\n" +
-//                "address:" + this.address + "\n" +
-//                "phone:" + this.phone + "\n" +
-//                "irdNumber:" + this.irdNumber + "\n" +
-//                "salary:" + this.salary + "\n" +
-//                "ownsHome:" + this.ownsHome + "\n" +
-//                "carRego:" + this.carRego + "\n";
-//    }
-//
-//    public String viewSafeString() {
-//        return "Username: " + this.username + "\n" +
-//                "Email Address: " + this.email + "\n" +
-//                "First Name: " + this.firstName + "\n" +
-//                "Last Name: " + this.lastName + "\n" +
-//                "Home Address: " + this.address + "\n" +
-//                "Mobile Phone: " + this.phone + "\n" +
-//                "IRD Number: " + this.irdNumber + "\n" +
-//                "Salary: $" + this.salary + "\n" +
-//                "Home Owner: " + this.ownsHome + "\n" +
-//                "Car Registration: " + this.carRego + "\n";
-//    }
-//
+
 //    public static List<String> getUsernames() {
 ////        Debug.log("User: getUsernames()");
 //        List<String> takenUsernames = new ArrayList<>();

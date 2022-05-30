@@ -1,13 +1,17 @@
 package a2.tabs.gui.database;
 
+@SuppressWarnings("UnusedReturnValue")
 public interface Databaseable<E> {
     boolean create(DBConnection db);
 
     boolean delete(DBConnection db);
 
-    boolean push(DBConnection db);
+    void push(DBConnection db);
 
     boolean keyExists(DBConnection db, E key);
 
-    boolean pull(DBConnection db);
+    void pull(DBConnection db);
+
+    @Override
+    boolean equals(Object o);
 }

@@ -188,8 +188,15 @@ public class Dash extends javax.swing.JFrame {
         pgMessagesSendButton.setBackground(new java.awt.Color(0, 100, 172));
         pgMessagesSendButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         pgMessagesSendButton.setForeground(new java.awt.Color(204, 204, 204));
-        pgMessagesSendButton.setText("Send");
+        pgMessagesSendButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\MessagesPane-SendButton.png")); // NOI18N
+        pgMessagesSendButton.setBorder(null);
         pgMessagesSendButton.setBorderPainted(false);
+        pgMessagesSendButton.setContentAreaFilled(false);
+        pgMessagesSendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pgMessagesSendButtonActionPerformed(evt);
+            }
+        });
 
         pgMessagesMessageHistoryHeading.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         pgMessagesMessageHistoryHeading.setForeground(new java.awt.Color(153, 153, 153));
@@ -216,14 +223,13 @@ public class Dash extends javax.swing.JFrame {
                 .addGroup(pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pgMessagesMessageHistoryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pgMessagesMessageHistoryHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(pgMessagesTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                        .addComponent(pgMessagesSendMessageHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pgMessagesTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pgMessagesSendMessageHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pgMessagesPanelLayout.createSequentialGroup()
                         .addComponent(pgMessagesSendMessagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pgMessagesSendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pgMessagesPanelLayout.setVerticalGroup(
             pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,12 +241,12 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pgMessagesSendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pgMessagesSendMessagesTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                    .addComponent(pgMessagesSendMessagesTextField))
                 .addGap(18, 18, 18)
                 .addComponent(pgMessagesMessageHistoryHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pgMessagesMessageHistoryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +271,10 @@ public class Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_sbExitButtonActionPerformed
+
+    private void pgMessagesSendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pgMessagesSendButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pgMessagesSendButtonActionPerformed
 
     /**
      * @param args the command line arguments

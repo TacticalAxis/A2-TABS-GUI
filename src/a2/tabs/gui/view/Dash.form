@@ -263,17 +263,15 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="pgMessagesMessageHistoryScroll" min="-2" pref="951" max="-2" attributes="0"/>
                       <Component id="pgMessagesMessageHistoryHeading" min="-2" pref="337" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="pgMessagesTitle" pref="337" max="32767" attributes="0"/>
-                          <Component id="pgMessagesSendMessageHeading" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="pgMessagesTitle" max="32767" attributes="0"/>
+                      <Component id="pgMessagesSendMessageHeading" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="pgMessagesSendMessagesTextField" min="-2" pref="716" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pgMessagesSendButton" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -287,13 +285,13 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="pgMessagesSendButton" max="32767" attributes="0"/>
-                      <Component id="pgMessagesSendMessagesTextField" pref="48" max="32767" attributes="0"/>
+                      <Component id="pgMessagesSendMessagesTextField" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="pgMessagesMessageHistoryHeading" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pgMessagesMessageHistoryScroll" min="-2" pref="309" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -359,9 +357,18 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Send"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Nathan\Documents\Files\University\Work\2022\Semester-1\COMP603-12\A2-TABS-GUI\resources\image\MessagesPane-SendButton.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pgMessagesSendButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="pgMessagesMessageHistoryHeading">
           <Properties>
