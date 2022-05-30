@@ -101,13 +101,12 @@ public class Charge implements Databaseable<Charge> {
         return paid == charge.paid && type == charge.type && Objects.equals(user, charge.user) && Objects.equals(date, charge.date);
     }
 
-    public static Charge get(DBConnection db, String key) {
+    public static Charge get(DBConnection db, User user) {
         try(Statement stmt = db.getConnection().createStatement()) {
-            String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE id = " + key;
+            String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE userID = '" + user.getUsername() + "'";
             ResultSet rs = stmt.executeQuery(query);
             if(rs.next()) {
                 ChargeType type = ChargeType.getById(rs.getInt("typeID"));
-                User user = User.get(db, rs.getString("userID"));
                 LocalDate date = rs.getDate("dueDate").toLocalDate();
                 boolean paid = rs.getBoolean("paid");
 
@@ -139,5 +138,35 @@ public class Charge implements Databaseable<Charge> {
         }
 
         return charges;
+    }
+
+    public static List<Charge> getAll(DBConnection db, User user) {
+        List<Charge> charges = new ArrayList<>();
+
+        try(Statement stmt = db.getConnection().createStatement()) {
+            String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE userID = '" + user.getUsername() + "'";
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                ChargeType type = ChargeType.getById(rs.getInt("typeID"));
+                LocalDate date = rs.getDate("dueDate").toLocalDate();
+                boolean paid = rs.getBoolean("paid");
+
+                charges.add(new Charge(type, user, date, paid));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return charges;
+    }
+
+    @Override
+    public String toString() {
+        return "Charge{" +
+                "type=" + type.getName() +
+                ", user=" + user.getUsername() +
+                ", date=" + date +
+                ", paid=" + paid +
+                '}';
     }
 }

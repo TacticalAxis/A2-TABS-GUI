@@ -97,9 +97,10 @@ public class DBConnection {
         return tables;
     }
 
-    public boolean push(Databaseable<?> model) {
-        model.push(this);
-        return true;
+    public void push(Databaseable<?>... model) {
+        for (Databaseable<?> m : model) {
+            m.push(this);
+        }
     }
 
     public static void main(String[] args) {
@@ -110,7 +111,7 @@ public class DBConnection {
         dbConnection.createTable(Charge.TABLE_NAME, Charge.model());
         dbConnection.createTable(User.TABLE_NAME, User.model());
 
-        System.out.println(dbConnection.getTables());
+//        System.out.println(dbConnection.getTables());
 
         User user = new User(
                 "nathand123",
@@ -132,14 +133,21 @@ public class DBConnection {
                 "02102362281"
         );
 
-        user.push(dbConnection);
-        user2.push(dbConnection);
+        dbConnection.push(user, user2);
 
-        Charge charge = new Charge(ChargeType.INTERNET_BILL, user, LocalDate.of(2020, 1, 1), false);
-        Charge charge2 = new Charge(ChargeType.INTERNET_BILL, user2, LocalDate.of(2020, 1, 1), false);
+        Charge charge = new Charge(ChargeType.INTERNET_BILL, user, LocalDate.of(2020, 5, 5), false);
+        Charge charge2 = new Charge(ChargeType.WATER_BILL, user2, LocalDate.of(2021, 2, 3), true);
+        Charge charge3 = new Charge(ChargeType.ROAD_USER_CHARGES, user2, LocalDate.of(2021, 2, 3), false);
+        Charge charge4 = new Charge(ChargeType.SPEEDING_VIOLATION, user2, LocalDate.of(2022, 12, 5), true);
+        Charge charge5 = new Charge(ChargeType.ELECTRICITY_BILL, user, LocalDate.of(2020, 12, 5), false);
 
-        charge.push(dbConnection);
-        charge2.push(dbConnection);
+        dbConnection.push(charge, charge2, charge3, charge4, charge5);
+
+        System.out.println("Printing data for user: " + user.getUsername());
+        System.out.println(Charge.getAll(dbConnection, user));
+
+        System.out.println("Printing data for user2: " + user2.getUsername());
+        System.out.println(Charge.getAll(dbConnection, user2));
 
         dbConnection.close();
     }
