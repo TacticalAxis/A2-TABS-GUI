@@ -218,7 +218,6 @@ public class User extends DBModelBase implements Databaseable<String> {
 
     @Override
     public boolean keyExists(DBConnection db, String key) {
-//        System.out.println("Checking if key exists: " + key);
         try (Statement stmt = db.getConnection().createStatement()) {
             String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE username = '" + key + "'";
             ResultSet rs = stmt.executeQuery(query);

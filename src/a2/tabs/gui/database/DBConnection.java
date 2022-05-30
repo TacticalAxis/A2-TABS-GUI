@@ -2,9 +2,11 @@ package a2.tabs.gui.database;
 
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.model.Charge;
+import a2.tabs.gui.model.ChargeType;
 import a2.tabs.gui.model.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +43,7 @@ public class DBConnection {
     }
 
     public void createTable(String tableName, ColumnList columnList) {
-        StringBuilder sb = new StringBuilder("CREATE TABLE \"" + tableName + "\" (");
-        sb.append(columnList);
-//        sb.deleteCharAt(sb.length() - 1);
-        sb.append(")");
-
-        String sql = sb.toString();
+        String sql = "CREATE TABLE \"" + tableName + "\" (" + columnList + ")";
         System.out.println(sql);
 
         try (Statement statement = connection.createStatement()) {
@@ -115,51 +112,35 @@ public class DBConnection {
 
         System.out.println(dbConnection.getTables());
 
-//        Charge charge = new Charge();
+        User user = new User(
+                "nathand123",
+                "nathan",
+                "doe",
+                "Nathan",
+                "Dsouza",
+                LocalDate.of(2002, 1, 23),
+                "02102362281"
+        );
+
+        User user2 = new User(
+                "blakef26",
+                "bf234",
+                "doe2222",
+                "Blake",
+                "Fernandes",
+                LocalDate.of(2002, 12, 14),
+                "02102362281"
+        );
+
+        user.push(dbConnection);
+        user2.push(dbConnection);
+
+        Charge charge = new Charge(ChargeType.INTERNET_BILL, user, LocalDate.of(2020, 1, 1), false);
+        Charge charge2 = new Charge(ChargeType.INTERNET_BILL, user2, LocalDate.of(2020, 1, 1), false);
+
+        charge.push(dbConnection);
+        charge2.push(dbConnection);
 
         dbConnection.close();
-
-//
-//
-//        User user = new User(
-//                "nathand123",
-//                "nathan",
-//                "doe",
-//                "Nathan",
-//                "Dsouza",
-//                LocalDate.of(2002, 1, 23),
-//                "02102362281"
-//        );
-//
-//        User user2 = new User(
-//                "blakef26",
-//                "bf234",
-//                "doe2222",
-//                "Blake",
-//                "Fernandes",
-//                LocalDate.of(2002, 12, 14),
-//                "02102362281"
-//        );
-//
-//        dbConnection.push(user);
-//        dbConnection.push(user2);
-//
-//        User test = User.get(dbConnection, "nathand123");
-//        User test2 = User.get(dbConnection, "blakef26");
-//
-//        System.out.println(user);
-//        System.out.println(test);
-//        System.out.println(user2);
-//        System.out.println(test2);
-//
-//        System.out.println(user.equals(test));
-//        System.out.println(user2.equals(test2));
-//
-//        System.out.println(user.equals(user2));
-//        if (test != null) {
-//            System.out.println(test.equals(test2));
-//        }
-
-//        dbConnection.close();
     }
 }
