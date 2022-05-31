@@ -1,9 +1,7 @@
 package a2.tabs.gui.database;
 
 import a2.tabs.gui.controller.Config;
-import a2.tabs.gui.model.Charge;
-import a2.tabs.gui.model.ChargeType;
-import a2.tabs.gui.model.User;
+import a2.tabs.gui.model.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -110,8 +108,9 @@ public class DBConnection {
 
         dbConnection.createTable(Charge.TABLE_NAME, Charge.model());
         dbConnection.createTable(User.TABLE_NAME, User.model());
-
-//        System.out.println(dbConnection.getTables());
+        dbConnection.createTable(MessageUser.TABLE_NAME, MessageUser.model());
+        dbConnection.createTable(MessageAdmin.TABLE_NAME, MessageAdmin.model());
+        dbConnection.createTable(Log.TABLE_NAME, Log.model());
 
         User user = new User(
                 "nathand123",
@@ -144,10 +143,49 @@ public class DBConnection {
         dbConnection.push(charge, charge2, charge3, charge4, charge5);
 
         System.out.println("Printing data for user: " + user.getUsername());
-        System.out.println(Charge.getAll(dbConnection, user));
+        System.out.println(Charge.get(dbConnection, user));
 
         System.out.println("Printing data for user2: " + user2.getUsername());
-        System.out.println(Charge.getAll(dbConnection, user2));
+        System.out.println(Charge.get(dbConnection, user2));
+
+        MessageUser messageUser = new MessageUser(user, "Hello World!", System.currentTimeMillis());
+        MessageUser messageUser2 = new MessageUser(user2, "I hope youre!", System.currentTimeMillis());
+        MessageUser messageUser3 = new MessageUser(user, "Having!", System.currentTimeMillis());
+        MessageUser messageUser4 = new MessageUser(user2, "a great!", System.currentTimeMillis());
+        MessageUser messageUser5 = new MessageUser(user, "day!", System.currentTimeMillis());
+
+        dbConnection.push(messageUser, messageUser2, messageUser3, messageUser4, messageUser5);
+
+        System.out.println("Messages for user: " + user.getUsername());
+        System.out.println(MessageUser.get(dbConnection, user));
+
+        System.out.println("Messages for user2: " + user2.getUsername());
+        System.out.println(MessageUser.get(dbConnection, user2));
+
+        MessageAdmin messageAdmin = new MessageAdmin(user, "This is!", System.currentTimeMillis());
+        MessageAdmin messageAdmin2 = new MessageAdmin(user2, "A great test!", System.currentTimeMillis());
+        MessageAdmin messageAdmin3 = new MessageAdmin(user, "To see!", System.currentTimeMillis());
+        MessageAdmin messageAdmin4 = new MessageAdmin(user2, "whether these work!", System.currentTimeMillis());
+        MessageAdmin messageAdmin5 = new MessageAdmin(user, "or not!", System.currentTimeMillis());
+
+        dbConnection.push(messageAdmin, messageAdmin2, messageAdmin3, messageAdmin4, messageAdmin5);
+
+        System.out.println("Messages for admin: " + user.getUsername());
+        System.out.println(MessageAdmin.get(dbConnection, user));
+
+        System.out.println("Messages for admin2: " + user2.getUsername());
+        System.out.println(MessageAdmin.get(dbConnection, user2));
+
+        Log log = new Log(System.currentTimeMillis(), "This is a test log!");
+        Log log2 = new Log(System.currentTimeMillis(), "This is another test log!");
+        Log log3 = new Log(System.currentTimeMillis(), "This is a third test log!");
+        Log log4 = new Log(System.currentTimeMillis(), "This is a fourth test log!");
+        Log log5 = new Log(System.currentTimeMillis(), "This is a fifth test log!");
+
+        dbConnection.push(log, log2, log3, log4, log5);
+
+        System.out.println("Logs: ");
+        System.out.println(Log.get(dbConnection));
 
         dbConnection.close();
     }

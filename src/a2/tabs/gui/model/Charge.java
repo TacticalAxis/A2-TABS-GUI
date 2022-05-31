@@ -39,6 +39,10 @@ public class Charge implements Databaseable<Charge> {
         return date;
     }
 
+    public boolean isPaid() {
+        return paid;
+    }
+
     @Override
     public boolean create(DBConnection db) {
         try(Statement stmt = db.getConnection().createStatement()) {
@@ -59,7 +63,7 @@ public class Charge implements Databaseable<Charge> {
     @Override
     public void push(DBConnection db) {
         boolean exists = false;
-        for (Charge c : getAll(db)) {
+        for (Charge c : get(db)) {
             if (c.equals(this)) {
                 exists = true;
                 break;
@@ -73,7 +77,7 @@ public class Charge implements Databaseable<Charge> {
 
     @Override
     public boolean keyExists(DBConnection db, Charge key) {
-        return getAll(db).contains(key);
+        return get(db).contains(key);
     }
 
     @Override
@@ -101,25 +105,7 @@ public class Charge implements Databaseable<Charge> {
         return paid == charge.paid && type == charge.type && Objects.equals(user, charge.user) && Objects.equals(date, charge.date);
     }
 
-    public static Charge get(DBConnection db, User user) {
-        try(Statement stmt = db.getConnection().createStatement()) {
-            String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE userID = '" + user.getUsername() + "'";
-            ResultSet rs = stmt.executeQuery(query);
-            if(rs.next()) {
-                ChargeType type = ChargeType.getById(rs.getInt("typeID"));
-                LocalDate date = rs.getDate("dueDate").toLocalDate();
-                boolean paid = rs.getBoolean("paid");
-
-                return new Charge(type, user, date, paid);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public static List<Charge> getAll(DBConnection db) {
+    public static List<Charge> get(DBConnection db) {
         List<Charge> charges = new ArrayList<>();
 
         try(Statement stmt = db.getConnection().createStatement()) {
@@ -140,7 +126,7 @@ public class Charge implements Databaseable<Charge> {
         return charges;
     }
 
-    public static List<Charge> getAll(DBConnection db, User user) {
+    public static List<Charge> get(DBConnection db, User user) {
         List<Charge> charges = new ArrayList<>();
 
         try(Statement stmt = db.getConnection().createStatement()) {

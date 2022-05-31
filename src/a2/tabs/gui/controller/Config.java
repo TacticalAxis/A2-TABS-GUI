@@ -12,6 +12,7 @@ public class Config {
 
     public static final String DB_TABLE_USER = "User";
     public static final String DB_TABLE_CHARGE = "Charge";
-    public static final String DB_TABLE_MESSAGE = "Message";
+    public static final String DB_TABLE_MESSAGE_USER = "MessageUser";
+    public static final String DB_TABLE_MESSAGE_ADMIN = "MessageAdmin";
     public static final String DB_TABLE_LOG = "Log";
 }

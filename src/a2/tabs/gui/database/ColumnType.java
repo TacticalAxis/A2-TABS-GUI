@@ -3,6 +3,7 @@ package a2.tabs.gui.database;
 public enum ColumnType {
     INTEGER("INTEGER", false),
     DOUBLE("DOUBLE", false),
+    LONG("BIGINT", false),
     STRING("VARCHAR", true),
     DATE("DATE", false),
     TIME("TIME", false),

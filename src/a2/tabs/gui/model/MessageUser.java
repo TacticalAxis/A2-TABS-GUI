@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MessageAdmin implements Databaseable<MessageAdmin> {
+public class MessageUser implements Databaseable<MessageUser> {
 
-    public static final String TABLE_NAME = Config.DB_TABLE_MESSAGE_ADMIN;
+    public static final String TABLE_NAME = Config.DB_TABLE_MESSAGE_USER;
 
     private final User user;
     private final String message;
     private final long timestamp;
 
-    public MessageAdmin(User user, String message, long timestamp) {
+    public MessageUser(User user, String message, long timestamp) {
         this.user = user;
         this.message = message;
         this.timestamp = timestamp;
@@ -56,7 +56,7 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
     @Override
     public void push(DBConnection db) {
         boolean exists = false;
-        for (MessageAdmin m : get(db)) {
+        for (MessageUser m : get(db)) {
             if (m.equals(this)) {
                 exists = true;
                 break;
@@ -69,7 +69,7 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
     }
 
     @Override
-    public boolean keyExists(DBConnection db, MessageAdmin key) {
+    public boolean keyExists(DBConnection db, MessageUser key) {
         return get(db).contains(key);
     }
 
@@ -82,8 +82,8 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MessageAdmin message1 = (MessageAdmin) o;
-        return timestamp == message1.timestamp && Objects.equals(user, message1.user) && Objects.equals(message, message1.message);
+        MessageUser messageUser1 = (MessageUser) o;
+        return timestamp == messageUser1.timestamp && Objects.equals(user, messageUser1.user) && Objects.equals(message, messageUser1.message);
     }
 
     public static ColumnList model() {
@@ -96,8 +96,8 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
         );
     }
 
-    public static List<MessageAdmin> get(DBConnection db) {
-        List<MessageAdmin> messages = new ArrayList<>();
+    public static List<MessageUser> get(DBConnection db) {
+        List<MessageUser> messageUsers = new ArrayList<>();
 
         try (Statement stmt = db.getConnection().createStatement()) {
             String sql = String.format("SELECT * FROM \"%s\"", TABLE_NAME);
@@ -106,17 +106,17 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
                 User user = User.get(db, rs.getString("userID"));
                 String message = rs.getString("message");
                 long timestamp = rs.getLong("timestamp");
-                messages.add(new MessageAdmin(user, message, timestamp));
+                messageUsers.add(new MessageUser(user, message, timestamp));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return messages;
+        return messageUsers;
     }
 
-    public static List<MessageAdmin> get(DBConnection db, User user) {
-        List<MessageAdmin> messages = new ArrayList<>();
+    public static List<MessageUser> get(DBConnection db, User user) {
+        List<MessageUser> messageUsers = new ArrayList<>();
 
         try (Statement stmt = db.getConnection().createStatement()) {
             String sql = String.format("SELECT * FROM \"%s\" WHERE userID = '%s'", TABLE_NAME, user.getUsername());
@@ -124,13 +124,13 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
             while (rs.next()) {
                 String message = rs.getString("message");
                 long timestamp = rs.getLong("timestamp");
-                messages.add(new MessageAdmin(user, message, timestamp));
+                messageUsers.add(new MessageUser(user, message, timestamp));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return messages;
+        return messageUsers;
     }
 
     @Override
