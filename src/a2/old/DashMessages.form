@@ -55,11 +55,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="mainProgressBar" max="32767" attributes="0"/>
                       <Component id="sbProfileButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="sbMessagesButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="sbPaymentsButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sbHistoryButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="sbTaxCalculator" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -97,12 +95,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sbPaymentsButton" min="-2" pref="75" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="sbHistoryButton" min="-2" pref="75" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sbTaxCalculator" min="-2" pref="75" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="mainProgressBar" pref="57" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -210,18 +204,6 @@
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="sbHistoryButton">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Nathan\Documents\Files\University\Work\2022\Semester-1\COMP603-12\A2-TABS-GUI\resources\image\OptionPane-History.png"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-            <Property name="borderPainted" type="boolean" value="false"/>
-            <Property name="contentAreaFilled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="sbTaxCalculator">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -232,18 +214,6 @@
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JProgressBar" name="mainProgressBar">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="borderPainted" type="boolean" value="false"/>
-            <Property name="string" type="java.lang.String" value="50%"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -261,14 +231,16 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="pgMessagesMessageHistoryScroll" min="-2" pref="951" max="-2" attributes="0"/>
                       <Component id="pgMessagesMessageHistoryHeading" min="-2" pref="337" max="-2" attributes="0"/>
-                      <Component id="pgMessagesTitle" max="32767" attributes="0"/>
+                      <Component id="pgMessagesTitle" pref="951" max="32767" attributes="0"/>
                       <Component id="pgMessagesSendMessageHeading" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="pgMessagesSendMessagesTextField" min="-2" pref="716" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pgMessagesSendButton" max="32767" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="pgMessagesMessageHistoryScroll" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="pgMessagesSendMessagesTextField" min="-2" pref="716" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="pgMessagesSendButton" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -291,7 +263,7 @@
                   <Component id="pgMessagesMessageHistoryHeading" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pgMessagesMessageHistoryScroll" min="-2" pref="309" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

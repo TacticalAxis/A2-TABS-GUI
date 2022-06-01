@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package a2.tabs.gui.view;
+package a2.old;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -39,17 +39,17 @@ public class Dash extends javax.swing.JFrame {
         sbProfileButton = new javax.swing.JButton();
         sbMessagesButton = new javax.swing.JButton();
         sbPaymentsButton = new javax.swing.JButton();
-        sbHistoryButton = new javax.swing.JButton();
         sbTaxCalculator = new javax.swing.JButton();
-        mainProgressBar = new javax.swing.JProgressBar();
-        pgMessagesPanel = new javax.swing.JPanel();
-        pgMessagesTitle = new javax.swing.JLabel();
-        pgMessagesSendMessageHeading = new javax.swing.JLabel();
-        pgMessagesSendMessagesTextField = new javax.swing.JTextField();
-        pgMessagesSendButton = new javax.swing.JButton();
-        pgMessagesMessageHistoryHeading = new javax.swing.JLabel();
-        pgMessagesMessageHistoryScroll = new javax.swing.JScrollPane();
-        pgMessagesMessageHistoryList = new javax.swing.JList<>();
+        pgDashboardPanel = new javax.swing.JPanel();
+        pgDashboardTitle = new javax.swing.JLabel();
+        pgDashboardPaymentGraphLabel = new javax.swing.JLabel();
+        pgDashboardStatisticsLabel = new javax.swing.JLabel();
+        pgDashboardPaymentGraphImage = new javax.swing.JLabel();
+        pgDashboardDueLabel = new javax.swing.JLabel();
+        pgDashboardPaidLabel = new javax.swing.JLabel();
+        pgDashboardOverdueLabel = new javax.swing.JLabel();
+        pgDashboardBillsLabel = new javax.swing.JLabel();
+        pgDashboardFinesLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("The Awesomest Billing System");
@@ -102,20 +102,10 @@ public class Dash extends javax.swing.JFrame {
         sbPaymentsButton.setBorderPainted(false);
         sbPaymentsButton.setContentAreaFilled(false);
 
-        sbHistoryButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-History.png")); // NOI18N
-        sbHistoryButton.setBorder(null);
-        sbHistoryButton.setBorderPainted(false);
-        sbHistoryButton.setContentAreaFilled(false);
-
         sbTaxCalculator.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-TaxCalculator.png")); // NOI18N
         sbTaxCalculator.setBorder(null);
         sbTaxCalculator.setBorderPainted(false);
         sbTaxCalculator.setContentAreaFilled(false);
-
-        mainProgressBar.setBackground(new java.awt.Color(0, 0, 0));
-        mainProgressBar.setForeground(new java.awt.Color(51, 51, 51));
-        mainProgressBar.setBorderPainted(false);
-        mainProgressBar.setString("50%");
 
         javax.swing.GroupLayout sideBarLayout = new javax.swing.GroupLayout(sideBar);
         sideBar.setLayout(sideBarLayout);
@@ -124,11 +114,9 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideBarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mainProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sbProfileButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sbMessagesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sbPaymentsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sbHistoryButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sbTaxCalculator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sideBarLayout.createSequentialGroup()
                         .addGroup(sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,94 +147,94 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(sbPaymentsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(sbHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(sbTaxCalculator, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(mainProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addGap(174, 174, 174))
+        );
+
+        pgDashboardPanel.setForeground(new java.awt.Color(246, 247, 251));
+
+        pgDashboardTitle.setFont(new java.awt.Font("Bahnschrift", 1, 36)); // NOI18N
+        pgDashboardTitle.setForeground(new java.awt.Color(0, 100, 172));
+        pgDashboardTitle.setText("Dashboard");
+
+        pgDashboardPaymentGraphLabel.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        pgDashboardPaymentGraphLabel.setForeground(new java.awt.Color(153, 153, 153));
+        pgDashboardPaymentGraphLabel.setText("Payment Graph");
+
+        pgDashboardStatisticsLabel.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        pgDashboardStatisticsLabel.setForeground(new java.awt.Color(153, 153, 153));
+        pgDashboardStatisticsLabel.setText("Statistics");
+
+        pgDashboardPaymentGraphImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Dashboard-Graph.png")); // NOI18N
+
+        pgDashboardDueLabel.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        pgDashboardDueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pgDashboardDueLabel.setText("Payments Due: 25");
+
+        pgDashboardPaidLabel.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        pgDashboardPaidLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pgDashboardPaidLabel.setText("Payments Paid: 25");
+
+        pgDashboardOverdueLabel.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        pgDashboardOverdueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pgDashboardOverdueLabel.setText("Payments Overdue: 25");
+
+        pgDashboardBillsLabel.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        pgDashboardBillsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pgDashboardBillsLabel.setText("Bills: 25");
+
+        pgDashboardFinesLabel.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        pgDashboardFinesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pgDashboardFinesLabel.setText("Fines: 25");
+
+        javax.swing.GroupLayout pgDashboardPanelLayout = new javax.swing.GroupLayout(pgDashboardPanel);
+        pgDashboardPanel.setLayout(pgDashboardPanelLayout);
+        pgDashboardPanelLayout.setHorizontalGroup(
+            pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pgDashboardPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pgDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pgDashboardPanelLayout.createSequentialGroup()
+                        .addGroup(pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pgDashboardPaymentGraphLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pgDashboardPaymentGraphImage, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pgDashboardStatisticsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                            .addGroup(pgDashboardPanelLayout.createSequentialGroup()
+                                .addGroup(pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pgDashboardDueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pgDashboardPaidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pgDashboardOverdueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pgDashboardBillsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pgDashboardFinesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
-
-        pgMessagesPanel.setForeground(new java.awt.Color(246, 247, 251));
-
-        pgMessagesTitle.setFont(new java.awt.Font("Bahnschrift", 1, 36)); // NOI18N
-        pgMessagesTitle.setForeground(new java.awt.Color(0, 100, 172));
-        pgMessagesTitle.setText("Messages");
-
-        pgMessagesSendMessageHeading.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        pgMessagesSendMessageHeading.setForeground(new java.awt.Color(153, 153, 153));
-        pgMessagesSendMessageHeading.setText("Send Message");
-
-        pgMessagesSendMessagesTextField.setBackground(new java.awt.Color(204, 204, 204));
-        pgMessagesSendMessagesTextField.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        pgMessagesSendMessagesTextField.setForeground(new java.awt.Color(102, 102, 102));
-        pgMessagesSendMessagesTextField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
-        pgMessagesSendMessagesTextField.setCaretColor(new java.awt.Color(102, 102, 102));
-        pgMessagesSendMessagesTextField.setOpaque(true);
-        pgMessagesSendMessagesTextField.setSelectionColor(new java.awt.Color(252, 189, 27));
-
-        pgMessagesSendButton.setBackground(new java.awt.Color(0, 100, 172));
-        pgMessagesSendButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        pgMessagesSendButton.setForeground(new java.awt.Color(204, 204, 204));
-        pgMessagesSendButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\MessagesPane-SendButton.png")); // NOI18N
-        pgMessagesSendButton.setBorder(null);
-        pgMessagesSendButton.setBorderPainted(false);
-        pgMessagesSendButton.setContentAreaFilled(false);
-        pgMessagesSendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pgMessagesSendButtonActionPerformed(evt);
-            }
-        });
-
-        pgMessagesMessageHistoryHeading.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        pgMessagesMessageHistoryHeading.setForeground(new java.awt.Color(153, 153, 153));
-        pgMessagesMessageHistoryHeading.setText("Message History");
-
-        pgMessagesMessageHistoryList.setBackground(new java.awt.Color(204, 204, 204));
-        pgMessagesMessageHistoryList.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
-        pgMessagesMessageHistoryList.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        pgMessagesMessageHistoryList.setForeground(new java.awt.Color(102, 102, 102));
-        pgMessagesMessageHistoryList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        pgMessagesMessageHistoryList.setSelectionBackground(new java.awt.Color(252, 189, 27));
-        pgMessagesMessageHistoryScroll.setViewportView(pgMessagesMessageHistoryList);
-
-        javax.swing.GroupLayout pgMessagesPanelLayout = new javax.swing.GroupLayout(pgMessagesPanel);
-        pgMessagesPanel.setLayout(pgMessagesPanelLayout);
-        pgMessagesPanelLayout.setHorizontalGroup(
-            pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pgMessagesPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pgMessagesMessageHistoryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pgMessagesMessageHistoryHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pgMessagesTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pgMessagesSendMessageHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pgMessagesPanelLayout.createSequentialGroup()
-                        .addComponent(pgMessagesSendMessagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pgMessagesSendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pgMessagesPanelLayout.setVerticalGroup(
-            pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pgMessagesPanelLayout.createSequentialGroup()
+        pgDashboardPanelLayout.setVerticalGroup(
+            pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pgDashboardPanelLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(pgMessagesTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pgDashboardTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pgMessagesSendMessageHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pgDashboardPaymentGraphLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pgDashboardStatisticsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pgMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pgMessagesSendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pgMessagesSendMessagesTextField))
-                .addGap(18, 18, 18)
-                .addComponent(pgMessagesMessageHistoryHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pgMessagesMessageHistoryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(pgDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pgDashboardPaymentGraphImage, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pgDashboardPanelLayout.createSequentialGroup()
+                        .addComponent(pgDashboardDueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pgDashboardPaidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pgDashboardOverdueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pgDashboardBillsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pgDashboardFinesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,12 +244,12 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pgMessagesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pgDashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pgMessagesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pgDashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -271,10 +259,6 @@ public class Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_sbExitButtonActionPerformed
-
-    private void pgMessagesSendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pgMessagesSendButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pgMessagesSendButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,17 +296,17 @@ public class Dash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar mainProgressBar;
-    private javax.swing.JLabel pgMessagesMessageHistoryHeading;
-    private javax.swing.JList<String> pgMessagesMessageHistoryList;
-    private javax.swing.JScrollPane pgMessagesMessageHistoryScroll;
-    private javax.swing.JPanel pgMessagesPanel;
-    private javax.swing.JButton pgMessagesSendButton;
-    private javax.swing.JLabel pgMessagesSendMessageHeading;
-    private javax.swing.JTextField pgMessagesSendMessagesTextField;
-    private javax.swing.JLabel pgMessagesTitle;
+    private javax.swing.JLabel pgDashboardBillsLabel;
+    private javax.swing.JLabel pgDashboardDueLabel;
+    private javax.swing.JLabel pgDashboardFinesLabel;
+    private javax.swing.JLabel pgDashboardOverdueLabel;
+    private javax.swing.JLabel pgDashboardPaidLabel;
+    private javax.swing.JPanel pgDashboardPanel;
+    private javax.swing.JLabel pgDashboardPaymentGraphImage;
+    private javax.swing.JLabel pgDashboardPaymentGraphLabel;
+    private javax.swing.JLabel pgDashboardStatisticsLabel;
+    private javax.swing.JLabel pgDashboardTitle;
     private javax.swing.JButton sbExitButton;
-    private javax.swing.JButton sbHistoryButton;
     private javax.swing.JButton sbHomeButton;
     private javax.swing.JButton sbMessagesButton;
     private javax.swing.JButton sbPaymentsButton;

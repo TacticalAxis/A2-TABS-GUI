@@ -50,7 +50,14 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
 
     @Override
     public boolean delete(DBConnection db) {
-        throw new UnsupportedOperationException("Unsupported operation, messages are read-only");
+        try(Statement stmt = db.getConnection().createStatement()) {
+            String sql = String.format("DELETE FROM \"%s\" WHERE userID = '%s' AND message = '%s' AND timestamp = %d", TABLE_NAME, user.getUsername(), message, timestamp);
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     @Override
