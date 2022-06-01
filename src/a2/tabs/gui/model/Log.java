@@ -31,7 +31,6 @@ public class Log implements Databaseable<Log> {
         return message;
     }
 
-
     @Override
     public boolean create(DBConnection db) {
         if (keyExists(db, this)) {
