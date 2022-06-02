@@ -208,7 +208,8 @@ public class User extends DBModelBase implements Databaseable<String> {
             create(db);
         } else {
             try (Statement stmt = db.getConnection().createStatement()) {
-                String query = String.format("UPDATE %s SET password = '%s', email = '%s', firstName = '%s', lastName = '%s', dateOfBirth = '%s', phone = '%s', address = '%s', irdNumber = '%s', salary = %s, ownsHome = %s, carRego = '%s' WHERE username = '%s'", TABLE_NAME, password, email, firstName, lastName, Date.valueOf(dateOfBirth), phone, address, irdNumber, salary, ownsHome, carRego, username);
+                String query = String.format("UPDATE \"%s\" SET password = '%s', email = '%s', firstName = '%s', lastName = '%s', dateOfBirth = '%s', phone = '%s', address = '%s', irdNumber = '%s', salary = %s, ownsHome = %s, carRego = '%s' WHERE username = '%s'", TABLE_NAME, password, email, firstName, lastName, Date.valueOf(dateOfBirth), phone, address, irdNumber, salary, ownsHome, carRego, username);
+                System.out.println(query);
                 stmt.executeUpdate(query);
             } catch (SQLException e) {
                 e.printStackTrace();

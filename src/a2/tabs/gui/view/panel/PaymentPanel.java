@@ -35,17 +35,17 @@ public class PaymentPanel extends JPanel {
 
         setForeground(new Color(246, 247, 251));
 
-        pgPaymentTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgPaymentTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgPaymentTitle.setForeground(new Color(0, 100, 172));
         pgPaymentTitle.setText("Payments");
 
-        pgPaymentUpcomingLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgPaymentUpcomingLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgPaymentUpcomingLabel.setForeground(new Color(153, 153, 153));
         pgPaymentUpcomingLabel.setText("Upcoming Payments");
 
         pgPaymentUpcomingList.setBackground(new Color(204, 204, 204));
         pgPaymentUpcomingList.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
-        pgPaymentUpcomingList.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgPaymentUpcomingList.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgPaymentUpcomingList.setForeground(new Color(102, 102, 102));
         pgPaymentUpcomingList.setModel(new AbstractListModel<String>() {
             final String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -55,13 +55,13 @@ public class PaymentPanel extends JPanel {
         pgPaymentUpcomingList.setSelectionBackground(new Color(252, 189, 27));
         pgPaymentUpcomingScroll.setViewportView(pgPaymentUpcomingList);
 
-        pgPaymentHistoryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgPaymentHistoryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgPaymentHistoryLabel.setForeground(new Color(153, 153, 153));
         pgPaymentHistoryLabel.setText("Payment History");
 
         pgPaymentHistoryList.setBackground(new Color(204, 204, 204));
         pgPaymentHistoryList.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
-        pgPaymentHistoryList.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgPaymentHistoryList.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgPaymentHistoryList.setForeground(new Color(102, 102, 102));
         pgPaymentHistoryList.setModel(new AbstractListModel<String>() {
             final String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };

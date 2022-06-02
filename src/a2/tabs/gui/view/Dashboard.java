@@ -10,6 +10,8 @@ import java.awt.*;
 @SuppressWarnings({"DuplicatedCode", "FieldCanBeLocal"})
 public class Dashboard extends JFrame {
 
+    public static DBConnection db;
+
     private final User user;
 
     private JPanel currentPanel;
@@ -53,11 +55,11 @@ public class Dashboard extends JFrame {
         sideBar.setBackground(new Color(51, 51, 51));
         sideBar.setForeground(new Color(51, 51, 51));
 
-        sbTitleButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\tabs-logo-dash2.png")); // NOI18N
+        sbTitleButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\tabs-logo-dash2.png"));
         sbTitleButton.setBorderPainted(false);
         sbTitleButton.setContentAreaFilled(false);
 
-        sbHomeButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Home.png")); // NOI18N
+        sbHomeButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Home.png"));
         sbHomeButton.setBorder(null);
         sbHomeButton.setBorderPainted(false);
         sbHomeButton.setContentAreaFilled(false);
@@ -71,7 +73,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbSettingsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Settings.png")); // NOI18N
+        sbSettingsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Settings.png"));
         sbSettingsButton.setBorder(null);
         sbSettingsButton.setBorderPainted(false);
         sbSettingsButton.setContentAreaFilled(false);
@@ -79,7 +81,7 @@ public class Dashboard extends JFrame {
         sbSettingsButton.setMaximumSize(new Dimension(75, 75));
         sbSettingsButton.setMinimumSize(new Dimension(75, 75));
 
-        sbExitButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Exit.png")); // NOI18N
+        sbExitButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Exit.png"));
         sbExitButton.setBorder(null);
         sbExitButton.setBorderPainted(false);
         sbExitButton.setContentAreaFilled(false);
@@ -91,7 +93,7 @@ public class Dashboard extends JFrame {
             System.exit(0);
         });
 
-        sbProfileButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Profile.png")); // NOI18N
+        sbProfileButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Profile.png"));
         sbProfileButton.setBorder(null);
         sbProfileButton.setBorderPainted(false);
         sbProfileButton.setContentAreaFilled(false);
@@ -103,7 +105,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbMessagesButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Messages.png")); // NOI18N
+        sbMessagesButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Messages.png"));
         sbMessagesButton.setBorder(null);
         sbMessagesButton.setBorderPainted(false);
         sbMessagesButton.setContentAreaFilled(false);
@@ -115,7 +117,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbPaymentsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Payments.png")); // NOI18N
+        sbPaymentsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Payments.png"));
         sbPaymentsButton.setBorder(null);
         sbPaymentsButton.setBorderPainted(false);
         sbPaymentsButton.setContentAreaFilled(false);
@@ -127,7 +129,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbTaxCalculator.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-TaxCalculator.png")); // NOI18N
+        sbTaxCalculator.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-TaxCalculator.png"));
         sbTaxCalculator.setBorder(null);
         sbTaxCalculator.setBorderPainted(false);
         sbTaxCalculator.setContentAreaFilled(false);
@@ -207,8 +209,8 @@ public class Dashboard extends JFrame {
     }
 
     public static void main(String[] args) {
-        DBConnection dbConnection = new DBConnection();
-        User user = User.get(dbConnection, "nathand123");
+        db = new DBConnection();
+        User user = User.get(db, "nathand123");
         EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
     }
 }

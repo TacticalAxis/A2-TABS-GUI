@@ -38,37 +38,37 @@ public class HomePanel extends JPanel {
 
         setForeground(new Color(246, 247, 251));
 
-        pgDashboardTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgDashboardTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgDashboardTitle.setForeground(new Color(0, 100, 172));
-        pgDashboardTitle.setText("Dashboard");
+        pgDashboardTitle.setText("Welcome, " + user.getFirstName() + ".");
 
-        pgDashboardPaymentGraphLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgDashboardPaymentGraphLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgDashboardPaymentGraphLabel.setForeground(new Color(153, 153, 153));
         pgDashboardPaymentGraphLabel.setText("Payment Graph");
 
-        pgDashboardStatisticsLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgDashboardStatisticsLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgDashboardStatisticsLabel.setForeground(new Color(153, 153, 153));
         pgDashboardStatisticsLabel.setText("Statistics");
 
-        pgDashboardPaymentGraphImage.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Dashboard-Graph.png")); // NOI18N
+        pgDashboardPaymentGraphImage.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Dashboard-Graph.png"));
 
-        pgDashboardDueLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24)); // NOI18N
+        pgDashboardDueLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
         pgDashboardDueLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pgDashboardDueLabel.setText("Payments Due: 25");
 
-        pgDashboardPaidLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24)); // NOI18N
+        pgDashboardPaidLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
         pgDashboardPaidLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pgDashboardPaidLabel.setText("Payments Paid: 25");
 
-        pgDashboardOverdueLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24)); // NOI18N
+        pgDashboardOverdueLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
         pgDashboardOverdueLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pgDashboardOverdueLabel.setText("Payments Overdue: 25");
 
-        pgDashboardBillsLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24)); // NOI18N
+        pgDashboardBillsLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
         pgDashboardBillsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pgDashboardBillsLabel.setText("Bills: 25");
 
-        pgDashboardFinesLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24)); // NOI18N
+        pgDashboardFinesLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
         pgDashboardFinesLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pgDashboardFinesLabel.setText("Fines: 25");
 

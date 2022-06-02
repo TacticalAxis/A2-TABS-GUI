@@ -1,10 +1,13 @@
 package a2.tabs.gui.view.panel;
 
 import a2.tabs.gui.model.User;
+import a2.tabs.gui.util.FormFieldType;
+import a2.tabs.gui.view.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.time.LocalDate;
 
 @SuppressWarnings({"FieldCanBeLocal", "DuplicatedCode"})
 public class ProfilePanel extends JPanel {
@@ -50,7 +53,10 @@ public class ProfilePanel extends JPanel {
         pgProfileLastNameLabel = new JLabel();
         pgProfileLastNameInput = new JTextField(user.getLastName());
         pgProfileDateOfBirthLabel = new JLabel();
-        pgProfileDateOfBirthInput = new JTextField(user.getDateOfBirth().toString());
+
+        LocalDate dateOfBirth = user.getDateOfBirth();
+
+        pgProfileDateOfBirthInput = new JTextField(dateOfBirth.getDayOfMonth() + "-" + dateOfBirth.getMonthValue() + "-" + dateOfBirth.getYear());
         pgProfileAddressLabel = new JLabel();
         pgProfileAddressInput = new JTextField(user.getAddress());
         pgProfileIRDNumberLabel = new JLabel();
@@ -69,136 +75,139 @@ public class ProfilePanel extends JPanel {
 
         setForeground(new Color(246, 247, 251));
 
-        pgMessagesTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgMessagesTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgMessagesTitle.setForeground(new Color(0, 100, 172));
         pgMessagesTitle.setText("Profile");
 
-        pgProfileUsernameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileUsernameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileUsernameLabel.setForeground(new Color(153, 153, 153));
         pgProfileUsernameLabel.setText("Username");
 
         pgProfileUsernameInput.setBackground(new Color(204, 204, 204));
-        pgProfileUsernameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileUsernameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileUsernameInput.setForeground(new Color(102, 102, 102));
         pgProfileUsernameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileUsernameInput.setCaretColor(new Color(102, 102, 102));
         pgProfileUsernameInput.setOpaque(true);
         pgProfileUsernameInput.setSelectionColor(new Color(252, 189, 27));
+        pgProfileUsernameInput.setEditable(false);
+        pgProfileUsernameInput.setDisabledTextColor(new Color(148, 147, 147));
+        pgProfileUsernameInput.setEnabled(false);
 
-        pgProfileFirstNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileFirstNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileFirstNameLabel.setForeground(new Color(153, 153, 153));
         pgProfileFirstNameLabel.setText("First Name");
 
         pgProfileFirstNameInput.setBackground(new Color(204, 204, 204));
-        pgProfileFirstNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileFirstNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileFirstNameInput.setForeground(new Color(102, 102, 102));
         pgProfileFirstNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileFirstNameInput.setCaretColor(new Color(102, 102, 102));
         pgProfileFirstNameInput.setOpaque(true);
         pgProfileFirstNameInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileLastNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileLastNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileLastNameLabel.setForeground(new Color(153, 153, 153));
         pgProfileLastNameLabel.setText("Last Name");
 
         pgProfileLastNameInput.setBackground(new Color(204, 204, 204));
-        pgProfileLastNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileLastNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileLastNameInput.setForeground(new Color(102, 102, 102));
         pgProfileLastNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileLastNameInput.setCaretColor(new Color(102, 102, 102));
         pgProfileLastNameInput.setOpaque(true);
         pgProfileLastNameInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileDateOfBirthLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileDateOfBirthLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileDateOfBirthLabel.setForeground(new Color(153, 153, 153));
         pgProfileDateOfBirthLabel.setText("Date of Birth");
 
         pgProfileDateOfBirthInput.setBackground(new Color(204, 204, 204));
-        pgProfileDateOfBirthInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileDateOfBirthInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileDateOfBirthInput.setForeground(new Color(102, 102, 102));
         pgProfileDateOfBirthInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileDateOfBirthInput.setCaretColor(new Color(102, 102, 102));
         pgProfileDateOfBirthInput.setOpaque(true);
         pgProfileDateOfBirthInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileAddressLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileAddressLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileAddressLabel.setForeground(new Color(153, 153, 153));
         pgProfileAddressLabel.setText("Address");
 
         pgProfileAddressInput.setBackground(new Color(204, 204, 204));
-        pgProfileAddressInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileAddressInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileAddressInput.setForeground(new Color(102, 102, 102));
         pgProfileAddressInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileAddressInput.setCaretColor(new Color(102, 102, 102));
         pgProfileAddressInput.setOpaque(true);
         pgProfileAddressInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileIRDNumberLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileIRDNumberLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileIRDNumberLabel.setForeground(new Color(153, 153, 153));
         pgProfileIRDNumberLabel.setText("IRD Number");
 
         pgProfileIRDNumberInput.setBackground(new Color(204, 204, 204));
-        pgProfileIRDNumberInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileIRDNumberInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileIRDNumberInput.setForeground(new Color(102, 102, 102));
         pgProfileIRDNumberInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileIRDNumberInput.setCaretColor(new Color(102, 102, 102));
         pgProfileIRDNumberInput.setOpaque(true);
         pgProfileIRDNumberInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileSalaryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileSalaryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileSalaryLabel.setForeground(new Color(153, 153, 153));
         pgProfileSalaryLabel.setText("Salary");
 
         pgProfileSalaryInput.setBackground(new Color(204, 204, 204));
-        pgProfileSalaryInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileSalaryInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileSalaryInput.setForeground(new Color(102, 102, 102));
         pgProfileSalaryInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileSalaryInput.setCaretColor(new Color(102, 102, 102));
         pgProfileSalaryInput.setOpaque(true);
         pgProfileSalaryInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileCarRegoLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileCarRegoLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileCarRegoLabel.setForeground(new Color(153, 153, 153));
         pgProfileCarRegoLabel.setText("Car Registration");
 
         pgProfileCarRegoInput.setBackground(new Color(204, 204, 204));
-        pgProfileCarRegoInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileCarRegoInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileCarRegoInput.setForeground(new Color(102, 102, 102));
         pgProfileCarRegoInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileCarRegoInput.setCaretColor(new Color(102, 102, 102));
         pgProfileCarRegoInput.setOpaque(true);
         pgProfileCarRegoInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileHomeOwnerLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileHomeOwnerLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileHomeOwnerLabel.setForeground(new Color(153, 153, 153));
         pgProfileHomeOwnerLabel.setText("Home Owner?");
 
         pgProfileHomeOwnerInput.setBackground(new Color(204, 204, 204));
-        pgProfileHomeOwnerInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileHomeOwnerInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileHomeOwnerInput.setForeground(new Color(102, 102, 102));
         pgProfileHomeOwnerInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileHomeOwnerInput.setCaretColor(new Color(102, 102, 102));
         pgProfileHomeOwnerInput.setOpaque(true);
         pgProfileHomeOwnerInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfileEmailLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfileEmailLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileEmailLabel.setForeground(new Color(153, 153, 153));
         pgProfileEmailLabel.setText("Email");
 
         pgProfileEmailInput.setBackground(new Color(204, 204, 204));
-        pgProfileEmailInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfileEmailInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileEmailInput.setForeground(new Color(102, 102, 102));
         pgProfileEmailInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfileEmailInput.setCaretColor(new Color(102, 102, 102));
         pgProfileEmailInput.setOpaque(true);
         pgProfileEmailInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgProfilePasswordLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgProfilePasswordLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfilePasswordLabel.setForeground(new Color(153, 153, 153));
         pgProfilePasswordLabel.setText("Password");
 
         pgProfilePasswordInput.setBackground(new Color(204, 204, 204));
-        pgProfilePasswordInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgProfilePasswordInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfilePasswordInput.setForeground(new Color(102, 102, 102));
         pgProfilePasswordInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgProfilePasswordInput.setCaretColor(new Color(102, 102, 102));
@@ -206,15 +215,128 @@ public class ProfilePanel extends JPanel {
         pgProfilePasswordInput.setSelectionColor(new Color(252, 189, 27));
 
         pgProfileUpdateButton.setBackground(new Color(0, 100, 172));
-        pgProfileUpdateButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgProfileUpdateButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgProfileUpdateButton.setForeground(new Color(204, 204, 204));
-        pgProfileUpdateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\ProfilePane-UpdateButton.png")); // NOI18N
+        pgProfileUpdateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\ProfilePane-UpdateButton.png"));
         pgProfileUpdateButton.setBorder(null);
         pgProfileUpdateButton.setBorderPainted(false);
         pgProfileUpdateButton.setContentAreaFilled(false);
         pgProfileUpdateButton.addActionListener(evt -> {
-            System.out.println("Update Button Pressed");
-            System.out.println("Name: stuff");
+
+            // check firstName
+            if (!FormFieldType.NAME.isValid(pgProfileFirstNameInput.getText())) {
+                pgProfileFirstNameInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "First Name is invalid. Format: " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileCarRegoInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check lastName
+            if (!FormFieldType.NAME.isValid(pgProfileLastNameInput.getText())) {
+                pgProfileLastNameInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Last Name is invalid. Format: " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileLastNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check dateOfBirth
+            if (!FormFieldType.DATE.isValid(pgProfileDateOfBirthInput.getText())) {
+                pgProfileDateOfBirthInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Date of Birth is invalid. Format: " + FormFieldType.DATE.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileDateOfBirthInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check address
+            if (!FormFieldType.STRING.isValid(pgProfileAddressInput.getText())) {
+                pgProfileAddressInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Address is invalid. Format: " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileAddressInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check irdNumber
+            if (!FormFieldType.IRD_NUMBER.isValid(pgProfileIRDNumberInput.getText())) {
+                pgProfileIRDNumberInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "IRD Number is invalid. Format: " + FormFieldType.IRD_NUMBER.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileIRDNumberInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check salary
+            if (!FormFieldType.MONEY.isValid(pgProfileSalaryInput.getText())) {
+                pgProfileSalaryInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Salary is invalid. Format: " + FormFieldType.MONEY.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileSalaryInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check carRego
+            if (!FormFieldType.CAR_REGISTRATION.isValid(pgProfileCarRegoInput.getText())) {
+                pgProfileCarRegoInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Car Registration is invalid. Format: " + FormFieldType.CAR_REGISTRATION.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileCarRegoInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check homeOwner
+            if (!FormFieldType.BOOLEAN.isValid(pgProfileHomeOwnerInput.getText())) {
+                pgProfileHomeOwnerInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Home Owner is invalid. Format: " + FormFieldType.BOOLEAN.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                pgProfileHomeOwnerInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check email
+            if (!FormFieldType.EMAIL.isValid(pgProfileEmailInput.getText())) {
+                pgProfileEmailInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Email is invalid. Format: " + FormFieldType.EMAIL.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfileEmailInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // check password
+            if (!FormFieldType.STRING.isValid(pgProfilePasswordInput.getText())) {
+                pgProfilePasswordInput.setBorder(new LineBorder(Color.RED, 5, true));
+                JOptionPane.showMessageDialog(null, "Password is invalid. Format: " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                pgProfilePasswordInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+            }
+
+            // all fields are valid
+            user.setFirstName(pgProfileFirstNameInput.getText());
+            user.setLastName(pgProfileLastNameInput.getText());
+
+            // set dateOfBirth
+            String testDate = FormFieldType.DATE.getParsed(pgProfileDateOfBirthInput.getText());
+            String[] date = testDate.split("-");
+            int day = Integer.parseInt(date[0]);
+            int month = Integer.parseInt(date[1]);
+            int year = Integer.parseInt(date[2]);
+            user.setDateOfBirth(LocalDate.of(year, month, day));
+
+            user.setAddress(pgProfileAddressInput.getText());
+            user.setIrdNumber(pgProfileIRDNumberInput.getText());
+            user.setSalary(Double.parseDouble(pgProfileSalaryInput.getText()));
+            user.setCarRego(pgProfileCarRegoInput.getText());
+            user.setOwnsHome(Boolean.parseBoolean(pgProfileHomeOwnerInput.getText()));
+            user.setEmail(pgProfileEmailInput.getText());
+            user.setPassword(pgProfilePasswordInput.getText());
+
+            // update user
+            user.push(Dashboard.db);
+
+            // show dialog
+            JOptionPane.showMessageDialog(null, "Profile updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
         GroupLayout pgProfilePanelLayout = new GroupLayout(this);

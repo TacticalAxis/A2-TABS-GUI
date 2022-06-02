@@ -1,5 +1,6 @@
 package a2.tabs.gui.view.panel;
 
+import a2.tabs.gui.util.FormFieldType;
 import a2.tabs.gui.view.TaxCalculator;
 
 import javax.swing.*;
@@ -54,28 +55,28 @@ public class TaxCalculatorPanel extends JPanel {
 
         setForeground(new Color(246, 247, 251));
 
-        pgTaxCalcTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgTaxCalcTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgTaxCalcTitle.setForeground(new Color(0, 100, 172));
         pgTaxCalcTitle.setText("Tax Calculator");
 
-        pgTaxCalcSalaryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcSalaryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcSalaryLabel.setForeground(new Color(153, 153, 153));
         pgTaxCalcSalaryLabel.setText("Salary To Check");
 
         pgTaxCalcSalaryInput.setBackground(new Color(204, 204, 204));
-        pgTaxCalcSalaryInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcSalaryInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcSalaryInput.setForeground(new Color(102, 102, 102));
         pgTaxCalcSalaryInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcSalaryInput.setCaretColor(new Color(102, 102, 102));
         pgTaxCalcSalaryInput.setOpaque(true);
         pgTaxCalcSalaryInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgTaxCalcBracket1Label.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcBracket1Label.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcBracket1Label.setForeground(new Color(153, 153, 153));
         pgTaxCalcBracket1Label.setText("10.5%");
 
         pgTaxCalcBracket1Display.setBackground(new Color(204, 204, 204));
-        pgTaxCalcBracket1Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcBracket1Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcBracket1Display.setForeground(new Color(102, 102, 102));
         pgTaxCalcBracket1Display.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcBracket1Display.setCaretColor(new Color(102, 102, 102));
@@ -83,12 +84,12 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcBracket1Display.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcBracket1Display.setEditable(false);
 
-        pgTaxCalcBracket2Label.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcBracket2Label.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcBracket2Label.setForeground(new Color(153, 153, 153));
         pgTaxCalcBracket2Label.setText("17.5%");
 
         pgTaxCalcBracket2Display.setBackground(new Color(204, 204, 204));
-        pgTaxCalcBracket2Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcBracket2Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcBracket2Display.setForeground(new Color(102, 102, 102));
         pgTaxCalcBracket2Display.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcBracket2Display.setCaretColor(new Color(102, 102, 102));
@@ -96,12 +97,12 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcBracket2Display.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcBracket2Display.setEditable(false);
 
-        pgTaxCalcBracket3Label.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcBracket3Label.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcBracket3Label.setForeground(new Color(153, 153, 153));
         pgTaxCalcBracket3Label.setText("30%");
 
         pgTaxCalcBracket3Display.setBackground(new Color(204, 204, 204));
-        pgTaxCalcBracket3Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcBracket3Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcBracket3Display.setForeground(new Color(102, 102, 102));
         pgTaxCalcBracket3Display.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcBracket3Display.setCaretColor(new Color(102, 102, 102));
@@ -109,12 +110,12 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcBracket3Display.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcBracket3Display.setEditable(false);
 
-        pgTaxCalcBracket4Label.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcBracket4Label.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcBracket4Label.setForeground(new Color(153, 153, 153));
         pgTaxCalcBracket4Label.setText("33%");
 
         pgTaxCalcBracket4Display.setBackground(new Color(204, 204, 204));
-        pgTaxCalcBracket4Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcBracket4Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcBracket4Display.setForeground(new Color(102, 102, 102));
         pgTaxCalcBracket4Display.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcBracket4Display.setCaretColor(new Color(102, 102, 102));
@@ -122,12 +123,12 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcBracket4Display.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcBracket4Display.setEditable(false);
 
-        pgTaxCalcBracket5Label.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcBracket5Label.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcBracket5Label.setForeground(new Color(153, 153, 153));
         pgTaxCalcBracket5Label.setText("39%");
 
         pgTaxCalcBracket5Display.setBackground(new Color(204, 204, 204));
-        pgTaxCalcBracket5Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcBracket5Display.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcBracket5Display.setForeground(new Color(102, 102, 102));
         pgTaxCalcBracket5Display.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcBracket5Display.setCaretColor(new Color(102, 102, 102));
@@ -136,7 +137,7 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcBracket5Display.setEditable(false);
 
         pgTaxCalcTotalTaxedAmountInput.setBackground(new Color(204, 204, 204));
-        pgTaxCalcTotalTaxedAmountInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcTotalTaxedAmountInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcTotalTaxedAmountInput.setForeground(new Color(102, 102, 102));
         pgTaxCalcTotalTaxedAmountInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcTotalTaxedAmountInput.setCaretColor(new Color(102, 102, 102));
@@ -144,16 +145,16 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcTotalTaxedAmountInput.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcTotalTaxedAmountInput.setEditable(false);
 
-        pgTaxCalcTotalTaxedAmountLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcTotalTaxedAmountLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcTotalTaxedAmountLabel.setForeground(new Color(153, 153, 153));
         pgTaxCalcTotalTaxedAmountLabel.setText("Total Taxed Amount");
 
-        pgTaxCalcEffectiveTaxAmountLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgTaxCalcEffectiveTaxAmountLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcEffectiveTaxAmountLabel.setForeground(new Color(153, 153, 153));
         pgTaxCalcEffectiveTaxAmountLabel.setText("Effective Tax Rate");
 
         pgTaxCalcEffectiveTaxAmountInput.setBackground(new Color(204, 204, 204));
-        pgTaxCalcEffectiveTaxAmountInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgTaxCalcEffectiveTaxAmountInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgTaxCalcEffectiveTaxAmountInput.setForeground(new Color(102, 102, 102));
         pgTaxCalcEffectiveTaxAmountInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgTaxCalcEffectiveTaxAmountInput.setCaretColor(new Color(102, 102, 102));
@@ -161,18 +162,20 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcEffectiveTaxAmountInput.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcEffectiveTaxAmountInput.setEditable(false);
 
-        calculateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\TaxCalculatorPane-CalculateButton.png")); // NOI18N
+        calculateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\TaxCalculatorPane-CalculateButton.png"));
         calculateButton.setBorder(null);
         calculateButton.setBorderPainted(false);
         calculateButton.setContentAreaFilled(false);
         calculateButton.addActionListener(evt -> {
             String input = pgTaxCalcSalaryInput.getText();
-            if (input.equals("") || !input.matches("[0-9.]+")) {
+            FormFieldType ff = FormFieldType.DOUBLE;
+            if (!ff.isValid(input)) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid salary", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            double salary = Double.parseDouble(input);
+            double salary = Double.parseDouble(ff.getParsed(input));
+
             if (salary < 0 || salary > 10000000) {
                 JOptionPane.showMessageDialog(null, "Please enter a non-zero positive salary", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
