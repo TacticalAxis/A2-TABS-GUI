@@ -1,15 +1,21 @@
 package a2.tabs.gui.view.panel;
 
+import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
+import a2.tabs.gui.view.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class PaymentPanel extends JPanel {
 
     private User user;
+    private Dashboard dashboard;
 
     private JLabel pgPaymentHistoryLabel;
     private JList<String> pgPaymentHistoryList;
@@ -19,12 +25,17 @@ public class PaymentPanel extends JPanel {
     private JList<String> pgPaymentUpcomingList;
     private JScrollPane pgPaymentUpcomingScroll;
 
-    public PaymentPanel(User user) {
+//    private MouseMotionListener mouseMotion
+
+    public PaymentPanel(User user, Dashboard dashboard) {
         this.user = user;
+        this.dashboard = dashboard;
         initComponents();
     }
 
     private void initComponents() {
+        System.out.println(Charge.get(Dashboard.db, user));
+
         pgPaymentTitle = new JLabel();
         pgPaymentUpcomingLabel = new JLabel();
         pgPaymentUpcomingScroll = new JScrollPane();
@@ -47,11 +58,8 @@ public class PaymentPanel extends JPanel {
         pgPaymentUpcomingList.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgPaymentUpcomingList.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgPaymentUpcomingList.setForeground(new Color(102, 102, 102));
-        pgPaymentUpcomingList.setModel(new AbstractListModel<String>() {
-            final String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        setPgPaymentUpcomingList();
+
         pgPaymentUpcomingList.setSelectionBackground(new Color(252, 189, 27));
         pgPaymentUpcomingScroll.setViewportView(pgPaymentUpcomingList);
 
@@ -63,13 +71,7 @@ public class PaymentPanel extends JPanel {
         pgPaymentHistoryList.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgPaymentHistoryList.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgPaymentHistoryList.setForeground(new Color(102, 102, 102));
-        pgPaymentHistoryList.setModel(new AbstractListModel<String>() {
-            final String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        pgPaymentHistoryList.setSelectionBackground(new Color(252, 189, 27));
-        pgPaymentHistoryScroll.setViewportView(pgPaymentHistoryList);
+        setPgPaymentHistoryList();
 
         GroupLayout pgPaymentsPanelLayout = new GroupLayout(this);
         setLayout(pgPaymentsPanelLayout);
@@ -87,6 +89,7 @@ public class PaymentPanel extends JPanel {
                                                 .addComponent(pgPaymentUpcomingScroll, GroupLayout.Alignment.LEADING)))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
         pgPaymentsPanelLayout.setVerticalGroup(
                 pgPaymentsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(pgPaymentsPanelLayout.createSequentialGroup()
@@ -104,4 +107,110 @@ public class PaymentPanel extends JPanel {
         );
     }
 
+    private void setPgPaymentUpcomingList() {
+        java.util.List<Charge> charges = Charge.get(Dashboard.db, user, false);
+        final String[] chargeStrings = new String[charges.size()];
+        for (int i = 0; i < charges.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            // append type
+            sb.append(charges.get(i).getType().getName());
+            sb.append(" - [");
+
+            // append date
+            LocalDate date = charges.get(i).getDate();
+            String dateString = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
+            sb.append(dateString);
+            sb.append("]");
+
+            chargeStrings[i] = sb.toString();
+        }
+
+        pgPaymentUpcomingList.setModel(new AbstractListModel<String>() {
+            final String[] strings = chargeStrings;
+            public int getSize() {
+                return strings.length;
+            }
+            public String getElementAt(int i) {
+                return strings[i];
+            }
+        });
+
+        pgPaymentUpcomingList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                pgPaymentHistoryList.clearSelection();
+                if (evt.getClickCount() == 2) {
+                    int index = pgPaymentUpcomingList.locationToIndex(evt.getPoint());
+                    if (index >= 0) {
+                        Charge charge = charges.get(index);
+                        String[] options = {"Pay Now", "Cancel"};
+                        int result = JOptionPane.showOptionDialog(
+                                null,
+                                charge.toStringFancy(),
+                                "Payment",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.PLAIN_MESSAGE,
+                                // no icon
+                                null,
+                                // button text
+                                options,
+                                // default
+                                options[0]
+                        );
+
+                        if (result == JOptionPane.YES_OPTION) {
+                            charge.setPaid(true);
+                            charge.push(Dashboard.db);
+                            dashboard.refreshCurrentPanel();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void setPgPaymentHistoryList() {
+        java.util.List<Charge> charges = Charge.get(Dashboard.db, user, true);
+        final String[] chargeStrings = new String[charges.size()];
+        for (int i = 0; i < charges.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            // append type
+            sb.append(charges.get(i).getType().getName());
+            sb.append(" - [");
+
+            // append date
+            LocalDate date = charges.get(i).getDate();
+            String dateString = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
+            sb.append(dateString);
+            sb.append("]");
+
+            chargeStrings[i] = sb.toString();
+        }
+
+        pgPaymentHistoryList.setModel(new AbstractListModel<String>() {
+            final String[] strings = chargeStrings;
+            public int getSize() {
+                return strings.length;
+            }
+            public String getElementAt(int i) {
+                return strings[i];
+            }
+        });
+
+        pgPaymentHistoryList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                pgPaymentUpcomingList.clearSelection();
+                if (evt.getClickCount() == 2) {
+                    int index = pgPaymentHistoryList.locationToIndex(evt.getPoint());
+                    if (index >= 0) {
+                        Charge charge = charges.get(index);
+                        JOptionPane.showMessageDialog(null, charge.toStringFancy(), charge.getType().getName(), JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+        pgPaymentHistoryList.setSelectionBackground(new Color(252, 189, 27));
+        pgPaymentHistoryScroll.setViewportView(pgPaymentHistoryList);
+    }
 }

@@ -4,11 +4,17 @@ import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
 import a2.tabs.gui.database.exception.DBException;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"unused", "SqlResolve"})
 public class User extends DBModelBase implements Databaseable<String> {
@@ -47,6 +53,26 @@ public class User extends DBModelBase implements Databaseable<String> {
         this.carRego = null;
     }
 
+    public User(String username, String password, String email, String firstName, String lastName, LocalDate dateOfBirth, String phone, boolean passPreHashed) {
+        this.username = username;
+        if (passPreHashed) {
+            this.password = password;
+        } else {
+            this.password = hash(password);
+        }
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
+
+        this.address = null;
+        this.irdNumber = null;
+        this.salary = 0;
+        this.ownsHome = false;
+        this.carRego = null;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -55,7 +81,21 @@ public class User extends DBModelBase implements Databaseable<String> {
         return password;
     }
     public void setPassword(String password) {
-        this.password = password;
+        String hashedPassword = hash(password);
+        if (hashedPassword != null) {
+            this.password = hashedPassword;
+        } else {
+            throw new IllegalArgumentException("Password cannot be null");
+        }
+    }
+
+    public boolean checkPassword(String password) {
+        String hashedPassword = hash(password);
+        if (hashedPassword != null) {
+            return this.password.equals(hashedPassword);
+        } else {
+            throw new IllegalArgumentException("Password cannot be null");
+        }
     }
 
     public String getEmail() {
@@ -171,6 +211,51 @@ public class User extends DBModelBase implements Databaseable<String> {
         return null;
     }
 
+    public static List<User> get(DBConnection db) {
+        List<User> users = new ArrayList<>();
+
+        try (Statement stmt = db.getConnection().createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"" + TABLE_NAME + "\"");
+            while (rs.next()) {
+                User user = new User(
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getDate("dateOfBirth").toLocalDate(),
+                        rs.getString("phone")
+                );
+
+                if (rs.getString("address") != null && !rs.getString("address").equals("null")) {
+                    user.setAddress(rs.getString("address"));
+                }
+
+                if (rs.getString("irdNumber") != null && !rs.getString("irdNumber").equals("null")) {
+                    user.setIrdNumber(rs.getString("irdNumber"));
+                }
+
+                if (rs.getDouble("salary") != 0) {
+                    user.setSalary(rs.getDouble("salary"));
+                }
+
+                if (rs.getBoolean("ownsHome")) {
+                    user.setOwnsHome(rs.getBoolean("ownsHome"));
+                }
+
+                if (rs.getString("carRego") != null && !rs.getString("carRego").equals("null")) {
+                    user.setCarRego(rs.getString("carRego"));
+                }
+
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
     @Override
     public boolean create(DBConnection db) {
         if (keyExists(db, username)) {
@@ -242,6 +327,10 @@ public class User extends DBModelBase implements Databaseable<String> {
         // Does not need to be implemented
     }
 
+    public boolean userEquals(User user) {
+        return user.getUsername().equals(username) && user.getPassword().equals(password);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -281,6 +370,20 @@ public class User extends DBModelBase implements Databaseable<String> {
         }
 
         return usernameEquals && passwordEquals && emailEquals && firstNameEquals && lastNameEquals && dateOfBirthEquals && phoneEquals && addressEquals && irdNumberEquals && salaryEquals && ownsHomeEquals && carRegoEquals;
+    }
+
+    public static String hash(String password) {
+        MessageDigest md5;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("No MD5 algorithm found");
+            return null;
+        }
+
+        md5.update(StandardCharsets.UTF_8.encode(password));
+
+        return String.format("%032x", new BigInteger(1, md5.digest()));
     }
 
     @Override

@@ -1,7 +1,9 @@
 package a2.tabs.gui.view.panel;
 
+import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
-import a2.tabs.gui.view.TaxCalculator;
+import a2.tabs.gui.util.TaxCalculator;
+import a2.tabs.gui.view.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -9,6 +11,9 @@ import java.awt.*;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class TaxCalculatorPanel extends JPanel {
+
+    private User user;
+    private Dashboard dashboard;
 
     private JButton calculateButton;
     private JLabel pgTaxCalcTitle;
@@ -29,7 +34,9 @@ public class TaxCalculatorPanel extends JPanel {
     private JLabel pgTaxCalcTotalTaxedAmountLabel;
     private JLabel pgTaxCalcEffectiveTaxAmountLabel;
 
-    public TaxCalculatorPanel() {
+    public TaxCalculatorPanel(User user, Dashboard dashboard) {
+        this.user = user;
+        this.dashboard = dashboard;
         initComponents();
     }
 

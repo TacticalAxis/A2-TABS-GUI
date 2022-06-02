@@ -24,7 +24,11 @@ public class Tabs extends JFrame {
 
     public static void main(String[] args) {
         User user = User.get(db, "nathand123");
-        System.out.println(user.getUsername());
-        EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
+        if (user != null) {
+            System.out.println(user.getUsername());
+            EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
+        } else {
+            System.out.println("User not found");
+        }
     }
 }

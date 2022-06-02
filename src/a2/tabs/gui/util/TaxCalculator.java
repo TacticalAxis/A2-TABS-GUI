@@ -1,4 +1,4 @@
-package a2.tabs.gui.view;
+package a2.tabs.gui.util;
 
 import java.util.Arrays;
 

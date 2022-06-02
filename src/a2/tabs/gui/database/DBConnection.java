@@ -114,12 +114,13 @@ public class DBConnection {
 
         User user = new User(
                 "nathand123",
-                "nathan",
+                "password",
                 "doe",
                 "Nathan",
                 "Dsouza",
                 LocalDate.of(2002, 1, 23),
-                "02102362281"
+                "02102362281",
+                false
         );
 
         User user2 = new User(
@@ -135,9 +136,9 @@ public class DBConnection {
         dbConnection.push(user, user2);
 
         Charge charge = new Charge(ChargeType.INTERNET_BILL, user, LocalDate.of(2020, 5, 5), false);
-        Charge charge2 = new Charge(ChargeType.WATER_BILL, user2, LocalDate.of(2021, 2, 3), true);
-        Charge charge3 = new Charge(ChargeType.ROAD_USER_CHARGES, user2, LocalDate.of(2021, 2, 3), false);
-        Charge charge4 = new Charge(ChargeType.SPEEDING_VIOLATION, user2, LocalDate.of(2022, 12, 5), true);
+        Charge charge2 = new Charge(ChargeType.WATER_BILL, user, LocalDate.of(2021, 2, 3), true);
+        Charge charge3 = new Charge(ChargeType.ROAD_USER_CHARGES, user, LocalDate.of(2021, 2, 3), false);
+        Charge charge4 = new Charge(ChargeType.SPEEDING_VIOLATION, user, LocalDate.of(2022, 12, 5), true);
         Charge charge5 = new Charge(ChargeType.ELECTRICITY_BILL, user, LocalDate.of(2020, 12, 5), false);
 
         dbConnection.push(charge, charge2, charge3, charge4, charge5);

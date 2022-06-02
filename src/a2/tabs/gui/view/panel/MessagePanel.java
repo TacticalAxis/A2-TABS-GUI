@@ -1,6 +1,7 @@
 package a2.tabs.gui.view.panel;
 
 import a2.tabs.gui.model.User;
+import a2.tabs.gui.view.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -10,6 +11,7 @@ import java.awt.*;
 public class MessagePanel extends JPanel {
 
     private User user;
+    private Dashboard dashboard;
 
     private JLabel pgMessagesMessageHistoryHeading;
     private JList<String> pgMessagesMessageHistoryList;
@@ -19,8 +21,9 @@ public class MessagePanel extends JPanel {
     private JTextField pgMessagesSendMessagesTextField;
     private JLabel pgMessagesTitle;
 
-    public MessagePanel(User user) {
+    public MessagePanel(User user, Dashboard dashboard) {
         this.user = user;
+        this.dashboard = dashboard;
         initComponents();
     }
 

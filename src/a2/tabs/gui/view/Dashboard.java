@@ -6,6 +6,7 @@ import a2.tabs.gui.view.panel.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Constructor;
 
 @SuppressWarnings({"DuplicatedCode", "FieldCanBeLocal"})
 public class Dashboard extends JFrame {
@@ -14,7 +15,7 @@ public class Dashboard extends JFrame {
 
     private final User user;
 
-    private JPanel currentPanel;
+    public JPanel currentPanel;
 
     private JButton sbExitButton;
     private JButton sbHomeButton;
@@ -45,7 +46,7 @@ public class Dashboard extends JFrame {
         sbTaxCalculator = new JButton();
 
         // setup panels
-        currentPanel = new HomePanel(user);
+        currentPanel = new HomePanel(user, this);
 
         // setup frame configuration
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +69,7 @@ public class Dashboard extends JFrame {
         sbHomeButton.addActionListener(evt -> {
             if (currentPanel != null && !(currentPanel instanceof HomePanel)) {
                 remove(currentPanel);
-                currentPanel = new HomePanel(user);
+                currentPanel = new HomePanel(user, this);
                 setDisplay(currentPanel);
             }
         });
@@ -100,7 +101,7 @@ public class Dashboard extends JFrame {
         sbProfileButton.addActionListener(evt -> {
             if (currentPanel != null && !(currentPanel instanceof ProfilePanel)) {
                 remove(currentPanel);
-                currentPanel = new ProfilePanel(user);
+                currentPanel = new ProfilePanel(user, this);
                 setDisplay(currentPanel);
             }
         });
@@ -112,7 +113,7 @@ public class Dashboard extends JFrame {
         sbMessagesButton.addActionListener(evt -> {
             if (currentPanel != null && !(currentPanel instanceof MessagePanel)) {
                 remove(currentPanel);
-                currentPanel = new MessagePanel(user);
+                currentPanel = new MessagePanel(user, this);
                 setDisplay(currentPanel);
             }
         });
@@ -124,7 +125,7 @@ public class Dashboard extends JFrame {
         sbPaymentsButton.addActionListener(evt -> {
             if (currentPanel != null && !(currentPanel instanceof PaymentPanel)) {
                 remove(currentPanel);
-                currentPanel = new PaymentPanel(user);
+                currentPanel = new PaymentPanel(user, this);
                 setDisplay(currentPanel);
             }
         });
@@ -136,7 +137,7 @@ public class Dashboard extends JFrame {
         sbTaxCalculator.addActionListener(evt -> {
             if (currentPanel != null && !(currentPanel instanceof TaxCalculatorPanel)) {
                 remove(currentPanel);
-                currentPanel = new TaxCalculatorPanel();
+                currentPanel = new TaxCalculatorPanel(user, this);
                 setDisplay(currentPanel);
             }
         });
@@ -186,12 +187,10 @@ public class Dashboard extends JFrame {
         );
 
         setDisplay(currentPanel);
-
         pack();
     }
 
-    private void setDisplay(JPanel panel) {
-
+    public void setDisplay(JPanel panel) {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,9 +207,29 @@ public class Dashboard extends JFrame {
         );
     }
 
+    public void refreshCurrentPanel() {
+        currentPanel.removeAll();
+        remove(currentPanel);
+        try {
+            Class<?> clazz = Class.forName(currentPanel.getClass().getName());
+            Constructor<?> ctor = clazz.getConstructor(User.class, Dashboard.class);
+            Object object = ctor.newInstance(user, this);
+
+            currentPanel = (JPanel) object;
+            setDisplay(currentPanel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         db = new DBConnection();
         User user = User.get(db, "nathand123");
-        EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
+        String password = "password";
+        System.out.println("Enter your password: " + password);
+        if (user.checkPassword(password.trim())) {
+            System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName());
+            EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
+        }
     }
 }

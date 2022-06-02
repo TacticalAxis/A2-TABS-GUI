@@ -11,20 +11,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Charge implements Databaseable<Charge> {
+public class Charge implements Databaseable<Integer> {
 
     public static final String TABLE_NAME = Config.DB_TABLE_CHARGE;
 
+    private int id;
     private final ChargeType type;
     private final User user;
     private final LocalDate date;
-    private final boolean paid;
+    private boolean paid;
 
     public Charge(ChargeType type, User user, LocalDate date, boolean paid) {
+        this.id = -1;
         this.type = type;
         this.user = user;
         this.date = date;
         this.paid = paid;
+    }
+
+    public Charge(int id, ChargeType type, User user, LocalDate date, boolean paid) {
+        this.id = id;
+        this.type = type;
+        this.user = user;
+        this.date = date;
+        this.paid = paid;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public ChargeType getType() {
@@ -43,11 +57,15 @@ public class Charge implements Databaseable<Charge> {
         return paid;
     }
 
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
+
     @Override
     public boolean create(DBConnection db) {
         try(Statement stmt = db.getConnection().createStatement()) {
             String query = String.format("INSERT INTO \"%s\" (typeID, userID, dueDate, paid) VALUES (%d, '%s', '%s', %b)", TABLE_NAME, type.getId(), user.getUsername(), date, paid);
-            stmt.executeUpdate(query);
+            this.id = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,22 +80,23 @@ public class Charge implements Databaseable<Charge> {
 
     @Override
     public void push(DBConnection db) {
-        boolean exists = false;
-        for (Charge c : get(db)) {
-            if (c.equals(this)) {
-                exists = true;
-                break;
-            }
+        if (id == -1) {
+            create(db);
+            return;
         }
 
-        if (!exists) {
-            create(db);
+        try(Statement stmt = db.getConnection().createStatement()) {
+            String query = String.format("UPDATE \"%s\" SET typeID = %d, userID = '%s', dueDate = '%s', paid = %b WHERE id = %d", TABLE_NAME, type.getId(), user.getUsername(), date, paid, getId());
+            System.out.println(query);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public boolean keyExists(DBConnection db, Charge key) {
-        return get(db).contains(key);
+    public boolean keyExists(DBConnection db, Integer key) {
+        throw new UnsupportedOperationException("Unsupported operation, charges are read-only");
     }
 
     @Override
@@ -112,12 +131,13 @@ public class Charge implements Databaseable<Charge> {
             String query = "SELECT * FROM \"" + TABLE_NAME + "\"";
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
+                int id = rs.getInt("id");
                 ChargeType type = ChargeType.getById(rs.getInt("typeID"));
                 User user = User.get(db, rs.getString("userID"));
                 LocalDate date = rs.getDate("dueDate").toLocalDate();
                 boolean paid = rs.getBoolean("paid");
 
-                charges.add(new Charge(type, user, date, paid));
+                charges.add(new Charge(id, type, user, date, paid));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,11 +153,32 @@ public class Charge implements Databaseable<Charge> {
             String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE userID = '" + user.getUsername() + "'";
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
+                int id = rs.getInt("id");
                 ChargeType type = ChargeType.getById(rs.getInt("typeID"));
                 LocalDate date = rs.getDate("dueDate").toLocalDate();
                 boolean paid = rs.getBoolean("paid");
 
-                charges.add(new Charge(type, user, date, paid));
+                charges.add(new Charge(id, type, user, date, paid));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return charges;
+    }
+
+    public static List<Charge> get(DBConnection db, User user, boolean paid) {
+        List<Charge> charges = new ArrayList<>();
+
+        try(Statement stmt = db.getConnection().createStatement()) {
+            String query = "SELECT * FROM \"" + TABLE_NAME + "\" WHERE userID = '" + user.getUsername() + "' AND paid = " + paid;
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                ChargeType type = ChargeType.getById(rs.getInt("typeID"));
+                LocalDate date = rs.getDate("dueDate").toLocalDate();
+
+                charges.add(new Charge(id, type, user, date, paid));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,5 +195,14 @@ public class Charge implements Databaseable<Charge> {
                 ", date=" + date +
                 ", paid=" + paid +
                 '}';
+    }
+
+    public String toStringFancy() {
+        return "Name: " + type.getName() +
+                "\nDescription: " + type.getDescription() +
+                "\nAmount: " + type.getAmount() +
+                "\nRecurring: " + type.isRecurring() +
+                "\nDate: " + date +
+                "\nPaid: " + paid;
     }
 }

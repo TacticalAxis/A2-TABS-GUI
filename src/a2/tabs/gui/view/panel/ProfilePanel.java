@@ -9,38 +9,40 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.time.LocalDate;
 
-@SuppressWarnings({"FieldCanBeLocal", "DuplicatedCode"})
+@SuppressWarnings({"FieldCanBeLocal", "DuplicatedCode", "ConstantConditions"})
 public class ProfilePanel extends JPanel {
 
-    private User user;
+    private final User user;
+    private final Dashboard dashboard;
 
     private JLabel pgMessagesTitle;
-    private JTextField pgProfileAddressInput;
     private JLabel pgProfileAddressLabel;
-    private JTextField pgProfileCarRegoInput;
+    private JTextField pgProfileAddressInput;
     private JLabel pgProfileCarRegoLabel;
-    private JTextField pgProfileDateOfBirthInput;
+    private JTextField pgProfileCarRegoInput;
     private JLabel pgProfileDateOfBirthLabel;
-    private JTextField pgProfileEmailInput;
+    private JTextField pgProfileDateOfBirthInput;
     private JLabel pgProfileEmailLabel;
-    private JTextField pgProfileFirstNameInput;
+    private JTextField pgProfileEmailInput;
     private JLabel pgProfileFirstNameLabel;
-    private JTextField pgProfileHomeOwnerInput;
+    private JTextField pgProfileFirstNameInput;
     private JLabel pgProfileHomeOwnerLabel;
-    private JTextField pgProfileIRDNumberInput;
+    private JComboBox<String> pgProfileHomeOwnerInput;
     private JLabel pgProfileIRDNumberLabel;
-    private JTextField pgProfileLastNameInput;
+    private JTextField pgProfileIRDNumberInput;
     private JLabel pgProfileLastNameLabel;
-    private JTextField pgProfilePasswordInput;
+    private JTextField pgProfileLastNameInput;
     private JLabel pgProfilePasswordLabel;
-    private JTextField pgProfileSalaryInput;
+    private JPasswordField pgProfilePasswordInput;
     private JLabel pgProfileSalaryLabel;
-    private JButton pgProfileUpdateButton;
-    private JTextField pgProfileUsernameInput;
+    private JTextField pgProfileSalaryInput;
     private JLabel pgProfileUsernameLabel;
+    private JTextField pgProfileUsernameInput;
+    private JButton pgProfileUpdateButton;
 
-    public ProfilePanel(User user) {
+    public ProfilePanel(User user, Dashboard dashboard) {
         this.user = user;
+        this.dashboard = dashboard;
         initComponents();
     }
 
@@ -66,11 +68,12 @@ public class ProfilePanel extends JPanel {
         pgProfileCarRegoLabel = new JLabel();
         pgProfileCarRegoInput = new JTextField(user.getCarRego());
         pgProfileHomeOwnerLabel = new JLabel();
-        pgProfileHomeOwnerInput = new JTextField(user.isOwnsHome() ? "Yes" : "No");
+        pgProfileHomeOwnerInput = new JComboBox<>(new String[]{"Yes", "No"});
+        pgProfileHomeOwnerInput.setSelectedItem(user.isOwnsHome() ? "Yes" : "No");
         pgProfileEmailLabel = new JLabel();
         pgProfileEmailInput = new JTextField(user.getEmail());
         pgProfilePasswordLabel = new JLabel();
-        pgProfilePasswordInput = new JTextField(user.getPassword());
+        pgProfilePasswordInput = new JPasswordField();
         pgProfileUpdateButton = new JButton();
 
         setForeground(new Color(246, 247, 251));
@@ -186,9 +189,9 @@ public class ProfilePanel extends JPanel {
         pgProfileHomeOwnerInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileHomeOwnerInput.setForeground(new Color(102, 102, 102));
         pgProfileHomeOwnerInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
-        pgProfileHomeOwnerInput.setCaretColor(new Color(102, 102, 102));
+//        pgProfileHomeOwnerInput.setCaretColor(new Color(102, 102, 102));
         pgProfileHomeOwnerInput.setOpaque(true);
-        pgProfileHomeOwnerInput.setSelectionColor(new Color(252, 189, 27));
+//        pgProfileHomeOwnerInput.setSelectionColor(new Color(252, 189, 27));
 
         pgProfileEmailLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileEmailLabel.setForeground(new Color(153, 153, 153));
@@ -229,7 +232,7 @@ public class ProfilePanel extends JPanel {
                 JOptionPane.showMessageDialog(null, "First Name is invalid. Format: " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
-                pgProfileCarRegoInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
+                pgProfileFirstNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
             }
 
             // check lastName
@@ -287,9 +290,10 @@ public class ProfilePanel extends JPanel {
             }
 
             // check homeOwner
-            if (!FormFieldType.BOOLEAN.isValid(pgProfileHomeOwnerInput.getText())) {
+            if (!FormFieldType.BOOLEAN.isValid(pgProfileHomeOwnerInput.getSelectedItem().toString())) {
                 pgProfileHomeOwnerInput.setBorder(new LineBorder(Color.RED, 5, true));
                 JOptionPane.showMessageDialog(null, "Home Owner is invalid. Format: " + FormFieldType.BOOLEAN.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             } else {
                 pgProfileHomeOwnerInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
             }
@@ -328,11 +332,26 @@ public class ProfilePanel extends JPanel {
             user.setIrdNumber(pgProfileIRDNumberInput.getText());
             user.setSalary(Double.parseDouble(pgProfileSalaryInput.getText()));
             user.setCarRego(pgProfileCarRegoInput.getText());
-            user.setOwnsHome(Boolean.parseBoolean(pgProfileHomeOwnerInput.getText()));
+            user.setOwnsHome(pgProfileHomeOwnerInput.getSelectedItem().toString().equalsIgnoreCase("yes"));
             user.setEmail(pgProfileEmailInput.getText());
-            user.setPassword(pgProfilePasswordInput.getText());
+            for (User u : User.get(Dashboard.db)) {
+                if (u.getEmail().equalsIgnoreCase(user.getEmail()) && !(u.userEquals(user))) {
+                    pgProfileEmailInput.setBorder(new LineBorder(Color.RED, 5, true));
+                    JOptionPane.showMessageDialog(null, "Email already exists", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
+            if (!String.valueOf(pgProfilePasswordInput.getPassword()).equals("")) {
+                user.setPassword(String.valueOf(pgProfilePasswordInput.getPassword()));
+                pgProfilePasswordInput.setText("");
+            }
 
             // update user
+            if (user.equals(User.get(Dashboard.db, user.getUsername()))) {
+                return;
+            }
+
             user.push(Dashboard.db);
 
             // show dialog

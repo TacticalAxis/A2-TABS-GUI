@@ -1,6 +1,7 @@
 package a2.tabs.gui.view.panel;
 
 import a2.tabs.gui.model.User;
+import a2.tabs.gui.view.Dashboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 public class HomePanel extends JPanel {
 
     private User user;
+    private Dashboard dashboard;
 
     private JLabel pgDashboardBillsLabel;
     private JLabel pgDashboardDueLabel;
@@ -20,8 +22,9 @@ public class HomePanel extends JPanel {
     private JLabel pgDashboardStatisticsLabel;
     private JLabel pgDashboardTitle;
 
-    public HomePanel(User user) {
+    public HomePanel(User user, Dashboard dashboard) {
         this.user = user;
+        this.dashboard = dashboard;
         initComponents();
     }
 
