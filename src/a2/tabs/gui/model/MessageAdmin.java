@@ -2,15 +2,17 @@ package a2.tabs.gui.model;
 
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
+import a2.tabs.gui.model.util.Message;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class MessageAdmin implements Databaseable<MessageAdmin> {
+public class MessageAdmin implements Databaseable<MessageAdmin>, Message {
 
     public static final String TABLE_NAME = Config.DB_TABLE_MESSAGE_ADMIN;
 
@@ -24,16 +26,29 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
         this.timestamp = timestamp;
     }
 
+    @Override
     public User getUser() {
         return user;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
 
+    @Override
     public long getTimestamp() {
         return timestamp;
+    }
+
+    @Override
+    public boolean getIsFromAdmin() {
+        return false;
+    }
+
+    @Override
+    public String getSender() {
+        return user.getUsername();
     }
 
     @Override
@@ -119,6 +134,8 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
             e.printStackTrace();
         }
 
+        messages.sort(Comparator.comparingLong(MessageAdmin::getTimestamp));
+
         return messages;
     }
 
@@ -136,6 +153,8 @@ public class MessageAdmin implements Databaseable<MessageAdmin> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        messages.sort(Comparator.comparingLong(MessageAdmin::getTimestamp));
 
         return messages;
     }

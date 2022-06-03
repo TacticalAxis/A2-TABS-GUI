@@ -1,8 +1,10 @@
-package a2.tabs.gui.view;
+package a2.tabs.gui.view.user;
 
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.database.DBConnection;
 import a2.tabs.gui.model.User;
-import a2.tabs.gui.view.panel.*;
+import a2.tabs.gui.view.main.TabStartup;
+import a2.tabs.gui.view.user.panel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +13,7 @@ import java.lang.reflect.Constructor;
 @SuppressWarnings({"DuplicatedCode", "FieldCanBeLocal"})
 public class Dashboard extends JFrame {
 
-    public static DBConnection db;
-
     private final User user;
-
     public JPanel currentPanel;
 
     private JButton sbExitButton;
@@ -81,6 +80,30 @@ public class Dashboard extends JFrame {
         sbSettingsButton.setFocusPainted(false);
         sbSettingsButton.setMaximumSize(new Dimension(75, 75));
         sbSettingsButton.setMinimumSize(new Dimension(75, 75));
+        sbSettingsButton.addActionListener(evt -> {
+            String[] options = {"Delete Account", "Cancel"};
+            int result = JOptionPane.showOptionDialog(
+                    null,
+                    "What would you like to do?",
+                    "Settings",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    // no icon
+                    null,
+                    // button text
+                    options,
+                    // default
+                    options[0]
+            );
+
+            if (result == JOptionPane.YES_OPTION) {
+                System.out.println("Delete Account");
+                logout();
+                user.delete(Tabs.db);
+            } else {
+                System.out.println("Cancelled");
+            }
+        });
 
         sbExitButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Exit.png"));
         sbExitButton.setBorder(null);
@@ -90,8 +113,23 @@ public class Dashboard extends JFrame {
         sbExitButton.setMaximumSize(new Dimension(75, 75));
         sbExitButton.setMinimumSize(new Dimension(75, 75));
         sbExitButton.addActionListener(evt -> {
-            System.out.println("Exit");
-            System.exit(0);
+            String[] options = {"Logout", "Exit"};
+            int result = JOptionPane.showOptionDialog(
+                    this,
+                    "Quit Tabs?",
+                    "Exit",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+
+            if (result == JOptionPane.YES_OPTION) {
+                logout();
+            } else if (result == JOptionPane.NO_OPTION) {
+                System.exit(0);
+            }
         });
 
         sbProfileButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Profile.png"));
@@ -222,12 +260,21 @@ public class Dashboard extends JFrame {
         }
     }
 
+    private void logout() {
+        Tabs.dashboard.dispose();
+        if (Tabs.tabStartup != null) {
+            Tabs.tabStartup.dispose();
+        }
+        Tabs.tabStartup = new TabStartup();
+        Tabs.tabStartup.setVisible(true);
+    }
+
     public static void main(String[] args) {
-        db = new DBConnection();
-        User user = User.get(db, "nathand123");
+        Tabs.db = new DBConnection();
+        User user = User.get(Tabs.db, "nathand123");
         String password = "password";
         System.out.println("Enter your password: " + password);
-        if (user.checkPassword(password.trim())) {
+        if (user != null && user.checkPassword(password.trim())) {
             System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName());
             EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
         }

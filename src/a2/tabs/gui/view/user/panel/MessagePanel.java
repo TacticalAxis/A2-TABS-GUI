@@ -1,17 +1,26 @@
-package a2.tabs.gui.view.panel;
+package a2.tabs.gui.view.user.panel;
 
+import a2.tabs.gui.Tabs;
+import a2.tabs.gui.model.MessageAdmin;
+import a2.tabs.gui.model.MessageUser;
 import a2.tabs.gui.model.User;
-import a2.tabs.gui.view.Dashboard;
+import a2.tabs.gui.model.util.Message;
+import a2.tabs.gui.util.misc.TimeConstants;
+import a2.tabs.gui.util.misc.UtilString;
+import a2.tabs.gui.view.user.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MessagePanel extends JPanel {
 
-    private User user;
-    private Dashboard dashboard;
+    private final User user;
+    private final Dashboard dashboard;
 
     private JLabel pgMessagesMessageHistoryHeading;
     private JList<String> pgMessagesMessageHistoryList;
@@ -53,6 +62,12 @@ public class MessagePanel extends JPanel {
         pgMessagesSendMessagesTextField.setCaretColor(new Color(102, 102, 102));
         pgMessagesSendMessagesTextField.setOpaque(true);
         pgMessagesSendMessagesTextField.setSelectionColor(new Color(252, 189, 27));
+        pgMessagesSendMessagesTextField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                pgMessagesMessageHistoryList.clearSelection();
+            }
+        });
 
         pgMessagesSendButton.setBackground(new Color(0, 100, 172));
         pgMessagesSendButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
@@ -62,8 +77,17 @@ public class MessagePanel extends JPanel {
         pgMessagesSendButton.setBorderPainted(false);
         pgMessagesSendButton.setContentAreaFilled(false);
         pgMessagesSendButton.addActionListener(evt -> {
-            System.out.println("Send Message!");
-            System.out.println("Send!");
+            String message = pgMessagesSendMessagesTextField.getText();
+            if (message.length() <= 0) {
+                JOptionPane.showMessageDialog(null, "Please enter a message to send", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            MessageAdmin msg = new MessageAdmin(user, message, System.currentTimeMillis());
+            msg.push(Tabs.db);
+            pgMessagesSendMessagesTextField.setText("");
+            dashboard.refreshCurrentPanel();
+
+            JOptionPane.showMessageDialog(null, "Message sent", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
         pgMessagesMessageHistoryHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
@@ -74,11 +98,59 @@ public class MessagePanel extends JPanel {
         pgMessagesMessageHistoryList.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgMessagesMessageHistoryList.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgMessagesMessageHistoryList.setForeground(new Color(102, 102, 102));
+
+        java.util.List<MessageUser> messagesFromAdmin = MessageUser.get(Tabs.db, user);
+        java.util.List<MessageAdmin> messagesToAdmin = MessageAdmin.get(Tabs.db, user);
+        java.util.List<Message> messages = new ArrayList<>();
+        messages.addAll(messagesFromAdmin);
+        messages.addAll(messagesToAdmin);
+
+        // sort all messages by time
+        messages.sort((o1, o2) -> Long.compare(o2.getTimestamp(), o1.getTimestamp()));
+
+        final String[] messageStrings = new String[messages.size()];
+        for (int i = 0; i < messages.size(); i++) {
+            StringBuilder sb = new StringBuilder("[");
+
+            // append the datetime
+            String dateTime = TimeConstants.timeMillisToDateTimeString(messages.get(i).getTimestamp());
+            sb.append(dateTime);
+
+            // append the sender
+            if (messages.get(i) instanceof MessageAdmin) {
+                sb.append("] To Admin");
+                sb.append(": ");
+            } else {
+                sb.append("] From Admin: ");
+            }
+
+            // append the message
+            sb.append(UtilString.shorten(messages.get(i).getMessage(), 15));
+            messageStrings[i] = sb.toString();
+        }
+
         pgMessagesMessageHistoryList.setModel(new AbstractListModel<String>() {
-            final String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            final String[] strings = messageStrings;
+            public int getSize() {
+                return strings.length;
+            }
+            public String getElementAt(int i) {
+                return strings[i];
+            }
         });
+
+        pgMessagesMessageHistoryList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int index = pgMessagesMessageHistoryList.locationToIndex(evt.getPoint());
+                    if (index >= 0) {
+                        JOptionPane.showMessageDialog(null, messages.get(index).getMessage(), "View Message sent @ " +TimeConstants.timeMillisToDateTimeString(messages.get(index).getTimestamp()), JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+
         pgMessagesMessageHistoryList.setSelectionBackground(new Color(252, 189, 27));
         pgMessagesMessageHistoryScroll.setViewportView(pgMessagesMessageHistoryList);
 

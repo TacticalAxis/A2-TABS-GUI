@@ -1,4 +1,4 @@
-package a2.tabs.gui.model;
+package a2.tabs.gui.model.util;
 
 public enum ChargeType {
     ELECTRICITY_BILL(1, "Electricity Bill", "Bill to be paid for electricity", 20, true),
@@ -7,7 +7,7 @@ public enum ChargeType {
     ROAD_USER_CHARGES(4, "Road User Charges", "Bill to be paid for road user charges", 20, true),
 
     PARKING_VIOLATION(5, "Parking Violation", "Bill to be paid for parking violation", 20, true),
-    SPEEDING_VIOLATION(6, "Speeding Violation", "Bill to be paid for speeding violation", 20, true),
+    SPEEDING_VIOLATION(6, "Speeding Violation", "Bill to be paid for speeding violation", 1000, true),
     ROAD_VIOLATION(7, "Road Violation", "Bill to be paid for road violation", 20, true);
 
     private final int id;

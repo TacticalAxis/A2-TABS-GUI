@@ -2,6 +2,7 @@ package a2.tabs.gui.database;
 
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.model.*;
+import a2.tabs.gui.model.util.ChargeType;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -119,7 +120,6 @@ public class DBConnection {
                 "Nathan",
                 "Dsouza",
                 LocalDate.of(2002, 1, 23),
-                "02102362281",
                 false
         );
 
@@ -130,7 +130,7 @@ public class DBConnection {
                 "Blake",
                 "Fernandes",
                 LocalDate.of(2002, 12, 14),
-                "02102362281"
+                false
         );
 
         dbConnection.push(user, user2);
@@ -139,7 +139,7 @@ public class DBConnection {
         Charge charge2 = new Charge(ChargeType.WATER_BILL, user, LocalDate.of(2021, 2, 3), true);
         Charge charge3 = new Charge(ChargeType.ROAD_USER_CHARGES, user, LocalDate.of(2021, 2, 3), false);
         Charge charge4 = new Charge(ChargeType.SPEEDING_VIOLATION, user, LocalDate.of(2022, 12, 5), true);
-        Charge charge5 = new Charge(ChargeType.ELECTRICITY_BILL, user, LocalDate.of(2020, 12, 5), false);
+        Charge charge5 = new Charge(ChargeType.ELECTRICITY_BILL, user, LocalDate.of(2022, 12, 5), false);
 
         dbConnection.push(charge, charge2, charge3, charge4, charge5);
 
@@ -149,7 +149,7 @@ public class DBConnection {
         System.out.println("Printing data for user2: " + user2.getUsername());
         System.out.println(Charge.get(dbConnection, user2));
 
-        MessageUser messageUser = new MessageUser(user, "Hello World!", System.currentTimeMillis());
+        MessageUser messageUser = new MessageUser(user, "Hello World!", System.currentTimeMillis() - 1000000000);
         MessageUser messageUser2 = new MessageUser(user2, "I hope youre!", System.currentTimeMillis());
         MessageUser messageUser3 = new MessageUser(user, "Having!", System.currentTimeMillis());
         MessageUser messageUser4 = new MessageUser(user2, "a great!", System.currentTimeMillis());

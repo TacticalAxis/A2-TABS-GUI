@@ -1,9 +1,9 @@
-package a2.tabs.gui.view.panel;
+package a2.tabs.gui.view.user.panel;
 
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
 import a2.tabs.gui.util.TaxCalculator;
-import a2.tabs.gui.view.Dashboard;
+import a2.tabs.gui.view.user.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -12,8 +12,8 @@ import java.awt.*;
 @SuppressWarnings("FieldCanBeLocal")
 public class TaxCalculatorPanel extends JPanel {
 
-    private User user;
-    private Dashboard dashboard;
+    private final User user;
+    private final Dashboard dashboard;
 
     private JButton calculateButton;
     private JLabel pgTaxCalcTitle;
@@ -77,6 +77,7 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcSalaryInput.setCaretColor(new Color(102, 102, 102));
         pgTaxCalcSalaryInput.setOpaque(true);
         pgTaxCalcSalaryInput.setSelectionColor(new Color(252, 189, 27));
+        pgTaxCalcSalaryInput.setText(String.valueOf(user.getSalary()));
 
         pgTaxCalcBracket1Label.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgTaxCalcBracket1Label.setForeground(new Color(153, 153, 153));
@@ -173,6 +174,7 @@ public class TaxCalculatorPanel extends JPanel {
         calculateButton.setBorder(null);
         calculateButton.setBorderPainted(false);
         calculateButton.setContentAreaFilled(false);
+
         calculateButton.addActionListener(evt -> {
             String input = pgTaxCalcSalaryInput.getText();
             FormFieldType ff = FormFieldType.DOUBLE;
@@ -199,6 +201,8 @@ public class TaxCalculatorPanel extends JPanel {
             pgTaxCalcTotalTaxedAmountInput.setText("$" + String.format("%.2f", calculator.getTotalTax()));
             pgTaxCalcEffectiveTaxAmountInput.setText(String.format("%.1f", calculator.getEffectiveTaxRate() * 100) + "%");
         });
+
+        calculateButton.doClick();
 
         GroupLayout pgTaxCalculatorPanelLayout = new GroupLayout(this);
         setLayout(pgTaxCalculatorPanelLayout);

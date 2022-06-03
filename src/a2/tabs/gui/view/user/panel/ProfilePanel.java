@@ -1,8 +1,9 @@
-package a2.tabs.gui.view.panel;
+package a2.tabs.gui.view.user.panel;
 
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
-import a2.tabs.gui.view.Dashboard;
+import a2.tabs.gui.view.user.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -189,9 +190,7 @@ public class ProfilePanel extends JPanel {
         pgProfileHomeOwnerInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgProfileHomeOwnerInput.setForeground(new Color(102, 102, 102));
         pgProfileHomeOwnerInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
-//        pgProfileHomeOwnerInput.setCaretColor(new Color(102, 102, 102));
         pgProfileHomeOwnerInput.setOpaque(true);
-//        pgProfileHomeOwnerInput.setSelectionColor(new Color(252, 189, 27));
 
         pgProfileEmailLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgProfileEmailLabel.setForeground(new Color(153, 153, 153));
@@ -229,7 +228,7 @@ public class ProfilePanel extends JPanel {
             // check firstName
             if (!FormFieldType.NAME.isValid(pgProfileFirstNameInput.getText())) {
                 pgProfileFirstNameInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "First Name is invalid. Format: " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "First Name is invalid. " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileFirstNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -238,7 +237,7 @@ public class ProfilePanel extends JPanel {
             // check lastName
             if (!FormFieldType.NAME.isValid(pgProfileLastNameInput.getText())) {
                 pgProfileLastNameInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Last Name is invalid. Format: " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Last Name is invalid. " + FormFieldType.NAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileLastNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -247,7 +246,7 @@ public class ProfilePanel extends JPanel {
             // check dateOfBirth
             if (!FormFieldType.DATE.isValid(pgProfileDateOfBirthInput.getText())) {
                 pgProfileDateOfBirthInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Date of Birth is invalid. Format: " + FormFieldType.DATE.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Date of Birth is invalid. " + FormFieldType.DATE.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileDateOfBirthInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -256,7 +255,7 @@ public class ProfilePanel extends JPanel {
             // check address
             if (!FormFieldType.STRING.isValid(pgProfileAddressInput.getText())) {
                 pgProfileAddressInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Address is invalid. Format: " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Address is invalid. " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileAddressInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -265,7 +264,7 @@ public class ProfilePanel extends JPanel {
             // check irdNumber
             if (!FormFieldType.IRD_NUMBER.isValid(pgProfileIRDNumberInput.getText())) {
                 pgProfileIRDNumberInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "IRD Number is invalid. Format: " + FormFieldType.IRD_NUMBER.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "IRD Number is invalid. " + FormFieldType.IRD_NUMBER.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileIRDNumberInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -274,7 +273,7 @@ public class ProfilePanel extends JPanel {
             // check salary
             if (!FormFieldType.MONEY.isValid(pgProfileSalaryInput.getText())) {
                 pgProfileSalaryInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Salary is invalid. Format: " + FormFieldType.MONEY.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Salary is invalid. " + FormFieldType.MONEY.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileSalaryInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -283,7 +282,7 @@ public class ProfilePanel extends JPanel {
             // check carRego
             if (!FormFieldType.CAR_REGISTRATION.isValid(pgProfileCarRegoInput.getText())) {
                 pgProfileCarRegoInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Car Registration is invalid. Format: " + FormFieldType.CAR_REGISTRATION.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Car Registration is invalid. " + FormFieldType.CAR_REGISTRATION.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileCarRegoInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -292,7 +291,7 @@ public class ProfilePanel extends JPanel {
             // check homeOwner
             if (!FormFieldType.BOOLEAN.isValid(pgProfileHomeOwnerInput.getSelectedItem().toString())) {
                 pgProfileHomeOwnerInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Home Owner is invalid. Format: " + FormFieldType.BOOLEAN.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Home Owner is invalid. " + FormFieldType.BOOLEAN.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileHomeOwnerInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -301,7 +300,7 @@ public class ProfilePanel extends JPanel {
             // check email
             if (!FormFieldType.EMAIL.isValid(pgProfileEmailInput.getText())) {
                 pgProfileEmailInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Email is invalid. Format: " + FormFieldType.EMAIL.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Email is invalid. " + FormFieldType.EMAIL.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfileEmailInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -310,7 +309,7 @@ public class ProfilePanel extends JPanel {
             // check password
             if (!FormFieldType.STRING.isValid(pgProfilePasswordInput.getText())) {
                 pgProfilePasswordInput.setBorder(new LineBorder(Color.RED, 5, true));
-                JOptionPane.showMessageDialog(null, "Password is invalid. Format: " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Password is invalid. " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 pgProfilePasswordInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
@@ -334,7 +333,7 @@ public class ProfilePanel extends JPanel {
             user.setCarRego(pgProfileCarRegoInput.getText());
             user.setOwnsHome(pgProfileHomeOwnerInput.getSelectedItem().toString().equalsIgnoreCase("yes"));
             user.setEmail(pgProfileEmailInput.getText());
-            for (User u : User.get(Dashboard.db)) {
+            for (User u : User.get(Tabs.db)) {
                 if (u.getEmail().equalsIgnoreCase(user.getEmail()) && !(u.userEquals(user))) {
                     pgProfileEmailInput.setBorder(new LineBorder(Color.RED, 5, true));
                     JOptionPane.showMessageDialog(null, "Email already exists", "Error", JOptionPane.ERROR_MESSAGE);
@@ -348,11 +347,11 @@ public class ProfilePanel extends JPanel {
             }
 
             // update user
-            if (user.equals(User.get(Dashboard.db, user.getUsername()))) {
+            if (user.equals(User.get(Tabs.db, user.getUsername()))) {
                 return;
             }
 
-            user.push(Dashboard.db);
+            user.push(Tabs.db);
 
             // show dialog
             JOptionPane.showMessageDialog(null, "Profile updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);

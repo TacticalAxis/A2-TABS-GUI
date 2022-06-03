@@ -2,15 +2,17 @@ package a2.tabs.gui.model;
 
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
+import a2.tabs.gui.model.util.Message;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class MessageUser implements Databaseable<MessageUser> {
+public class MessageUser implements Databaseable<MessageUser>, Message {
 
     public static final String TABLE_NAME = Config.DB_TABLE_MESSAGE_USER;
 
@@ -24,16 +26,29 @@ public class MessageUser implements Databaseable<MessageUser> {
         this.timestamp = timestamp;
     }
 
+    @Override
     public User getUser() {
         return user;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
 
+    @Override
     public long getTimestamp() {
         return timestamp;
+    }
+
+    @Override
+    public boolean getIsFromAdmin() {
+        return true;
+    }
+
+    @Override
+    public String getSender() {
+        return "[Admin]";
     }
 
     @Override
@@ -119,6 +134,9 @@ public class MessageUser implements Databaseable<MessageUser> {
             e.printStackTrace();
         }
 
+        // sort by timestamp
+        messageUsers.sort(Comparator.comparingLong(MessageUser::getTimestamp));
+
         return messageUsers;
     }
 
@@ -136,6 +154,9 @@ public class MessageUser implements Databaseable<MessageUser> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // sort by timestamp
+        messageUsers.sort(Comparator.comparingLong(MessageUser::getTimestamp));
 
         return messageUsers;
     }
