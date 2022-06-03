@@ -1,6 +1,5 @@
 package a2.tabs.gui.database;
 
-@SuppressWarnings("UnusedReturnValue")
 public interface Databaseable<E> {
     boolean create(DBConnection db);
 

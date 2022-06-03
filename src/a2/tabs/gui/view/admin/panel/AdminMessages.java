@@ -4,7 +4,7 @@
  */
 package a2.tabs.gui.view.admin.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.MessageAdmin;
 import a2.tabs.gui.model.MessageUser;
 import a2.tabs.gui.model.User;
@@ -71,7 +71,7 @@ public class AdminMessages extends JPanel {
         pgMessagesSendButton.setBackground(new Color(0, 100, 172));
         pgMessagesSendButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgMessagesSendButton.setForeground(new Color(204, 204, 204));
-        pgMessagesSendButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\MessagesPane-SendButton.png")); // NOI18N
+        pgMessagesSendButton.setIcon(new ImageIcon("resources/image/MessagesPane-SendButton.png")); // NOI18N
         pgMessagesSendButton.setBorder(null);
         pgMessagesSendButton.setBorderPainted(false);
         pgMessagesSendButton.setContentAreaFilled(false);

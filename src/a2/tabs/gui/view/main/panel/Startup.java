@@ -1,8 +1,8 @@
 package a2.tabs.gui.view.main.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.view.admin.AdminDashboard;
-import a2.tabs.gui.view.main.TabStartup;
+import a2.tabs.gui.view.main.TabsStartup;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Startup extends JPanel {
-    private final TabStartup tabStartup;
+    private final TabsStartup tabsStartup;
 
     private JLabel adminIcon;
     private JLabel adminLabel;
@@ -21,8 +21,8 @@ public class Startup extends JPanel {
     private JButton pgMainRegisterButton;
     private JLabel pgMainTitleLogo;
 
-    public Startup(TabStartup tabStartup) {
-        this.tabStartup = tabStartup;
+    public Startup(TabsStartup tabsStartup) {
+        this.tabsStartup = tabsStartup;
         initComponents();
     }
 
@@ -37,7 +37,7 @@ public class Startup extends JPanel {
 
         setForeground(new Color(246, 247, 251));
 
-        pgMainTitleLogo.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\StartupPage-Logo.png")); // NOI18N
+        pgMainTitleLogo.setIcon(new ImageIcon("resources/image/StartupPage-Logo.png")); // NOI18N
 
         pgMainFiller.setEditable(false);
         pgMainFiller.setBackground(new Color(204, 204, 204));
@@ -51,33 +51,33 @@ public class Startup extends JPanel {
         pgMainLoginButton.setBackground(new Color(0, 100, 172));
         pgMainLoginButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgMainLoginButton.setForeground(new Color(204, 204, 204));
-        pgMainLoginButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\StartupPage-Login.png")); // NOI18N
+        pgMainLoginButton.setIcon(new ImageIcon("resources/image/StartupPage-Login.png")); // NOI18N
         pgMainLoginButton.setBorder(null);
         pgMainLoginButton.setBorderPainted(false);
         pgMainLoginButton.setContentAreaFilled(false);
         pgMainLoginButton.addActionListener(evt -> {
-            tabStartup.remove(tabStartup.currentPanel);
-            tabStartup.currentPanel = new Login(tabStartup);
-            tabStartup.setDisplay(tabStartup.currentPanel);
+            tabsStartup.remove(tabsStartup.currentPanel);
+            tabsStartup.currentPanel = new Login(tabsStartup);
+            tabsStartup.setDisplay(tabsStartup.currentPanel);
         });
 
         pgMainRegisterButton.setBackground(new Color(0, 100, 172));
         pgMainRegisterButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgMainRegisterButton.setForeground(new Color(204, 204, 204));
-        pgMainRegisterButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\StartupPage-Register.png")); // NOI18N
+        pgMainRegisterButton.setIcon(new ImageIcon("resources/image/StartupPage-Register.png")); // NOI18N
         pgMainRegisterButton.setBorder(null);
         pgMainRegisterButton.setBorderPainted(false);
         pgMainRegisterButton.setContentAreaFilled(false);
         pgMainRegisterButton.addActionListener(evt -> {
-            tabStartup.remove(tabStartup.currentPanel);
-            tabStartup.currentPanel = new Register(tabStartup);
-            tabStartup.setDisplay(tabStartup.currentPanel);
+            tabsStartup.remove(tabsStartup.currentPanel);
+            tabsStartup.currentPanel = new Register(tabsStartup);
+            tabsStartup.setDisplay(tabsStartup.currentPanel);
         });
 
         pgMainExitButton.setBackground(new Color(0, 100, 172));
         pgMainExitButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgMainExitButton.setForeground(new Color(204, 204, 204));
-        pgMainExitButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\StartupPage-Exit.png")); // NOI18N
+        pgMainExitButton.setIcon(new ImageIcon("resources/image/StartupPage-Exit.png")); // NOI18N
         pgMainExitButton.setBorder(null);
         pgMainExitButton.setBorderPainted(false);
         pgMainExitButton.setContentAreaFilled(false);
@@ -89,7 +89,7 @@ public class Startup extends JPanel {
                 String testAdmin = JOptionPane.showInputDialog("Please enter the admin password: ");
                 if (testAdmin != null) {
                     if (testAdmin.equals("supersecretadminpassword")) {
-                        Tabs.tabStartup.dispose();
+                        Tabs.tabsStartup.dispose();
                         Tabs.adminDashboard = new AdminDashboard();
                         EventQueue.invokeLater(() -> Tabs.adminDashboard.setVisible(true));
                     } else {
@@ -99,7 +99,7 @@ public class Startup extends JPanel {
             }
         };
 
-        adminIcon.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Startup-Admin.png")); // NOI18N
+        adminIcon.setIcon(new ImageIcon("resources/image/Startup-Admin.png")); // NOI18N
         adminIcon.setText("jLabel1");
 
         adminIcon.addMouseListener(mouseAdapter);

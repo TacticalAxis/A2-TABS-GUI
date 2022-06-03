@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.admin.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.view.admin.AdminDashboard;
 
@@ -61,7 +61,7 @@ public class AdminUsers extends JPanel {
         pgUsersDeleteButton.setBackground(new Color(0, 100, 172));
         pgUsersDeleteButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgUsersDeleteButton.setForeground(new Color(204, 204, 204));
-        pgUsersDeleteButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminDeleteButton-Delete.png")); // NOI18N
+        pgUsersDeleteButton.setIcon(new ImageIcon("resources/image/AdminDeleteButton-Delete.png")); // NOI18N
         pgUsersDeleteButton.setBorder(null);
         pgUsersDeleteButton.setBorderPainted(false);
         pgUsersDeleteButton.setContentAreaFilled(false);

@@ -1,12 +1,12 @@
 package a2.tabs.gui.view.admin;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.view.main.TabsStartup;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.database.DBConnection;
 import a2.tabs.gui.view.admin.panel.AdminCharge;
 import a2.tabs.gui.view.admin.panel.AdminHome;
 import a2.tabs.gui.view.admin.panel.AdminMessages;
 import a2.tabs.gui.view.admin.panel.AdminUsers;
-import a2.tabs.gui.view.main.TabStartup;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,11 +50,11 @@ public class AdminDashboard extends JFrame {
 
         sideBar.setBackground(new Color(51, 51, 51));
 
-        sbTitleButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\tabs-logo-dash2.png")); // NOI18N
+        sbTitleButton.setIcon(new ImageIcon("resources/image/tabs-logo-dash2.png")); // NOI18N
         sbTitleButton.setBorderPainted(false);
         sbTitleButton.setContentAreaFilled(false);
 
-        sbHomeButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Home.png")); // NOI18N
+        sbHomeButton.setIcon(new ImageIcon("resources/image/Menu-Home.png")); // NOI18N
         sbHomeButton.setBorder(null);
         sbHomeButton.setBorderPainted(false);
         sbHomeButton.setContentAreaFilled(false);
@@ -68,7 +68,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbSettingsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Blank.png")); // NOI18N
+        sbSettingsButton.setIcon(new ImageIcon("resources/image/Blank.png")); // NOI18N
         sbSettingsButton.setBorder(null);
         sbSettingsButton.setBorderPainted(false);
         sbSettingsButton.setContentAreaFilled(false);
@@ -76,7 +76,7 @@ public class AdminDashboard extends JFrame {
         sbSettingsButton.setMinimumSize(new Dimension(75, 75));
         sbSettingsButton.setEnabled(false);
 
-        sbExitButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Exit.png")); // NOI18N
+        sbExitButton.setIcon(new ImageIcon("resources/image/Menu-Exit.png")); // NOI18N
         sbExitButton.setBorder(null);
         sbExitButton.setBorderPainted(false);
         sbExitButton.setContentAreaFilled(false);
@@ -102,7 +102,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbUsersButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminOptionPane-Users.png")); // NOI18N
+        sbUsersButton.setIcon(new ImageIcon("resources/image/AdminOptionPane-Users.png")); // NOI18N
         sbUsersButton.setBorder(null);
         sbUsersButton.setBorderPainted(false);
         sbUsersButton.setContentAreaFilled(false);
@@ -114,7 +114,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbMessagesButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Messages.png")); // NOI18N
+        sbMessagesButton.setIcon(new ImageIcon("resources/image/OptionPane-Messages.png")); // NOI18N
         sbMessagesButton.setBorder(null);
         sbMessagesButton.setBorderPainted(false);
         sbMessagesButton.setContentAreaFilled(false);
@@ -126,7 +126,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbChargeUsersButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminOptionPane-Charge.png")); // NOI18N
+        sbChargeUsersButton.setIcon(new ImageIcon("resources/image/AdminOptionPane-Charge.png")); // NOI18N
         sbChargeUsersButton.setBorder(null);
         sbChargeUsersButton.setBorderPainted(false);
         sbChargeUsersButton.setContentAreaFilled(false);
@@ -218,11 +218,11 @@ public class AdminDashboard extends JFrame {
 
     private void logout() {
         Tabs.adminDashboard.dispose();
-        if (Tabs.tabStartup != null) {
-            Tabs.tabStartup.dispose();
+        if (Tabs.tabsStartup != null) {
+            Tabs.tabsStartup.dispose();
         }
-        Tabs.tabStartup = new TabStartup();
-        Tabs.tabStartup.setVisible(true);
+        Tabs.tabsStartup = new TabsStartup();
+        Tabs.tabsStartup.setVisible(true);
     }
 
     public static void main(String[] args) {

@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings({"DuplicatedCode", "FieldCanBeLocal"})
-public class TabStartup extends JFrame {
+public class TabsStartup extends JFrame {
 
     public JPanel currentPanel;
     
-    public TabStartup() {
+    public TabsStartup() {
         initComponents();
         this.setResizable(false);
         try {UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());} catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ignored) {}
@@ -45,6 +45,6 @@ public class TabStartup extends JFrame {
 
     public static void main(String[] args) {
         try {UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());} catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ignored) {}
-        EventQueue.invokeLater(() -> new TabStartup().setVisible(true));
+        EventQueue.invokeLater(() -> new TabsStartup().setVisible(true));
     }
 }

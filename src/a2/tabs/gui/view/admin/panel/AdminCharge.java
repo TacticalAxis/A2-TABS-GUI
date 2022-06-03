@@ -4,7 +4,7 @@
  */
 package a2.tabs.gui.view.admin.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.model.util.ChargeType;
@@ -80,7 +80,7 @@ public class AdminCharge extends JPanel {
         pgChargeBillsButton.setBackground(new java.awt.Color(0, 100, 172));
         pgChargeBillsButton.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgChargeBillsButton.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeBillsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeBillsButton.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
         pgChargeBillsButton.setBorder(null);
         pgChargeBillsButton.setBorderPainted(false);
         pgChargeBillsButton.setContentAreaFilled(false);
@@ -112,7 +112,7 @@ public class AdminCharge extends JPanel {
         pgChargeFineSpeeding.setBackground(new java.awt.Color(0, 100, 172));
         pgChargeFineSpeeding.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgChargeFineSpeeding.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeFineSpeeding.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeFineSpeeding.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
         pgChargeFineSpeeding.setBorder(null);
         pgChargeFineSpeeding.setBorderPainted(false);
         pgChargeFineSpeeding.setContentAreaFilled(false);
@@ -129,7 +129,7 @@ public class AdminCharge extends JPanel {
         pgChargeFineParking.setBackground(new java.awt.Color(0, 100, 172));
         pgChargeFineParking.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgChargeFineParking.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeFineParking.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeFineParking.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
         pgChargeFineParking.setBorder(null);
         pgChargeFineParking.setBorderPainted(false);
         pgChargeFineParking.setContentAreaFilled(false);
@@ -150,7 +150,7 @@ public class AdminCharge extends JPanel {
         pgChargeFineRoad.setBackground(new java.awt.Color(0, 100, 172));
         pgChargeFineRoad.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgChargeFineRoad.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeFineRoad.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\AdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeFineRoad.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
         pgChargeFineRoad.setBorder(null);
         pgChargeFineRoad.setBorderPainted(false);
         pgChargeFineRoad.setContentAreaFilled(false);

@@ -250,7 +250,7 @@ public class User extends DBModelBase implements Databaseable<String> {
         }
 
         try(Statement stmt = db.getConnection().createStatement()) {
-            String query = String.format("INSERT INTO \"%s\" (username, password, email, firstName, lastName, dateOfBirth, phone, address, irdNumber, salary, ownsHome, carRego) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %f, %b, '%s')", TABLE_NAME, username, password, email, firstName, lastName, dateOfBirth, address, irdNumber, salary, ownsHome, carRego);
+            String query = String.format("INSERT INTO \"%s\" (username, password, email, firstName, lastName, dateOfBirth, address, irdNumber, salary, ownsHome, carRego) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %f, %b, '%s')", TABLE_NAME, username, password, email, firstName, lastName, dateOfBirth, address, irdNumber, salary, ownsHome, carRego);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();

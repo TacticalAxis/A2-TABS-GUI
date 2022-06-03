@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.user.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.view.user.Dashboard;

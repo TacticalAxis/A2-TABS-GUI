@@ -1,8 +1,8 @@
 package a2.tabs.gui.view.main.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.User;
-import a2.tabs.gui.view.main.TabStartup;
+import a2.tabs.gui.view.main.TabsStartup;
 import a2.tabs.gui.view.user.Dashboard;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("FieldCanBeLocal")
 public class Login extends JPanel {
 
-    private final TabStartup tabStartup;
+    private final TabsStartup tabsStartup;
 
     private JButton pgLoginLoginButton;
     private JLabel pgLoginLogoLabel;
@@ -23,8 +23,8 @@ public class Login extends JPanel {
     private JTextField pgLoginUsernameInput;
     private JLabel pgLoginUsernameLabel;
 
-    public Login(TabStartup tabStartup) {
-        this.tabStartup = tabStartup;
+    public Login(TabsStartup tabsStartup) {
+        this.tabsStartup = tabsStartup;
         initComponents();
     }
 
@@ -65,7 +65,7 @@ public class Login extends JPanel {
         pgLoginLoginButton.setBackground(new Color(0, 100, 172));
         pgLoginLoginButton.setFont(new Font("Bahnschrift", 1, 18)); // NOI18N
         pgLoginLoginButton.setForeground(new Color(204, 204, 204));
-        pgLoginLoginButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\LoginPage-Submit.png")); // NOI18N
+        pgLoginLoginButton.setIcon(new ImageIcon("resources/image/LoginPage-Submit.png")); // NOI18N
         pgLoginLoginButton.setBorder(null);
         pgLoginLoginButton.setBorderPainted(false);
         pgLoginLoginButton.setContentAreaFilled(false);
@@ -82,18 +82,18 @@ public class Login extends JPanel {
                 return;
             }
 
-            Tabs.tabStartup.dispose();
+            Tabs.tabsStartup.dispose();
             Tabs.dashboard = new Dashboard(user);
             EventQueue.invokeLater(() -> Tabs.dashboard.setVisible(true));
         });
 
-        pgLoginLogoLabel.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\RegisterPage-Logo.png")); // NOI18N
+        pgLoginLogoLabel.setIcon(new ImageIcon("resources/image/RegisterPage-Logo.png")); // NOI18N
         pgLoginLogoLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                tabStartup.remove(tabStartup.currentPanel);
-                tabStartup.currentPanel = new Startup(tabStartup);
-                tabStartup.setDisplay(tabStartup.currentPanel);
+                tabsStartup.remove(tabsStartup.currentPanel);
+                tabsStartup.currentPanel = new Startup(tabsStartup);
+                tabsStartup.setDisplay(tabsStartup.currentPanel);
             }
         });
 

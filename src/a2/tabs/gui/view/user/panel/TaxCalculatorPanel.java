@@ -170,7 +170,7 @@ public class TaxCalculatorPanel extends JPanel {
         pgTaxCalcEffectiveTaxAmountInput.setSelectionColor(new Color(252, 189, 27));
         pgTaxCalcEffectiveTaxAmountInput.setEditable(false);
 
-        calculateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\TaxCalculatorPane-CalculateButton.png"));
+        calculateButton.setIcon(new ImageIcon("resources/image/TaxCalculatorPane-CalculateButton.png"));
         calculateButton.setBorder(null);
         calculateButton.setBorderPainted(false);
         calculateButton.setContentAreaFilled(false);

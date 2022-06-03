@@ -1,9 +1,9 @@
 package a2.tabs.gui.view.user;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.view.main.TabsStartup;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.database.DBConnection;
 import a2.tabs.gui.model.User;
-import a2.tabs.gui.view.main.TabStartup;
 import a2.tabs.gui.view.user.panel.*;
 
 import javax.swing.*;
@@ -55,11 +55,11 @@ public class Dashboard extends JFrame {
         sideBar.setBackground(new Color(51, 51, 51));
         sideBar.setForeground(new Color(51, 51, 51));
 
-        sbTitleButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\tabs-logo-dash2.png"));
+        sbTitleButton.setIcon(new ImageIcon("resources/image/tabs-logo-dash2.png"));
         sbTitleButton.setBorderPainted(false);
         sbTitleButton.setContentAreaFilled(false);
 
-        sbHomeButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Home.png"));
+        sbHomeButton.setIcon(new ImageIcon("resources/image/Menu-Home.png"));
         sbHomeButton.setBorder(null);
         sbHomeButton.setBorderPainted(false);
         sbHomeButton.setContentAreaFilled(false);
@@ -73,7 +73,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbSettingsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Settings.png"));
+        sbSettingsButton.setIcon(new ImageIcon("resources/image/Menu-Settings.png"));
         sbSettingsButton.setBorder(null);
         sbSettingsButton.setBorderPainted(false);
         sbSettingsButton.setContentAreaFilled(false);
@@ -105,7 +105,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbExitButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\Menu-Exit.png"));
+        sbExitButton.setIcon(new ImageIcon("resources/image/Menu-Exit.png"));
         sbExitButton.setBorder(null);
         sbExitButton.setBorderPainted(false);
         sbExitButton.setContentAreaFilled(false);
@@ -132,7 +132,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbProfileButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Profile.png"));
+        sbProfileButton.setIcon(new ImageIcon("resources/image/OptionPane-Profile.png"));
         sbProfileButton.setBorder(null);
         sbProfileButton.setBorderPainted(false);
         sbProfileButton.setContentAreaFilled(false);
@@ -144,7 +144,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbMessagesButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Messages.png"));
+        sbMessagesButton.setIcon(new ImageIcon("resources/image/OptionPane-Messages.png"));
         sbMessagesButton.setBorder(null);
         sbMessagesButton.setBorderPainted(false);
         sbMessagesButton.setContentAreaFilled(false);
@@ -156,7 +156,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbPaymentsButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-Payments.png"));
+        sbPaymentsButton.setIcon(new ImageIcon("resources/image/OptionPane-Payments.png"));
         sbPaymentsButton.setBorder(null);
         sbPaymentsButton.setBorderPainted(false);
         sbPaymentsButton.setContentAreaFilled(false);
@@ -168,7 +168,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        sbTaxCalculator.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\OptionPane-TaxCalculator.png"));
+        sbTaxCalculator.setIcon(new ImageIcon("resources/image/OptionPane-TaxCalculator.png"));
         sbTaxCalculator.setBorder(null);
         sbTaxCalculator.setBorderPainted(false);
         sbTaxCalculator.setContentAreaFilled(false);
@@ -262,11 +262,11 @@ public class Dashboard extends JFrame {
 
     private void logout() {
         Tabs.dashboard.dispose();
-        if (Tabs.tabStartup != null) {
-            Tabs.tabStartup.dispose();
+        if (Tabs.tabsStartup != null) {
+            Tabs.tabsStartup.dispose();
         }
-        Tabs.tabStartup = new TabStartup();
-        Tabs.tabStartup.setVisible(true);
+        Tabs.tabsStartup = new TabsStartup();
+        Tabs.tabsStartup.setVisible(true);
     }
 
     public static void main(String[] args) {

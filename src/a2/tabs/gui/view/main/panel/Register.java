@@ -1,9 +1,9 @@
 package a2.tabs.gui.view.main.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
-import a2.tabs.gui.view.main.TabStartup;
+import a2.tabs.gui.view.main.TabsStartup;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
 public class Register extends JPanel {
 
-    private final TabStartup tabStartup;
+    private final TabsStartup tabsStartup;
 
     private JTextField pgRegisterAddressInput;
     private JLabel pgRegisterAddressLabel;
@@ -43,8 +43,8 @@ public class Register extends JPanel {
     private JTextField pgRegisterUsernameInput;
     private JLabel pgRegisterUsernameLabel;
 
-    public Register(TabStartup tabStartup) {
-        this.tabStartup = tabStartup;
+    public Register(TabsStartup tabsStartup) {
+        this.tabsStartup = tabsStartup;
         initComponents();
     }
 
@@ -213,7 +213,7 @@ public class Register extends JPanel {
         pgRegisterUpdateButton.setBackground(new Color(0, 100, 172));
         pgRegisterUpdateButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
         pgRegisterUpdateButton.setForeground(new Color(204, 204, 204));
-        pgRegisterUpdateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\RegisterPage-Submit.png")); // NOI18N
+        pgRegisterUpdateButton.setIcon(new ImageIcon("resources/image/RegisterPage-Submit.png")); // NOI18N
         pgRegisterUpdateButton.setBorder(null);
         pgRegisterUpdateButton.setBorderPainted(false);
         pgRegisterUpdateButton.setContentAreaFilled(false);
@@ -360,18 +360,18 @@ public class Register extends JPanel {
             // show success message
             JOptionPane.showMessageDialog(this, "Successfully registered", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-            tabStartup.remove(tabStartup.currentPanel);
-            tabStartup.currentPanel = new Startup(tabStartup);
-            tabStartup.setDisplay(tabStartup.currentPanel);
+            tabsStartup.remove(tabsStartup.currentPanel);
+            tabsStartup.currentPanel = new Startup(tabsStartup);
+            tabsStartup.setDisplay(tabsStartup.currentPanel);
         });
 
-        pgRegisterLogoLabel.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\RegisterPage-Logo.png")); // NOI18N
+        pgRegisterLogoLabel.setIcon(new ImageIcon("resources/image/RegisterPage-Logo.png")); // NOI18N
         pgRegisterLogoLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                tabStartup.remove(tabStartup.currentPanel);
-                tabStartup.currentPanel = new Startup(tabStartup);
-                tabStartup.setDisplay(tabStartup.currentPanel);
+                tabsStartup.remove(tabsStartup.currentPanel);
+                tabsStartup.currentPanel = new Startup(tabsStartup);
+                tabsStartup.setDisplay(tabsStartup.currentPanel);
             }
         });
 

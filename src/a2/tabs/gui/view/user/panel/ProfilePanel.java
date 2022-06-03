@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.user.panel;
 
-import a2.tabs.gui.Tabs;
+import a2.tabs.gui.controller.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
 import a2.tabs.gui.view.user.Dashboard;
@@ -219,7 +219,7 @@ public class ProfilePanel extends JPanel {
         pgProfileUpdateButton.setBackground(new Color(0, 100, 172));
         pgProfileUpdateButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgProfileUpdateButton.setForeground(new Color(204, 204, 204));
-        pgProfileUpdateButton.setIcon(new ImageIcon("C:\\Users\\Nathan\\Documents\\Files\\University\\Work\\2022\\Semester-1\\COMP603-12\\A2-TABS-GUI\\resources\\image\\ProfilePane-UpdateButton.png"));
+        pgProfileUpdateButton.setIcon(new ImageIcon("resources/image/ProfilePane-UpdateButton.png"));
         pgProfileUpdateButton.setBorder(null);
         pgProfileUpdateButton.setBorderPainted(false);
         pgProfileUpdateButton.setContentAreaFilled(false);
