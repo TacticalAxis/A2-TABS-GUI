@@ -1,9 +1,10 @@
-package a2.tabs.gui.util.misc;
+package a2.tabs.gui.util;
 
 import java.util.Calendar;
 
 public enum TimeConstants {
 
+    // this class is because im very lazy and dont wanna have to keep converting time and stuff
     SECOND("second", 1000L),
     MINUTE("minute", 60000L),
     HOUR("hour", 3600000L),

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package a2.tabs.gui.view.admin.panel;
 
 import a2.tabs.gui.view.admin.AdminDashboard;
@@ -9,13 +5,9 @@ import a2.tabs.gui.view.admin.AdminDashboard;
 import javax.swing.*;
 import java.awt.*;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class AdminHome extends JPanel {
 
     private final AdminDashboard adminDashboard;
-;
-    private JLabel pgUsersSelectHeading;
-    private JLabel pgUsersTitle;
 
     public AdminHome(AdminDashboard adminDashboard) {
         this.adminDashboard = adminDashboard;
@@ -24,16 +16,16 @@ public class AdminHome extends JPanel {
     }
 
     private void initComponents() {
-        pgUsersTitle = new JLabel();
-        pgUsersSelectHeading = new JLabel();
+        JLabel pgUsersTitle = new JLabel();
+        JLabel pgUsersSelectHeading = new JLabel();
 
         setForeground(new Color(246, 247, 251));
 
-        pgUsersTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgUsersTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgUsersTitle.setForeground(new Color(0, 100, 172));
         pgUsersTitle.setText("Welcome, Admin.");
 
-        pgUsersSelectHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgUsersSelectHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgUsersSelectHeading.setForeground(new Color(153, 153, 153));
         pgUsersSelectHeading.setText("Select an option from the left");
 

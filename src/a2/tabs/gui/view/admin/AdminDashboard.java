@@ -1,29 +1,20 @@
 package a2.tabs.gui.view.admin;
 
-import a2.tabs.gui.view.main.TabsStartup;
-import a2.tabs.gui.controller.Tabs;
-import a2.tabs.gui.database.DBConnection;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.view.admin.panel.AdminCharge;
 import a2.tabs.gui.view.admin.panel.AdminHome;
 import a2.tabs.gui.view.admin.panel.AdminMessages;
 import a2.tabs.gui.view.admin.panel.AdminUsers;
+import a2.tabs.gui.view.main.TabsStartup;
 
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Constructor;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class AdminDashboard extends JFrame {
 
     public JPanel currentPanel;
 
-    private JButton sbChargeUsersButton;
-    private JButton sbExitButton;
-    private JButton sbHomeButton;
-    private JButton sbMessagesButton;
-    private JButton sbSettingsButton;
-    private JButton sbTitleButton;
-    private JButton sbUsersButton;
     private JPanel sideBar;
 
     public AdminDashboard() {
@@ -34,13 +25,13 @@ public class AdminDashboard extends JFrame {
 
     private void initComponents() {
         sideBar = new JPanel();
-        sbTitleButton = new JButton();
-        sbHomeButton = new JButton();
-        sbSettingsButton = new JButton();
-        sbExitButton = new JButton();
-        sbUsersButton = new JButton();
-        sbMessagesButton = new JButton();
-        sbChargeUsersButton = new JButton();
+        JButton sbTitleButton = new JButton();
+        JButton sbHomeButton = new JButton();
+        JButton sbSettingsButton = new JButton();
+        JButton sbExitButton = new JButton();
+        JButton sbUsersButton = new JButton();
+        JButton sbMessagesButton = new JButton();
+        JButton sbChargeUsersButton = new JButton();
 
         currentPanel = new AdminHome(this);
 
@@ -50,11 +41,11 @@ public class AdminDashboard extends JFrame {
 
         sideBar.setBackground(new Color(51, 51, 51));
 
-        sbTitleButton.setIcon(new ImageIcon("resources/image/tabs-logo-dash2.png")); // NOI18N
+        sbTitleButton.setIcon(new ImageIcon("resources/image/tabs-logo-dash2.png"));
         sbTitleButton.setBorderPainted(false);
         sbTitleButton.setContentAreaFilled(false);
 
-        sbHomeButton.setIcon(new ImageIcon("resources/image/Menu-Home.png")); // NOI18N
+        sbHomeButton.setIcon(new ImageIcon("resources/image/Menu-Home.png"));
         sbHomeButton.setBorder(null);
         sbHomeButton.setBorderPainted(false);
         sbHomeButton.setContentAreaFilled(false);
@@ -68,7 +59,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbSettingsButton.setIcon(new ImageIcon("resources/image/Blank.png")); // NOI18N
+        sbSettingsButton.setIcon(new ImageIcon("resources/image/Blank.png"));
         sbSettingsButton.setBorder(null);
         sbSettingsButton.setBorderPainted(false);
         sbSettingsButton.setContentAreaFilled(false);
@@ -76,7 +67,7 @@ public class AdminDashboard extends JFrame {
         sbSettingsButton.setMinimumSize(new Dimension(75, 75));
         sbSettingsButton.setEnabled(false);
 
-        sbExitButton.setIcon(new ImageIcon("resources/image/Menu-Exit.png")); // NOI18N
+        sbExitButton.setIcon(new ImageIcon("resources/image/Menu-Exit.png"));
         sbExitButton.setBorder(null);
         sbExitButton.setBorderPainted(false);
         sbExitButton.setContentAreaFilled(false);
@@ -102,7 +93,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbUsersButton.setIcon(new ImageIcon("resources/image/AdminOptionPane-Users.png")); // NOI18N
+        sbUsersButton.setIcon(new ImageIcon("resources/image/AdminOptionPane-Users.png"));
         sbUsersButton.setBorder(null);
         sbUsersButton.setBorderPainted(false);
         sbUsersButton.setContentAreaFilled(false);
@@ -114,7 +105,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbMessagesButton.setIcon(new ImageIcon("resources/image/OptionPane-Messages.png")); // NOI18N
+        sbMessagesButton.setIcon(new ImageIcon("resources/image/OptionPane-Messages.png"));
         sbMessagesButton.setBorder(null);
         sbMessagesButton.setBorderPainted(false);
         sbMessagesButton.setContentAreaFilled(false);
@@ -126,7 +117,7 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        sbChargeUsersButton.setIcon(new ImageIcon("resources/image/AdminOptionPane-Charge.png")); // NOI18N
+        sbChargeUsersButton.setIcon(new ImageIcon("resources/image/AdminOptionPane-Charge.png"));
         sbChargeUsersButton.setBorder(null);
         sbChargeUsersButton.setBorderPainted(false);
         sbChargeUsersButton.setContentAreaFilled(false);
@@ -201,6 +192,7 @@ public class AdminDashboard extends JFrame {
         );
     }
 
+    //
     public void refreshCurrentPanel() {
         currentPanel.removeAll();
         remove(currentPanel);
@@ -223,11 +215,5 @@ public class AdminDashboard extends JFrame {
         }
         Tabs.tabsStartup = new TabsStartup();
         Tabs.tabsStartup.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        Tabs.db = new DBConnection();
-        System.out.println("Welcome Admin");
-        EventQueue.invokeLater(() -> new AdminDashboard().setVisible(true));
     }
 }

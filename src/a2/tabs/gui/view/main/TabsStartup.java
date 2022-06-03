@@ -5,7 +5,6 @@ import a2.tabs.gui.view.main.panel.Startup;
 import javax.swing.*;
 import java.awt.*;
 
-@SuppressWarnings({"DuplicatedCode", "FieldCanBeLocal"})
 public class TabsStartup extends JFrame {
 
     public JPanel currentPanel;
@@ -28,6 +27,7 @@ public class TabsStartup extends JFrame {
         pack();
     }
 
+    // change the replaceable panel to the new panel
     public void setDisplay(JPanel panel) {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

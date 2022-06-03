@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.main.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
 import a2.tabs.gui.view.main.TabsStartup;
@@ -12,36 +12,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 
-@SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
+@SuppressWarnings("ConstantConditions")
 public class Register extends JPanel {
 
     private final TabsStartup tabsStartup;
 
     private JTextField pgRegisterAddressInput;
-    private JLabel pgRegisterAddressLabel;
     private JTextField pgRegisterCarRegoInput;
-    private JLabel pgRegisterCarRegoLabel;
     private JTextField pgRegisterDateOfBirthInput;
-    private JLabel pgRegisterDateOfBirthLabel;
     private JTextField pgRegisterEmailInput;
-    private JLabel pgRegisterEmailLabel;
     private JTextField pgRegisterFirstNameInput;
-    private JLabel pgRegisterFirstNameLabel;
     private JComboBox<String> pgRegisterHomeOwnerCombo;
-    private JLabel pgRegisterHomeOwnerLabel;
     private JTextField pgRegisterIRDNumberInput;
-    private JLabel pgRegisterIRDNumberLabel;
     private JTextField pgRegisterLastNameInput;
-    private JLabel pgRegisterLastNameLabel;
-    private JLabel pgRegisterLogoLabel;
 
     private JPasswordField pgRegisterPasswordInput;
-    private JLabel pgRegisterPasswordLabel;
     private JTextField pgRegisterSalaryInput;
-    private JLabel pgRegisterSalaryLabel;
-    private JButton pgRegisterUpdateButton;
     private JTextField pgRegisterUsernameInput;
-    private JLabel pgRegisterUsernameLabel;
 
     public Register(TabsStartup tabsStartup) {
         this.tabsStartup = tabsStartup;
@@ -49,161 +36,161 @@ public class Register extends JPanel {
     }
 
     private void initComponents() {
-        pgRegisterUsernameLabel = new JLabel();
+        JLabel pgRegisterUsernameLabel = new JLabel();
         pgRegisterUsernameInput = new JTextField();
-        pgRegisterFirstNameLabel = new JLabel();
+        JLabel pgRegisterFirstNameLabel = new JLabel();
         pgRegisterFirstNameInput = new JTextField();
-        pgRegisterLastNameLabel = new JLabel();
+        JLabel pgRegisterLastNameLabel = new JLabel();
         pgRegisterLastNameInput = new JTextField();
-        pgRegisterDateOfBirthLabel = new JLabel();
+        JLabel pgRegisterDateOfBirthLabel = new JLabel();
         pgRegisterDateOfBirthInput = new JTextField();
-        pgRegisterAddressLabel = new JLabel();
+        JLabel pgRegisterAddressLabel = new JLabel();
         pgRegisterAddressInput = new JTextField();
-        pgRegisterIRDNumberLabel = new JLabel();
+        JLabel pgRegisterIRDNumberLabel = new JLabel();
         pgRegisterIRDNumberInput = new JTextField();
-        pgRegisterSalaryLabel = new JLabel();
+        JLabel pgRegisterSalaryLabel = new JLabel();
         pgRegisterSalaryInput = new JTextField();
-        pgRegisterCarRegoLabel = new JLabel();
+        JLabel pgRegisterCarRegoLabel = new JLabel();
         pgRegisterCarRegoInput = new JTextField();
-        pgRegisterHomeOwnerLabel = new JLabel();
+        JLabel pgRegisterHomeOwnerLabel = new JLabel();
         pgRegisterHomeOwnerCombo = new JComboBox<>();
-        pgRegisterEmailLabel = new JLabel();
+        JLabel pgRegisterEmailLabel = new JLabel();
         pgRegisterEmailInput = new JTextField();
-        pgRegisterPasswordLabel = new JLabel();
+        JLabel pgRegisterPasswordLabel = new JLabel();
         pgRegisterPasswordInput = new JPasswordField();
-        pgRegisterUpdateButton = new JButton();
-        pgRegisterLogoLabel = new JLabel();
+        JButton pgRegisterUpdateButton = new JButton();
+        JLabel pgRegisterLogoLabel = new JLabel();
 
         setForeground(new Color(246, 247, 251));
 
-        pgRegisterUsernameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterUsernameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterUsernameLabel.setForeground(new Color(153, 153, 153));
         pgRegisterUsernameLabel.setText("Username");
 
         pgRegisterUsernameInput.setBackground(new Color(204, 204, 204));
-        pgRegisterUsernameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterUsernameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterUsernameInput.setForeground(new Color(102, 102, 102));
         pgRegisterUsernameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterUsernameInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterUsernameInput.setOpaque(true);
         pgRegisterUsernameInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterFirstNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterFirstNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterFirstNameLabel.setForeground(new Color(153, 153, 153));
         pgRegisterFirstNameLabel.setText("First Name");
 
         pgRegisterFirstNameInput.setBackground(new Color(204, 204, 204));
-        pgRegisterFirstNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterFirstNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterFirstNameInput.setForeground(new Color(102, 102, 102));
         pgRegisterFirstNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterFirstNameInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterFirstNameInput.setOpaque(true);
         pgRegisterFirstNameInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterLastNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterLastNameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterLastNameLabel.setForeground(new Color(153, 153, 153));
         pgRegisterLastNameLabel.setText("Last Name");
 
         pgRegisterLastNameInput.setBackground(new Color(204, 204, 204));
-        pgRegisterLastNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterLastNameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterLastNameInput.setForeground(new Color(102, 102, 102));
         pgRegisterLastNameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterLastNameInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterLastNameInput.setOpaque(true);
         pgRegisterLastNameInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterDateOfBirthLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterDateOfBirthLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterDateOfBirthLabel.setForeground(new Color(153, 153, 153));
         pgRegisterDateOfBirthLabel.setText("Date of Birth");
 
         pgRegisterDateOfBirthInput.setBackground(new Color(204, 204, 204));
-        pgRegisterDateOfBirthInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterDateOfBirthInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterDateOfBirthInput.setForeground(new Color(102, 102, 102));
         pgRegisterDateOfBirthInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterDateOfBirthInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterDateOfBirthInput.setOpaque(true);
         pgRegisterDateOfBirthInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterAddressLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterAddressLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterAddressLabel.setForeground(new Color(153, 153, 153));
         pgRegisterAddressLabel.setText("Address");
 
         pgRegisterAddressInput.setBackground(new Color(204, 204, 204));
-        pgRegisterAddressInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterAddressInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterAddressInput.setForeground(new Color(102, 102, 102));
         pgRegisterAddressInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterAddressInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterAddressInput.setOpaque(true);
         pgRegisterAddressInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterIRDNumberLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterIRDNumberLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterIRDNumberLabel.setForeground(new Color(153, 153, 153));
         pgRegisterIRDNumberLabel.setText("IRD Number");
 
         pgRegisterIRDNumberInput.setBackground(new Color(204, 204, 204));
-        pgRegisterIRDNumberInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterIRDNumberInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterIRDNumberInput.setForeground(new Color(102, 102, 102));
         pgRegisterIRDNumberInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterIRDNumberInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterIRDNumberInput.setOpaque(true);
         pgRegisterIRDNumberInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterSalaryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterSalaryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterSalaryLabel.setForeground(new Color(153, 153, 153));
         pgRegisterSalaryLabel.setText("Salary");
 
         pgRegisterSalaryInput.setBackground(new Color(204, 204, 204));
-        pgRegisterSalaryInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterSalaryInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterSalaryInput.setForeground(new Color(102, 102, 102));
         pgRegisterSalaryInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterSalaryInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterSalaryInput.setOpaque(true);
         pgRegisterSalaryInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterCarRegoLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterCarRegoLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterCarRegoLabel.setForeground(new Color(153, 153, 153));
         pgRegisterCarRegoLabel.setText("Car Registration");
 
         pgRegisterCarRegoInput.setBackground(new Color(204, 204, 204));
-        pgRegisterCarRegoInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterCarRegoInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterCarRegoInput.setForeground(new Color(102, 102, 102));
         pgRegisterCarRegoInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterCarRegoInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterCarRegoInput.setOpaque(true);
         pgRegisterCarRegoInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterHomeOwnerLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterHomeOwnerLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterHomeOwnerLabel.setForeground(new Color(153, 153, 153));
         pgRegisterHomeOwnerLabel.setText("Home Owner?");
 
         pgRegisterHomeOwnerCombo.setBackground(new Color(204, 204, 204));
-        pgRegisterHomeOwnerCombo.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterHomeOwnerCombo.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterHomeOwnerCombo.setForeground(new Color(102, 102, 102));
         pgRegisterHomeOwnerCombo.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterHomeOwnerCombo.setOpaque(true);
 
-        pgRegisterHomeOwnerCombo.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterHomeOwnerCombo.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterHomeOwnerCombo.setModel(new DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
         pgRegisterHomeOwnerCombo.setBorder(null);
 
-        pgRegisterEmailLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterEmailLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterEmailLabel.setForeground(new Color(153, 153, 153));
         pgRegisterEmailLabel.setText("Email");
 
         pgRegisterEmailInput.setBackground(new Color(204, 204, 204));
-        pgRegisterEmailInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterEmailInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterEmailInput.setForeground(new Color(102, 102, 102));
         pgRegisterEmailInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterEmailInput.setCaretColor(new Color(102, 102, 102));
         pgRegisterEmailInput.setOpaque(true);
         pgRegisterEmailInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgRegisterPasswordLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgRegisterPasswordLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgRegisterPasswordLabel.setForeground(new Color(153, 153, 153));
         pgRegisterPasswordLabel.setText("Password");
 
         pgRegisterPasswordInput.setBackground(new Color(204, 204, 204));
-        pgRegisterPasswordInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgRegisterPasswordInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgRegisterPasswordInput.setForeground(new Color(102, 102, 102));
         pgRegisterPasswordInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgRegisterPasswordInput.setCaretColor(new Color(102, 102, 102));
@@ -211,9 +198,9 @@ public class Register extends JPanel {
         pgRegisterPasswordInput.setSelectionColor(new Color(252, 189, 27));
 
         pgRegisterUpdateButton.setBackground(new Color(0, 100, 172));
-        pgRegisterUpdateButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgRegisterUpdateButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgRegisterUpdateButton.setForeground(new Color(204, 204, 204));
-        pgRegisterUpdateButton.setIcon(new ImageIcon("resources/image/RegisterPage-Submit.png")); // NOI18N
+        pgRegisterUpdateButton.setIcon(new ImageIcon("resources/image/RegisterPage-Submit.png"));
         pgRegisterUpdateButton.setBorder(null);
         pgRegisterUpdateButton.setBorderPainted(false);
         pgRegisterUpdateButton.setContentAreaFilled(false);
@@ -231,6 +218,13 @@ public class Register extends JPanel {
             if (username.trim().equalsIgnoreCase("null") || username.trim().equalsIgnoreCase("admin")) {
                 JOptionPane.showMessageDialog(null, "Username is invalid " + FormFieldType.USERNAME.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
+            }
+
+            for (User user : User.get(Tabs.db)) {
+                if (user.getUsername().trim().equalsIgnoreCase(username.trim())) {
+                    JOptionPane.showMessageDialog(null, "Username is already taken", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
 
             // get password
@@ -313,6 +307,14 @@ public class Register extends JPanel {
                 pgRegisterEmailInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
             }
 
+            for (User u : User.get(Tabs.db)) {
+                if (u.getEmail().equalsIgnoreCase(email)) {
+                    pgRegisterEmailInput.setBorder(new LineBorder(Color.RED, 5, true));
+                    JOptionPane.showMessageDialog(null, "Email already exists", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
             // get car registration
             String carRego = pgRegisterCarRegoInput.getText();
             if (!FormFieldType.CAR_REGISTRATION.isValid(carRego)) {
@@ -365,7 +367,7 @@ public class Register extends JPanel {
             tabsStartup.setDisplay(tabsStartup.currentPanel);
         });
 
-        pgRegisterLogoLabel.setIcon(new ImageIcon("resources/image/RegisterPage-Logo.png")); // NOI18N
+        pgRegisterLogoLabel.setIcon(new ImageIcon("resources/image/RegisterPage-Logo.png"));
         pgRegisterLogoLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {

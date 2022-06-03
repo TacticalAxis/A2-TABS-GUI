@@ -1,14 +1,14 @@
 package a2.tabs.gui.model.util;
 
 public enum ChargeType {
-    ELECTRICITY_BILL(1, "Electricity Bill", "Bill to be paid for electricity", 20, true),
-    WATER_BILL(2, "Water Bill", "Bill to be paid for water", 20, true),
-    INTERNET_BILL(3, "Internet Bill", "Bill to be paid for internet", 20, true),
-    ROAD_USER_CHARGES(4, "Road User Charges", "Bill to be paid for road user charges", 20, true),
+    ELECTRICITY_BILL(1, "Electricity Bill", "Bill to be paid for electricity", 40, true),
+    WATER_BILL(2, "Water Bill", "Bill to be paid for water", 35, true),
+    INTERNET_BILL(3, "Internet Bill", "Bill to be paid for internet", 40, true),
+    ROAD_USER_CHARGES(4, "Road User Charges", "Bill to be paid for road user charges", 16, true),
 
-    PARKING_VIOLATION(5, "Parking Violation", "Bill to be paid for parking violation", 20, true),
-    SPEEDING_VIOLATION(6, "Speeding Violation", "Bill to be paid for speeding violation", 1000, true),
-    ROAD_VIOLATION(7, "Road Violation", "Bill to be paid for road violation", 20, true);
+    PARKING_VIOLATION(5, "Parking Violation", "Bill to be paid for parking violation", 50, true),
+    SPEEDING_VIOLATION(6, "Speeding Violation", "Bill to be paid for speeding violation", 400, true),
+    ROAD_VIOLATION(7, "Road Violation", "Bill to be paid for road violation", 150, true);
 
     private final int id;
     private final String name;

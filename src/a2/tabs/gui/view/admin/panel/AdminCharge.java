@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package a2.tabs.gui.view.admin.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.model.util.ChargeType;
@@ -16,22 +12,12 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
+@SuppressWarnings("ConstantConditions")
 public class AdminCharge extends JPanel {
 
     private final AdminDashboard adminDashboard;
 
-    private JButton pgChargeBillsButton;
-    private JButton pgChargeFineSpeeding;
-    private JButton pgChargeFineParking;
-    private JButton pgChargeFineRoad;
-    private JLabel pgUsersDeleteHeading;
-    private JLabel pgUsersDeleteHeading1;
-    private JLabel pgUsersDeleteHeading3;
-    private JLabel pgUsersDeleteHeading4;
-    private JLabel pgUsersSelectHeading;
     private JComboBox<String> pgUsersSelectInput;
-    private JLabel pgUsersTitle;
 
     public AdminCharge(AdminDashboard adminDashboard) {
         this.adminDashboard = adminDashboard;
@@ -40,32 +26,32 @@ public class AdminCharge extends JPanel {
     }
 
     private void initComponents() {
-        pgUsersTitle = new JLabel();
-        pgUsersSelectHeading = new JLabel();
+        JLabel pgUsersTitle = new JLabel();
+        JLabel pgUsersSelectHeading = new JLabel();
         pgUsersSelectInput = new JComboBox<>();
-        pgUsersDeleteHeading = new JLabel();
-        pgChargeBillsButton = new JButton();
-        pgUsersDeleteHeading1 = new JLabel();
-        pgChargeFineSpeeding = new JButton();
-        pgChargeFineParking = new JButton();
-        pgUsersDeleteHeading3 = new JLabel();
-        pgChargeFineRoad = new JButton();
-        pgUsersDeleteHeading4 = new JLabel();
+        JLabel pgUsersDeleteHeading = new JLabel();
+        JButton pgChargeBillsButton = new JButton();
+        JLabel pgUsersDeleteHeading1 = new JLabel();
+        JButton pgChargeFineSpeeding = new JButton();
+        JButton pgChargeFineParking = new JButton();
+        JLabel pgUsersDeleteHeading3 = new JLabel();
+        JButton pgChargeFineRoad = new JButton();
+        JLabel pgUsersDeleteHeading4 = new JLabel();
 
-        setForeground(new java.awt.Color(246, 247, 251));
+        setForeground(new Color(246, 247, 251));
 
-        pgUsersTitle.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
-        pgUsersTitle.setForeground(new java.awt.Color(0, 100, 172));
+        pgUsersTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
+        pgUsersTitle.setForeground(new Color(0, 100, 172));
         pgUsersTitle.setText("Charge Users");
 
-        pgUsersSelectHeading.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
-        pgUsersSelectHeading.setForeground(new java.awt.Color(153, 153, 153));
+        pgUsersSelectHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
+        pgUsersSelectHeading.setForeground(new Color(153, 153, 153));
         pgUsersSelectHeading.setText("Select User");
 
-        pgUsersSelectInput.setBackground(new java.awt.Color(204, 204, 204));
-        pgUsersSelectInput.setFont(new java.awt.Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
-        pgUsersSelectInput.setForeground(new java.awt.Color(102, 102, 102));
-        pgUsersSelectInput.setBorder(new LineBorder(new java.awt.Color(204, 204, 204), 5, true));
+        pgUsersSelectInput.setBackground(new Color(204, 204, 204));
+        pgUsersSelectInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
+        pgUsersSelectInput.setForeground(new Color(102, 102, 102));
+        pgUsersSelectInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgUsersSelectInput.setOpaque(true);
 
         java.util.List<String> users = new ArrayList<>();
@@ -73,14 +59,14 @@ public class AdminCharge extends JPanel {
         String[] userNames = new String[users.size()];
         pgUsersSelectInput.setModel(new DefaultComboBoxModel<>(users.toArray(userNames)));
 
-        pgUsersDeleteHeading.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
-        pgUsersDeleteHeading.setForeground(new java.awt.Color(153, 153, 153));
+        pgUsersDeleteHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
+        pgUsersDeleteHeading.setForeground(new Color(153, 153, 153));
         pgUsersDeleteHeading.setText("Charge Bills");
 
-        pgChargeBillsButton.setBackground(new java.awt.Color(0, 100, 172));
-        pgChargeBillsButton.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
-        pgChargeBillsButton.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeBillsButton.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeBillsButton.setBackground(new Color(0, 100, 172));
+        pgChargeBillsButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
+        pgChargeBillsButton.setForeground(new Color(204, 204, 204));
+        pgChargeBillsButton.setIcon(new ImageIcon("resources/image/AdminChargeChargeButton-Charge.png"));
         pgChargeBillsButton.setBorder(null);
         pgChargeBillsButton.setBorderPainted(false);
         pgChargeBillsButton.setContentAreaFilled(false);
@@ -105,14 +91,14 @@ public class AdminCharge extends JPanel {
             JOptionPane.showMessageDialog(null, "Bills charged successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        pgUsersDeleteHeading1.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
-        pgUsersDeleteHeading1.setForeground(new java.awt.Color(153, 153, 153));
+        pgUsersDeleteHeading1.setFont(new Font("Bahnschrift", Font.BOLD, 24));
+        pgUsersDeleteHeading1.setForeground(new Color(153, 153, 153));
         pgUsersDeleteHeading1.setText("Speeding Fine");
 
-        pgChargeFineSpeeding.setBackground(new java.awt.Color(0, 100, 172));
-        pgChargeFineSpeeding.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
-        pgChargeFineSpeeding.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeFineSpeeding.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeFineSpeeding.setBackground(new Color(0, 100, 172));
+        pgChargeFineSpeeding.setFont(new Font("Bahnschrift", Font.BOLD, 18));
+        pgChargeFineSpeeding.setForeground(new Color(204, 204, 204));
+        pgChargeFineSpeeding.setIcon(new ImageIcon("resources/image/AdminChargeChargeButton-Charge.png"));
         pgChargeFineSpeeding.setBorder(null);
         pgChargeFineSpeeding.setBorderPainted(false);
         pgChargeFineSpeeding.setContentAreaFilled(false);
@@ -126,10 +112,10 @@ public class AdminCharge extends JPanel {
             JOptionPane.showMessageDialog(null, "Fine charged successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        pgChargeFineParking.setBackground(new java.awt.Color(0, 100, 172));
-        pgChargeFineParking.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
-        pgChargeFineParking.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeFineParking.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeFineParking.setBackground(new Color(0, 100, 172));
+        pgChargeFineParking.setFont(new Font("Bahnschrift", Font.BOLD, 18));
+        pgChargeFineParking.setForeground(new Color(204, 204, 204));
+        pgChargeFineParking.setIcon(new ImageIcon("resources/image/AdminChargeChargeButton-Charge.png"));
         pgChargeFineParking.setBorder(null);
         pgChargeFineParking.setBorderPainted(false);
         pgChargeFineParking.setContentAreaFilled(false);
@@ -143,14 +129,14 @@ public class AdminCharge extends JPanel {
             JOptionPane.showMessageDialog(null, "Fine charged successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        pgUsersDeleteHeading3.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
-        pgUsersDeleteHeading3.setForeground(new java.awt.Color(153, 153, 153));
+        pgUsersDeleteHeading3.setFont(new Font("Bahnschrift", Font.BOLD, 24));
+        pgUsersDeleteHeading3.setForeground(new Color(153, 153, 153));
         pgUsersDeleteHeading3.setText("Parking Fine");
 
-        pgChargeFineRoad.setBackground(new java.awt.Color(0, 100, 172));
-        pgChargeFineRoad.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
-        pgChargeFineRoad.setForeground(new java.awt.Color(204, 204, 204));
-        pgChargeFineRoad.setIcon(new ImageIcon("resources/imageAdminChargeChargeButton-Charge.png")); // NOI18N
+        pgChargeFineRoad.setBackground(new Color(0, 100, 172));
+        pgChargeFineRoad.setFont(new Font("Bahnschrift", Font.BOLD, 18));
+        pgChargeFineRoad.setForeground(new Color(204, 204, 204));
+        pgChargeFineRoad.setIcon(new ImageIcon("resources/image/AdminChargeChargeButton-Charge.png"));
         pgChargeFineRoad.setBorder(null);
         pgChargeFineRoad.setBorderPainted(false);
         pgChargeFineRoad.setContentAreaFilled(false);
@@ -164,8 +150,8 @@ public class AdminCharge extends JPanel {
             JOptionPane.showMessageDialog(null, "Fine charged successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        pgUsersDeleteHeading4.setFont(new java.awt.Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
-        pgUsersDeleteHeading4.setForeground(new java.awt.Color(153, 153, 153));
+        pgUsersDeleteHeading4.setFont(new Font("Bahnschrift", Font.BOLD, 24));
+        pgUsersDeleteHeading4.setForeground(new Color(153, 153, 153));
         pgUsersDeleteHeading4.setText("Road Violation");
 
         GroupLayout pgMessagesPanelLayout = new GroupLayout(this);

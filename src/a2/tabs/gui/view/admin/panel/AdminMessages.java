@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package a2.tabs.gui.view.admin.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.MessageAdmin;
 import a2.tabs.gui.model.MessageUser;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.model.util.Message;
-import a2.tabs.gui.util.misc.TimeConstants;
-import a2.tabs.gui.util.misc.UtilString;
+import a2.tabs.gui.util.TimeConstants;
+import a2.tabs.gui.util.MessageStringifier;
 import a2.tabs.gui.view.admin.AdminDashboard;
 
 import javax.swing.*;
@@ -20,18 +16,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-@SuppressWarnings({"FieldCanBeLocal"})
 public class AdminMessages extends JPanel {
 
     private final AdminDashboard adminDashboard;
 
-    private JLabel pgMessagesMessageHistoryHeading;
     private JList<String> pgMessagesMessageHistoryList;
-    private JScrollPane pgMessagesMessageHistoryScroll;
-    private JButton pgMessagesSendButton;
-    private JLabel pgMessagesSendMessageHeading;
     private JTextField pgMessagesSendMessagesTextField;
-    private JLabel pgMessagesTitle;
     private JComboBox<String> userSelector;
 
     public AdminMessages(AdminDashboard adminDashboard) {
@@ -41,27 +31,27 @@ public class AdminMessages extends JPanel {
     }
 
     private void initComponents() {
-        pgMessagesTitle = new JLabel();
-        pgMessagesSendMessageHeading = new JLabel();
+        JLabel pgMessagesTitle = new JLabel();
+        JLabel pgMessagesSendMessageHeading = new JLabel();
         pgMessagesSendMessagesTextField = new JTextField();
-        pgMessagesSendButton = new JButton();
-        pgMessagesMessageHistoryHeading = new JLabel();
-        pgMessagesMessageHistoryScroll = new JScrollPane();
+        JButton pgMessagesSendButton = new JButton();
+        JLabel pgMessagesMessageHistoryHeading = new JLabel();
+        JScrollPane pgMessagesMessageHistoryScroll = new JScrollPane();
         pgMessagesMessageHistoryList = new JList<>();
         userSelector = new JComboBox<>();
 
         setForeground(new Color(246, 247, 251));
 
-        pgMessagesTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgMessagesTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgMessagesTitle.setForeground(new Color(0, 100, 172));
         pgMessagesTitle.setText("Messages");
 
-        pgMessagesSendMessageHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgMessagesSendMessageHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgMessagesSendMessageHeading.setForeground(new Color(153, 153, 153));
         pgMessagesSendMessageHeading.setText("Send Message");
 
         pgMessagesSendMessagesTextField.setBackground(new Color(204, 204, 204));
-        pgMessagesSendMessagesTextField.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgMessagesSendMessagesTextField.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgMessagesSendMessagesTextField.setForeground(new Color(102, 102, 102));
         pgMessagesSendMessagesTextField.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgMessagesSendMessagesTextField.setCaretColor(new Color(102, 102, 102));
@@ -69,9 +59,9 @@ public class AdminMessages extends JPanel {
         pgMessagesSendMessagesTextField.setSelectionColor(new Color(252, 189, 27));
 
         pgMessagesSendButton.setBackground(new Color(0, 100, 172));
-        pgMessagesSendButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgMessagesSendButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgMessagesSendButton.setForeground(new Color(204, 204, 204));
-        pgMessagesSendButton.setIcon(new ImageIcon("resources/image/MessagesPane-SendButton.png")); // NOI18N
+        pgMessagesSendButton.setIcon(new ImageIcon("resources/image/MessagesPane-SendButton.png"));
         pgMessagesSendButton.setBorder(null);
         pgMessagesSendButton.setBorderPainted(false);
         pgMessagesSendButton.setContentAreaFilled(false);
@@ -92,13 +82,13 @@ public class AdminMessages extends JPanel {
             JOptionPane.showMessageDialog(null, "Message sent", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        pgMessagesMessageHistoryHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgMessagesMessageHistoryHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgMessagesMessageHistoryHeading.setForeground(new Color(153, 153, 153));
         pgMessagesMessageHistoryHeading.setText("Message History");
 
         pgMessagesMessageHistoryList.setBackground(new Color(204, 204, 204));
         pgMessagesMessageHistoryList.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
-        pgMessagesMessageHistoryList.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgMessagesMessageHistoryList.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgMessagesMessageHistoryList.setForeground(new Color(102, 102, 102));
 
         java.util.List<MessageUser> messagesFromUsers = MessageUser.get(Tabs.db);
@@ -129,10 +119,8 @@ public class AdminMessages extends JPanel {
                 sb.append(": ");
             }
 
-//            sb.append("] - " + ("sender: " + messages.get(i).getSender())).append(messagesToUsers.contains(messages.get(i)) ? "To " : "From ").append(messages.get(i).getSender()).append(": ");
-
             // append the message
-            sb.append(UtilString.shorten(messages.get(i).getMessage(), 15));
+            sb.append(MessageStringifier.shorten(messages.get(i).getMessage(), 15));
             messageStrings[i] = sb.toString();
         }
 
@@ -163,7 +151,7 @@ public class AdminMessages extends JPanel {
 
 
         userSelector.setBackground(new Color(204, 204, 204));
-        userSelector.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        userSelector.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         userSelector.setForeground(new Color(102, 102, 102));
         userSelector.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         userSelector.setOpaque(true);

@@ -1,6 +1,6 @@
-package a2.tabs.gui.util.misc;
+package a2.tabs.gui.util;
 
-public class UtilString {
+public class MessageStringifier {
 
     public static String shorten(String text, int max) {
         if (text.length() <= max) {
@@ -8,5 +8,9 @@ public class UtilString {
         }
 
         return text.substring(0, max) + "...";
+    }
+
+    public String sanitise(String text) {
+        return text.replace("'", "").replace("\"", "");
     }
 }

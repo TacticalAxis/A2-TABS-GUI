@@ -4,13 +4,13 @@ import a2.tabs.gui.model.User;
 
 public interface Message {
 
-    public User getUser();
+    User getUser();
 
-    public String getMessage();
+    String getMessage();
 
-    public long getTimestamp();
+    long getTimestamp();
 
-    public boolean getIsFromAdmin();
+    boolean getIsFromAdmin();
 
-    public String getSender();
+    String getSender();
 }

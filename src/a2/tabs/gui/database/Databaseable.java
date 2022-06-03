@@ -9,8 +9,6 @@ public interface Databaseable<E> {
 
     boolean keyExists(DBConnection db, E key);
 
-    void pull(DBConnection db);
-
     @Override
     boolean equals(Object o);
 }

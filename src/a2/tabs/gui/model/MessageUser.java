@@ -3,6 +3,7 @@ package a2.tabs.gui.model;
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
 import a2.tabs.gui.model.util.Message;
+import a2.tabs.gui.util.MessageStringifier;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class MessageUser implements Databaseable<MessageUser>, Message {
+public class MessageUser extends MessageStringifier implements Databaseable<MessageUser>, Message {
 
     public static final String TABLE_NAME = Config.DB_TABLE_MESSAGE_USER;
 
@@ -54,7 +55,7 @@ public class MessageUser implements Databaseable<MessageUser>, Message {
     @Override
     public boolean create(DBConnection db) {
         try(Statement stmt = db.getConnection().createStatement()) {
-            String sql = String.format("INSERT INTO \"%s\" (userID, message, timestamp) VALUES ('%s', '%s', %d)", TABLE_NAME, user.getUsername(), message, timestamp);
+            String sql = String.format("INSERT INTO \"%s\" (userID, message, timestamp) VALUES ('%s', '%s', %d)", TABLE_NAME, user.getUsername(), sanitise(message), timestamp);
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,11 +94,6 @@ public class MessageUser implements Databaseable<MessageUser>, Message {
     @Override
     public boolean keyExists(DBConnection db, MessageUser key) {
         return get(db).contains(key);
-    }
-
-    @Override
-    public void pull(DBConnection db) {
-        throw new UnsupportedOperationException("Unsupported operation, messages are read-only");
     }
 
     @Override

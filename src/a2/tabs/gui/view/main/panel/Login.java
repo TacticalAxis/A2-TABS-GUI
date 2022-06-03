@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.main.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.view.main.TabsStartup;
 import a2.tabs.gui.view.user.Dashboard;
@@ -11,17 +11,12 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class Login extends JPanel {
 
     private final TabsStartup tabsStartup;
 
-    private JButton pgLoginLoginButton;
-    private JLabel pgLoginLogoLabel;
     private JPasswordField pgLoginPasswordInput;
-    private JLabel pgLoginPasswordLabel;
     private JTextField pgLoginUsernameInput;
-    private JLabel pgLoginUsernameLabel;
 
     public Login(TabsStartup tabsStartup) {
         this.tabsStartup = tabsStartup;
@@ -29,33 +24,33 @@ public class Login extends JPanel {
     }
 
     private void initComponents() {
-        pgLoginUsernameLabel = new JLabel();
+        JLabel pgLoginUsernameLabel = new JLabel();
         pgLoginUsernameInput = new JTextField();
-        pgLoginPasswordLabel = new JLabel();
+        JLabel pgLoginPasswordLabel = new JLabel();
         pgLoginPasswordInput = new JPasswordField();
-        pgLoginLoginButton = new JButton();
-        pgLoginLogoLabel = new JLabel();
+        JButton pgLoginLoginButton = new JButton();
+        JLabel pgLoginLogoLabel = new JLabel();
 
         setForeground(new Color(246, 247, 251));
 
-        pgLoginUsernameLabel.setFont(new Font("Bahnschrift", 1, 24)); // NOI18N
+        pgLoginUsernameLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgLoginUsernameLabel.setForeground(new Color(153, 153, 153));
         pgLoginUsernameLabel.setText("Username or Email");
 
         pgLoginUsernameInput.setBackground(new Color(204, 204, 204));
-        pgLoginUsernameInput.setFont(new Font("Bahnschrift", 0, 18)); // NOI18N
+        pgLoginUsernameInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgLoginUsernameInput.setForeground(new Color(102, 102, 102));
         pgLoginUsernameInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgLoginUsernameInput.setCaretColor(new Color(102, 102, 102));
         pgLoginUsernameInput.setOpaque(true);
         pgLoginUsernameInput.setSelectionColor(new Color(252, 189, 27));
 
-        pgLoginPasswordLabel.setFont(new Font("Bahnschrift", 1, 24)); // NOI18N
+        pgLoginPasswordLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgLoginPasswordLabel.setForeground(new Color(153, 153, 153));
         pgLoginPasswordLabel.setText("Password");
 
         pgLoginPasswordInput.setBackground(new Color(204, 204, 204));
-        pgLoginPasswordInput.setFont(new Font("Bahnschrift", 0, 18)); // NOI18N
+        pgLoginPasswordInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgLoginPasswordInput.setForeground(new Color(102, 102, 102));
         pgLoginPasswordInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgLoginPasswordInput.setCaretColor(new Color(102, 102, 102));
@@ -63,16 +58,14 @@ public class Login extends JPanel {
         pgLoginPasswordInput.setSelectionColor(new Color(252, 189, 27));
 
         pgLoginLoginButton.setBackground(new Color(0, 100, 172));
-        pgLoginLoginButton.setFont(new Font("Bahnschrift", 1, 18)); // NOI18N
+        pgLoginLoginButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgLoginLoginButton.setForeground(new Color(204, 204, 204));
-        pgLoginLoginButton.setIcon(new ImageIcon("resources/image/LoginPage-Submit.png")); // NOI18N
+        pgLoginLoginButton.setIcon(new ImageIcon("resources/image/LoginPage-Submit.png"));
         pgLoginLoginButton.setBorder(null);
         pgLoginLoginButton.setBorderPainted(false);
         pgLoginLoginButton.setContentAreaFilled(false);
         pgLoginLoginButton.addActionListener(evt -> {
             String username = pgLoginUsernameInput.getText();
-            String password = new String(pgLoginPasswordInput.getPassword());
-            System.out.println("Username: " + username + " Password: " + password);
 
             User user = User.get(Tabs.db, username);
             if (user != null && user.checkPassword(new String(pgLoginPasswordInput.getPassword()))) {
@@ -87,7 +80,7 @@ public class Login extends JPanel {
             EventQueue.invokeLater(() -> Tabs.dashboard.setVisible(true));
         });
 
-        pgLoginLogoLabel.setIcon(new ImageIcon("resources/image/RegisterPage-Logo.png")); // NOI18N
+        pgLoginLogoLabel.setIcon(new ImageIcon("resources/image/RegisterPage-Logo.png"));
         pgLoginLogoLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {

@@ -1,12 +1,12 @@
 package a2.tabs.gui.view.user.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.MessageAdmin;
 import a2.tabs.gui.model.MessageUser;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.model.util.Message;
-import a2.tabs.gui.util.misc.TimeConstants;
-import a2.tabs.gui.util.misc.UtilString;
+import a2.tabs.gui.util.TimeConstants;
+import a2.tabs.gui.util.MessageStringifier;
 import a2.tabs.gui.view.user.Dashboard;
 
 import javax.swing.*;
@@ -16,19 +16,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class MessagePanel extends JPanel {
 
     private final User user;
     private final Dashboard dashboard;
 
-    private JLabel pgMessagesMessageHistoryHeading;
     private JList<String> pgMessagesMessageHistoryList;
-    private JScrollPane pgMessagesMessageHistoryScroll;
-    private JButton pgMessagesSendButton;
-    private JLabel pgMessagesSendMessageHeading;
     private JTextField pgMessagesSendMessagesTextField;
-    private JLabel pgMessagesTitle;
 
     public MessagePanel(User user, Dashboard dashboard) {
         this.user = user;
@@ -37,12 +31,12 @@ public class MessagePanel extends JPanel {
     }
 
     public void initComponents() {
-        pgMessagesTitle = new JLabel();
-        pgMessagesSendMessageHeading = new JLabel();
+        JLabel pgMessagesTitle = new JLabel();
+        JLabel pgMessagesSendMessageHeading = new JLabel();
         pgMessagesSendMessagesTextField = new JTextField();
-        pgMessagesSendButton = new JButton();
-        pgMessagesMessageHistoryHeading = new JLabel();
-        pgMessagesMessageHistoryScroll = new JScrollPane();
+        JButton pgMessagesSendButton = new JButton();
+        JLabel pgMessagesMessageHistoryHeading = new JLabel();
+        JScrollPane pgMessagesMessageHistoryScroll = new JScrollPane();
         pgMessagesMessageHistoryList = new JList<>();
 
         setForeground(new Color(246, 247, 251));
@@ -125,7 +119,7 @@ public class MessagePanel extends JPanel {
             }
 
             // append the message
-            sb.append(UtilString.shorten(messages.get(i).getMessage(), 15));
+            sb.append(MessageStringifier.shorten(messages.get(i).getMessage(), 15));
             messageStrings[i] = sb.toString();
         }
 

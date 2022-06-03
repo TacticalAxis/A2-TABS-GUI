@@ -1,29 +1,19 @@
 package a2.tabs.gui.view.user;
 
-import a2.tabs.gui.view.main.TabsStartup;
-import a2.tabs.gui.controller.Tabs;
-import a2.tabs.gui.database.DBConnection;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.User;
+import a2.tabs.gui.view.main.TabsStartup;
 import a2.tabs.gui.view.user.panel.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Constructor;
 
-@SuppressWarnings({"DuplicatedCode", "FieldCanBeLocal"})
 public class Dashboard extends JFrame {
 
     private final User user;
     public JPanel currentPanel;
 
-    private JButton sbExitButton;
-    private JButton sbHomeButton;
-    private JButton sbMessagesButton;
-    private JButton sbPaymentsButton;
-    private JButton sbProfileButton;
-    private JButton sbSettingsButton;
-    private JButton sbTaxCalculator;
-    private JButton sbTitleButton;
     private JPanel sideBar;
 
     public Dashboard(User user) {
@@ -35,14 +25,14 @@ public class Dashboard extends JFrame {
 
     private void initComponents() {
         sideBar = new JPanel();
-        sbTitleButton = new JButton();
-        sbHomeButton = new JButton();
-        sbSettingsButton = new JButton();
-        sbExitButton = new JButton();
-        sbProfileButton = new JButton();
-        sbMessagesButton = new JButton();
-        sbPaymentsButton = new JButton();
-        sbTaxCalculator = new JButton();
+        JButton sbTitleButton = new JButton();
+        JButton sbHomeButton = new JButton();
+        JButton sbSettingsButton = new JButton();
+        JButton sbExitButton = new JButton();
+        JButton sbProfileButton = new JButton();
+        JButton sbMessagesButton = new JButton();
+        JButton sbPaymentsButton = new JButton();
+        JButton sbTaxCalculator = new JButton();
 
         // setup panels
         currentPanel = new HomePanel(user, this);
@@ -97,11 +87,8 @@ public class Dashboard extends JFrame {
             );
 
             if (result == JOptionPane.YES_OPTION) {
-                System.out.println("Delete Account");
                 logout();
                 user.delete(Tabs.db);
-            } else {
-                System.out.println("Cancelled");
             }
         });
 
@@ -203,6 +190,7 @@ public class Dashboard extends JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
         sideBarLayout.setVerticalGroup(
             sideBarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(sideBarLayout.createSequentialGroup()
@@ -228,6 +216,7 @@ public class Dashboard extends JFrame {
         pack();
     }
 
+    // change the replaceable panel to the new panel
     public void setDisplay(JPanel panel) {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,6 +234,7 @@ public class Dashboard extends JFrame {
         );
     }
 
+    // refresh the current panel
     public void refreshCurrentPanel() {
         currentPanel.removeAll();
         remove(currentPanel);
@@ -260,6 +250,7 @@ public class Dashboard extends JFrame {
         }
     }
 
+    // log out the user
     private void logout() {
         Tabs.dashboard.dispose();
         if (Tabs.tabsStartup != null) {
@@ -267,16 +258,5 @@ public class Dashboard extends JFrame {
         }
         Tabs.tabsStartup = new TabsStartup();
         Tabs.tabsStartup.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        Tabs.db = new DBConnection();
-        User user = User.get(Tabs.db, "nathand123");
-        String password = "password";
-        System.out.println("Enter your password: " + password);
-        if (user != null && user.checkPassword(password.trim())) {
-            System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName());
-            EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
-        }
     }
 }

@@ -15,8 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"unused", "SqlResolve"})
-public class User extends DBModelBase implements Databaseable<String> {
+public class User implements Databaseable<String> {
 
     public static final String TABLE_NAME = Config.DB_TABLE_USER;
 
@@ -281,7 +280,6 @@ public class User extends DBModelBase implements Databaseable<String> {
         } else {
             try (Statement stmt = db.getConnection().createStatement()) {
                 String query = String.format("UPDATE \"%s\" SET password = '%s', email = '%s', firstName = '%s', lastName = '%s', dateOfBirth = '%s', address = '%s', irdNumber = '%s', salary = %s, ownsHome = %s, carRego = '%s' WHERE username = '%s'", TABLE_NAME, password, email, firstName, lastName, Date.valueOf(dateOfBirth), address, irdNumber, salary, ownsHome, carRego, username);
-                System.out.println(query);
                 stmt.executeUpdate(query);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -307,11 +305,6 @@ public class User extends DBModelBase implements Databaseable<String> {
         }
 
         return false;
-    }
-
-    @Override
-    public void pull(DBConnection db) {
-        // Does not need to be implemented
     }
 
     public boolean userEquals(User user) {

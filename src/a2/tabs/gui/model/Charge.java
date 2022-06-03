@@ -88,7 +88,6 @@ public class Charge implements Databaseable<Integer> {
 
         try(Statement stmt = db.getConnection().createStatement()) {
             String query = String.format("UPDATE \"%s\" SET typeID = %d, userID = '%s', dueDate = '%s', paid = %b WHERE id = %d", TABLE_NAME, type.getId(), user.getUsername(), date, paid, getId());
-            System.out.println(query);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,11 +96,6 @@ public class Charge implements Databaseable<Integer> {
 
     @Override
     public boolean keyExists(DBConnection db, Integer key) {
-        throw new UnsupportedOperationException("Unsupported operation, charges are read-only");
-    }
-
-    @Override
-    public void pull(DBConnection db) {
         throw new UnsupportedOperationException("Unsupported operation, charges are read-only");
     }
 

@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.admin.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.view.admin.AdminDashboard;
 
@@ -9,16 +9,11 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class AdminUsers extends JPanel {
 
     private final AdminDashboard adminDashboard;
 
-    private JButton pgUsersDeleteButton;
-    private JLabel pgUsersDeleteHeading;
-    private JLabel pgUsersSelectHeading;
     private JComboBox<String> pgUsersSelectInput;
-    private JLabel pgUsersTitle;
 
     public AdminUsers(AdminDashboard adminDashboard) {
         this.adminDashboard = adminDashboard;
@@ -27,24 +22,24 @@ public class AdminUsers extends JPanel {
     }
 
     private void initComponents() {
-        pgUsersTitle = new JLabel();
-        pgUsersSelectHeading = new JLabel();
+        JLabel pgUsersTitle = new JLabel();
+        JLabel pgUsersSelectHeading = new JLabel();
         pgUsersSelectInput = new JComboBox<>();
-        pgUsersDeleteHeading = new JLabel();
-        pgUsersDeleteButton = new JButton();
+        JLabel pgUsersDeleteHeading = new JLabel();
+        JButton pgUsersDeleteButton = new JButton();
 
         setForeground(new Color(246, 247, 251));
 
-        pgUsersTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36)); // NOI18N
+        pgUsersTitle.setFont(new Font("Bahnschrift", Font.BOLD, 36));
         pgUsersTitle.setForeground(new Color(0, 100, 172));
         pgUsersTitle.setText("Manage Users");
 
-        pgUsersSelectHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgUsersSelectHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgUsersSelectHeading.setForeground(new Color(153, 153, 153));
         pgUsersSelectHeading.setText("Select User");
 
         pgUsersSelectInput.setBackground(new Color(204, 204, 204));
-        pgUsersSelectInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgUsersSelectInput.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgUsersSelectInput.setForeground(new Color(102, 102, 102));
         pgUsersSelectInput.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgUsersSelectInput.setOpaque(true);
@@ -54,14 +49,14 @@ public class AdminUsers extends JPanel {
         String[] userNames = new String[users.size()];
         pgUsersSelectInput.setModel(new DefaultComboBoxModel<>(users.toArray(userNames)));
 
-        pgUsersDeleteHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24)); // NOI18N
+        pgUsersDeleteHeading.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgUsersDeleteHeading.setForeground(new Color(153, 153, 153));
         pgUsersDeleteHeading.setText("Delete?");
 
         pgUsersDeleteButton.setBackground(new Color(0, 100, 172));
-        pgUsersDeleteButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgUsersDeleteButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgUsersDeleteButton.setForeground(new Color(204, 204, 204));
-        pgUsersDeleteButton.setIcon(new ImageIcon("resources/image/AdminDeleteButton-Delete.png")); // NOI18N
+        pgUsersDeleteButton.setIcon(new ImageIcon("resources/image/AdminDeleteButton-Delete.png"));
         pgUsersDeleteButton.setBorder(null);
         pgUsersDeleteButton.setBorderPainted(false);
         pgUsersDeleteButton.setContentAreaFilled(false);
@@ -88,8 +83,6 @@ public class AdminUsers extends JPanel {
                         user.delete(Tabs.db);
                         adminDashboard.refreshCurrentPanel();
                     }
-                } else {
-                    System.out.println("Cancelled");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No users to delete");

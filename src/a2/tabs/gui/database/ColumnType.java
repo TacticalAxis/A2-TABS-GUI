@@ -10,8 +10,8 @@ public enum ColumnType {
     DATETIME("DATETIME", false),
     BOOLEAN("BOOLEAN", false);
 
-    private String type;
-    private boolean lengthPermitted;
+    private final String type;
+    private final boolean lengthPermitted;
 
     ColumnType(String type, boolean lengthPermitted) {
         this.type = type;

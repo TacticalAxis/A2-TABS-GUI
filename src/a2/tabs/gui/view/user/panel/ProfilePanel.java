@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.user.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.util.FormFieldType;
 import a2.tabs.gui.view.user.Dashboard;
@@ -10,36 +10,21 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.time.LocalDate;
 
-@SuppressWarnings({"FieldCanBeLocal", "DuplicatedCode", "ConstantConditions"})
 public class ProfilePanel extends JPanel {
 
     private final User user;
     private final Dashboard dashboard;
 
-    private JLabel pgMessagesTitle;
-    private JLabel pgProfileAddressLabel;
     private JTextField pgProfileAddressInput;
-    private JLabel pgProfileCarRegoLabel;
     private JTextField pgProfileCarRegoInput;
-    private JLabel pgProfileDateOfBirthLabel;
     private JTextField pgProfileDateOfBirthInput;
-    private JLabel pgProfileEmailLabel;
     private JTextField pgProfileEmailInput;
-    private JLabel pgProfileFirstNameLabel;
     private JTextField pgProfileFirstNameInput;
-    private JLabel pgProfileHomeOwnerLabel;
     private JComboBox<String> pgProfileHomeOwnerInput;
-    private JLabel pgProfileIRDNumberLabel;
     private JTextField pgProfileIRDNumberInput;
-    private JLabel pgProfileLastNameLabel;
     private JTextField pgProfileLastNameInput;
-    private JLabel pgProfilePasswordLabel;
     private JPasswordField pgProfilePasswordInput;
-    private JLabel pgProfileSalaryLabel;
     private JTextField pgProfileSalaryInput;
-    private JLabel pgProfileUsernameLabel;
-    private JTextField pgProfileUsernameInput;
-    private JButton pgProfileUpdateButton;
 
     public ProfilePanel(User user, Dashboard dashboard) {
         this.user = user;
@@ -48,34 +33,34 @@ public class ProfilePanel extends JPanel {
     }
 
     private void initComponents() {
-        pgMessagesTitle = new JLabel();
-        pgProfileUsernameLabel = new JLabel();
-        pgProfileUsernameInput = new JTextField(user.getUsername());
-        pgProfileFirstNameLabel = new JLabel();
+        JLabel pgMessagesTitle = new JLabel();
+        JLabel pgProfileUsernameLabel = new JLabel();
+        JTextField pgProfileUsernameInput = new JTextField(user.getUsername());
+        JLabel pgProfileFirstNameLabel = new JLabel();
         pgProfileFirstNameInput = new JTextField(user.getFirstName());
-        pgProfileLastNameLabel = new JLabel();
+        JLabel pgProfileLastNameLabel = new JLabel();
         pgProfileLastNameInput = new JTextField(user.getLastName());
-        pgProfileDateOfBirthLabel = new JLabel();
+        JLabel pgProfileDateOfBirthLabel = new JLabel();
 
         LocalDate dateOfBirth = user.getDateOfBirth();
 
         pgProfileDateOfBirthInput = new JTextField(dateOfBirth.getDayOfMonth() + "-" + dateOfBirth.getMonthValue() + "-" + dateOfBirth.getYear());
-        pgProfileAddressLabel = new JLabel();
+        JLabel pgProfileAddressLabel = new JLabel();
         pgProfileAddressInput = new JTextField(user.getAddress());
-        pgProfileIRDNumberLabel = new JLabel();
+        JLabel pgProfileIRDNumberLabel = new JLabel();
         pgProfileIRDNumberInput = new JTextField(user.getIrdNumber());
-        pgProfileSalaryLabel = new JLabel();
+        JLabel pgProfileSalaryLabel = new JLabel();
         pgProfileSalaryInput = new JTextField(String.valueOf(user.getSalary()));
-        pgProfileCarRegoLabel = new JLabel();
+        JLabel pgProfileCarRegoLabel = new JLabel();
         pgProfileCarRegoInput = new JTextField(user.getCarRego());
-        pgProfileHomeOwnerLabel = new JLabel();
+        JLabel pgProfileHomeOwnerLabel = new JLabel();
         pgProfileHomeOwnerInput = new JComboBox<>(new String[]{"Yes", "No"});
         pgProfileHomeOwnerInput.setSelectedItem(user.isOwnsHome() ? "Yes" : "No");
-        pgProfileEmailLabel = new JLabel();
+        JLabel pgProfileEmailLabel = new JLabel();
         pgProfileEmailInput = new JTextField(user.getEmail());
-        pgProfilePasswordLabel = new JLabel();
+        JLabel pgProfilePasswordLabel = new JLabel();
         pgProfilePasswordInput = new JPasswordField();
-        pgProfileUpdateButton = new JButton();
+        JButton pgProfileUpdateButton = new JButton();
 
         setForeground(new Color(246, 247, 251));
 
@@ -307,7 +292,7 @@ public class ProfilePanel extends JPanel {
             }
 
             // check password
-            if (!FormFieldType.STRING.isValid(pgProfilePasswordInput.getText())) {
+            if (!FormFieldType.STRING.isValid(new String(pgProfilePasswordInput.getPassword()))) {
                 pgProfilePasswordInput.setBorder(new LineBorder(Color.RED, 5, true));
                 JOptionPane.showMessageDialog(null, "Password is invalid. " + FormFieldType.STRING.getFormat(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;

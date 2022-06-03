@@ -9,30 +9,19 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class TaxCalculatorPanel extends JPanel {
 
     private final User user;
     private final Dashboard dashboard;
 
-    private JButton calculateButton;
-    private JLabel pgTaxCalcTitle;
     private JTextField pgTaxCalcBracket1Display;
     private JTextField pgTaxCalcBracket2Display;
     private JTextField pgTaxCalcBracket3Display;
     private JTextField pgTaxCalcBracket4Display;
     private JTextField pgTaxCalcBracket5Display;
-    private JLabel pgTaxCalcBracket1Label;
-    private JLabel pgTaxCalcBracket2Label;
-    private JLabel pgTaxCalcBracket3Label;
-    private JLabel pgTaxCalcBracket4Label;
-    private JLabel pgTaxCalcBracket5Label;
     private JTextField pgTaxCalcSalaryInput;
     private JTextField pgTaxCalcTotalTaxedAmountInput;
     private JTextField pgTaxCalcEffectiveTaxAmountInput;
-    private JLabel pgTaxCalcSalaryLabel;
-    private JLabel pgTaxCalcTotalTaxedAmountLabel;
-    private JLabel pgTaxCalcEffectiveTaxAmountLabel;
 
     public TaxCalculatorPanel(User user, Dashboard dashboard) {
         this.user = user;
@@ -41,24 +30,24 @@ public class TaxCalculatorPanel extends JPanel {
     }
 
     private void initComponents() {
-        pgTaxCalcTitle = new JLabel();
-        pgTaxCalcSalaryLabel = new JLabel();
+        JLabel pgTaxCalcTitle = new JLabel();
+        JLabel pgTaxCalcSalaryLabel = new JLabel();
         pgTaxCalcSalaryInput = new JTextField();
-        pgTaxCalcBracket1Label = new JLabel();
+        JLabel pgTaxCalcBracket1Label = new JLabel();
         pgTaxCalcBracket1Display = new JTextField();
-        pgTaxCalcBracket2Label = new JLabel();
+        JLabel pgTaxCalcBracket2Label = new JLabel();
         pgTaxCalcBracket2Display = new JTextField();
-        pgTaxCalcBracket3Label = new JLabel();
+        JLabel pgTaxCalcBracket3Label = new JLabel();
         pgTaxCalcBracket3Display = new JTextField();
-        pgTaxCalcBracket4Label = new JLabel();
+        JLabel pgTaxCalcBracket4Label = new JLabel();
         pgTaxCalcBracket4Display = new JTextField();
-        pgTaxCalcBracket5Label = new JLabel();
+        JLabel pgTaxCalcBracket5Label = new JLabel();
         pgTaxCalcBracket5Display = new JTextField();
         pgTaxCalcTotalTaxedAmountInput = new JTextField();
-        pgTaxCalcTotalTaxedAmountLabel = new JLabel();
-        pgTaxCalcEffectiveTaxAmountLabel = new JLabel();
+        JLabel pgTaxCalcTotalTaxedAmountLabel = new JLabel();
+        JLabel pgTaxCalcEffectiveTaxAmountLabel = new JLabel();
         pgTaxCalcEffectiveTaxAmountInput = new JTextField();
-        calculateButton = new JButton();
+        JButton calculateButton = new JButton();
 
         setForeground(new Color(246, 247, 251));
 

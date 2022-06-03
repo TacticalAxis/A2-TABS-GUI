@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.user.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
 import a2.tabs.gui.view.user.Dashboard;
@@ -12,17 +12,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class PaymentPanel extends JPanel {
 
     private final User user;
     private final Dashboard dashboard;
 
-    private JLabel pgPaymentHistoryLabel;
     private JList<String> pgPaymentHistoryList;
     private JScrollPane pgPaymentHistoryScroll;
-    private JLabel pgPaymentTitle;
-    private JLabel pgPaymentUpcomingLabel;
     private JList<String> pgPaymentUpcomingList;
     private JScrollPane pgPaymentUpcomingScroll;
 
@@ -33,11 +29,11 @@ public class PaymentPanel extends JPanel {
     }
 
     private void initComponents() {
-        pgPaymentTitle = new JLabel();
-        pgPaymentUpcomingLabel = new JLabel();
+        JLabel pgPaymentTitle = new JLabel();
+        JLabel pgPaymentUpcomingLabel = new JLabel();
         pgPaymentUpcomingScroll = new JScrollPane();
         pgPaymentUpcomingList = new JList<>();
-        pgPaymentHistoryLabel = new JLabel();
+        JLabel pgPaymentHistoryLabel = new JLabel();
         pgPaymentHistoryScroll = new JScrollPane();
         pgPaymentHistoryList = new JList<>();
 

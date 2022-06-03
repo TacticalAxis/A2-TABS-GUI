@@ -1,6 +1,6 @@
 package a2.tabs.gui.view.main.panel;
 
-import a2.tabs.gui.controller.Tabs;
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.view.admin.AdminDashboard;
 import a2.tabs.gui.view.main.TabsStartup;
 
@@ -13,35 +13,27 @@ import java.awt.event.MouseEvent;
 public class Startup extends JPanel {
     private final TabsStartup tabsStartup;
 
-    private JLabel adminIcon;
-    private JLabel adminLabel;
-    private JButton pgMainExitButton;
-    private JTextField pgMainFiller;
-    private JButton pgMainLoginButton;
-    private JButton pgMainRegisterButton;
-    private JLabel pgMainTitleLogo;
-
     public Startup(TabsStartup tabsStartup) {
         this.tabsStartup = tabsStartup;
         initComponents();
     }
 
     private void initComponents() {
-        pgMainTitleLogo = new JLabel();
-        pgMainFiller = new JTextField();
-        pgMainLoginButton = new JButton();
-        pgMainRegisterButton = new JButton();
-        pgMainExitButton = new JButton();
-        adminIcon = new JLabel();
-        adminLabel = new JLabel();
+        JLabel pgMainTitleLogo = new JLabel();
+        JTextField pgMainFiller = new JTextField();
+        JButton pgMainLoginButton = new JButton();
+        JButton pgMainRegisterButton = new JButton();
+        JButton pgMainExitButton = new JButton();
+        JLabel adminIcon = new JLabel();
+        JLabel adminLabel = new JLabel();
 
         setForeground(new Color(246, 247, 251));
 
-        pgMainTitleLogo.setIcon(new ImageIcon("resources/image/StartupPage-Logo.png")); // NOI18N
+        pgMainTitleLogo.setIcon(new ImageIcon("resources/image/StartupPage-Logo.png"));
 
         pgMainFiller.setEditable(false);
         pgMainFiller.setBackground(new Color(204, 204, 204));
-        pgMainFiller.setFont(new Font("Bahnschrift", Font.PLAIN, 18)); // NOI18N
+        pgMainFiller.setFont(new Font("Bahnschrift", Font.PLAIN, 18));
         pgMainFiller.setForeground(new Color(102, 102, 102));
         pgMainFiller.setBorder(new LineBorder(new Color(204, 204, 204), 5, true));
         pgMainFiller.setCaretColor(new Color(102, 102, 102));
@@ -49,9 +41,9 @@ public class Startup extends JPanel {
         pgMainFiller.setSelectionColor(new Color(252, 189, 27));
 
         pgMainLoginButton.setBackground(new Color(0, 100, 172));
-        pgMainLoginButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgMainLoginButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgMainLoginButton.setForeground(new Color(204, 204, 204));
-        pgMainLoginButton.setIcon(new ImageIcon("resources/image/StartupPage-Login.png")); // NOI18N
+        pgMainLoginButton.setIcon(new ImageIcon("resources/image/StartupPage-Login.png"));
         pgMainLoginButton.setBorder(null);
         pgMainLoginButton.setBorderPainted(false);
         pgMainLoginButton.setContentAreaFilled(false);
@@ -62,9 +54,9 @@ public class Startup extends JPanel {
         });
 
         pgMainRegisterButton.setBackground(new Color(0, 100, 172));
-        pgMainRegisterButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgMainRegisterButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgMainRegisterButton.setForeground(new Color(204, 204, 204));
-        pgMainRegisterButton.setIcon(new ImageIcon("resources/image/StartupPage-Register.png")); // NOI18N
+        pgMainRegisterButton.setIcon(new ImageIcon("resources/image/StartupPage-Register.png"));
         pgMainRegisterButton.setBorder(null);
         pgMainRegisterButton.setBorderPainted(false);
         pgMainRegisterButton.setContentAreaFilled(false);
@@ -75,9 +67,9 @@ public class Startup extends JPanel {
         });
 
         pgMainExitButton.setBackground(new Color(0, 100, 172));
-        pgMainExitButton.setFont(new Font("Bahnschrift", Font.BOLD, 18)); // NOI18N
+        pgMainExitButton.setFont(new Font("Bahnschrift", Font.BOLD, 18));
         pgMainExitButton.setForeground(new Color(204, 204, 204));
-        pgMainExitButton.setIcon(new ImageIcon("resources/image/StartupPage-Exit.png")); // NOI18N
+        pgMainExitButton.setIcon(new ImageIcon("resources/image/StartupPage-Exit.png"));
         pgMainExitButton.setBorder(null);
         pgMainExitButton.setBorderPainted(false);
         pgMainExitButton.setContentAreaFilled(false);
@@ -92,19 +84,17 @@ public class Startup extends JPanel {
                         Tabs.tabsStartup.dispose();
                         Tabs.adminDashboard = new AdminDashboard();
                         EventQueue.invokeLater(() -> Tabs.adminDashboard.setVisible(true));
-                    } else {
-                        System.out.println("Admin password rejected");
                     }
                 }
             }
         };
 
-        adminIcon.setIcon(new ImageIcon("resources/image/Startup-Admin.png")); // NOI18N
+        adminIcon.setIcon(new ImageIcon("resources/image/Startup-Admin.png"));
         adminIcon.setText("jLabel1");
 
         adminIcon.addMouseListener(mouseAdapter);
 
-        adminLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24)); // NOI18N
+        adminLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
         adminLabel.setText("Admin:");
 
         adminLabel.addMouseListener(mouseAdapter);

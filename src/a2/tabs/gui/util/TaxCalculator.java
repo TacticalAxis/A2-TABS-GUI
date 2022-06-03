@@ -1,13 +1,13 @@
 package a2.tabs.gui.util;
 
-import java.util.Arrays;
-
 public class TaxCalculator {
 
     private final double[] rate;
     private final double[] bracket;
     private final double income;
 
+    // this class literally does what it says
+    // calculates ur taxes
     public TaxCalculator(double income) {
         this.rate = new double[]{0.105, 0.175, 0.3, 0.33, 0.39};
         this.bracket = new double[]{0, 0, 0, 0, 0};
@@ -64,13 +64,5 @@ public class TaxCalculator {
     // get effective tax rate
     public double getEffectiveTaxRate(){
         return getTotalTax()/getIncome();
-    }
-
-    public static void main(String[] args) {
-        TaxCalculator t = new TaxCalculator(100000);
-        System.out.println("Income: $" + t.getIncome());
-        System.out.println("Rate: " + Arrays.toString(t.getRate()));
-        System.out.println("Bracket: " + Arrays.toString(t.getBracket()));
-        System.out.println("Tax: $" + Arrays.toString(t.getTax()));
     }
 }
