@@ -1,34 +1,22 @@
 package a2.tabs.gui;
 
 import a2.tabs.gui.database.DBConnection;
-import a2.tabs.gui.model.User;
-import a2.tabs.gui.view.Dashboard;
+import a2.tabs.gui.view.admin.AdminDashboard;
+import a2.tabs.gui.view.main.TabStartup;
+import a2.tabs.gui.view.user.Dashboard;
 
-import javax.swing.*;
-import java.awt.*;
+public class Tabs {
 
-public class Tabs extends JFrame {
-
-    private static DBConnection db;
-    private static User user;
-    private static Tabs instance;
-
-    public Tabs() {
-        db = new DBConnection();
-        instance = this;
-    }
-
-    public static Tabs getInstance() {
-        return instance;
-    }
+    public static DBConnection db;
+    public static TabStartup tabStartup;
+    public static Dashboard dashboard;
+    public static AdminDashboard adminDashboard;
+    public static boolean isAdmin;
 
     public static void main(String[] args) {
-        User user = User.get(db, "nathand123");
-        if (user != null) {
-            System.out.println(user.getUsername());
-            EventQueue.invokeLater(() -> new Dashboard(user).setVisible(true));
-        } else {
-            System.out.println("User not found");
-        }
+        db = new DBConnection();
+        tabStartup = new TabStartup();
+        tabStartup.setVisible(true);
+        isAdmin = false;
     }
 }

@@ -1,8 +1,9 @@
-package a2.tabs.gui.view.panel;
+package a2.tabs.gui.view.user.panel;
 
+import a2.tabs.gui.Tabs;
 import a2.tabs.gui.model.Charge;
 import a2.tabs.gui.model.User;
-import a2.tabs.gui.view.Dashboard;
+import a2.tabs.gui.view.user.Dashboard;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -14,8 +15,8 @@ import java.time.LocalDate;
 @SuppressWarnings("FieldCanBeLocal")
 public class PaymentPanel extends JPanel {
 
-    private User user;
-    private Dashboard dashboard;
+    private final User user;
+    private final Dashboard dashboard;
 
     private JLabel pgPaymentHistoryLabel;
     private JList<String> pgPaymentHistoryList;
@@ -25,8 +26,6 @@ public class PaymentPanel extends JPanel {
     private JList<String> pgPaymentUpcomingList;
     private JScrollPane pgPaymentUpcomingScroll;
 
-//    private MouseMotionListener mouseMotion
-
     public PaymentPanel(User user, Dashboard dashboard) {
         this.user = user;
         this.dashboard = dashboard;
@@ -34,8 +33,6 @@ public class PaymentPanel extends JPanel {
     }
 
     private void initComponents() {
-        System.out.println(Charge.get(Dashboard.db, user));
-
         pgPaymentTitle = new JLabel();
         pgPaymentUpcomingLabel = new JLabel();
         pgPaymentUpcomingScroll = new JScrollPane();
@@ -60,8 +57,7 @@ public class PaymentPanel extends JPanel {
         pgPaymentUpcomingList.setForeground(new Color(102, 102, 102));
         setPgPaymentUpcomingList();
 
-        pgPaymentUpcomingList.setSelectionBackground(new Color(252, 189, 27));
-        pgPaymentUpcomingScroll.setViewportView(pgPaymentUpcomingList);
+
 
         pgPaymentHistoryLabel.setFont(new Font("Bahnschrift", Font.BOLD, 24));
         pgPaymentHistoryLabel.setForeground(new Color(153, 153, 153));
@@ -108,19 +104,30 @@ public class PaymentPanel extends JPanel {
     }
 
     private void setPgPaymentUpcomingList() {
-        java.util.List<Charge> charges = Charge.get(Dashboard.db, user, false);
+        java.util.List<Charge> charges = Charge.get(Tabs.db, user, false);
         final String[] chargeStrings = new String[charges.size()];
         for (int i = 0; i < charges.size(); i++) {
             StringBuilder sb = new StringBuilder();
+            // append date
+            sb.append("[");
+            LocalDate date = charges.get(i).getDate();
+            String dateString = (date.getDayOfMonth() < 10 ? "0" : "") + date.getDayOfMonth() + "-" + (date.getMonthValue() < 10 ? "0" : "") + date.getMonthValue() + "-" + date.getYear();
+
+            sb.append(dateString);
+            sb.append("] - ");
+
+            // append amount
+            sb.append("( $");
+            sb.append(charges.get(i).getType().getAmount());
+            sb.append(" ): ");
+
             // append type
             sb.append(charges.get(i).getType().getName());
-            sb.append(" - [");
 
-            // append date
-            LocalDate date = charges.get(i).getDate();
-            String dateString = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
-            sb.append(dateString);
-            sb.append("]");
+            // append if overdue
+            if (charges.get(i).isOverdue()) {
+                sb.append(" (OVERDUE)");
+            }
 
             chargeStrings[i] = sb.toString();
         }
@@ -160,29 +167,38 @@ public class PaymentPanel extends JPanel {
 
                         if (result == JOptionPane.YES_OPTION) {
                             charge.setPaid(true);
-                            charge.push(Dashboard.db);
+                            charge.push(Tabs.db);
                             dashboard.refreshCurrentPanel();
                         }
                     }
                 }
             }
         });
+
+        pgPaymentUpcomingList.setSelectionBackground(new Color(252, 189, 27));
+        pgPaymentUpcomingScroll.setViewportView(pgPaymentUpcomingList);
     }
 
     private void setPgPaymentHistoryList() {
-        java.util.List<Charge> charges = Charge.get(Dashboard.db, user, true);
+        java.util.List<Charge> charges = Charge.get(Tabs.db, user, true);
         final String[] chargeStrings = new String[charges.size()];
         for (int i = 0; i < charges.size(); i++) {
             StringBuilder sb = new StringBuilder();
+            // append date
+            sb.append("[");
+            LocalDate date = charges.get(i).getDate();
+            String dateString = (date.getDayOfMonth() < 10 ? "0" : "") + date.getDayOfMonth() + "-" + (date.getMonthValue() < 10 ? "0" : "") + date.getMonthValue() + "-" + date.getYear();
+
+            sb.append(dateString);
+            sb.append("] - ");
+
+            // append amount
+            sb.append("( $");
+            sb.append(charges.get(i).getType().getAmount());
+            sb.append(" ): ");
+
             // append type
             sb.append(charges.get(i).getType().getName());
-            sb.append(" - [");
-
-            // append date
-            LocalDate date = charges.get(i).getDate();
-            String dateString = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
-            sb.append(dateString);
-            sb.append("]");
 
             chargeStrings[i] = sb.toString();
         }

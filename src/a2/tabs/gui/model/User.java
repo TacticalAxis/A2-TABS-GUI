@@ -2,7 +2,6 @@ package a2.tabs.gui.model;
 
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
-import a2.tabs.gui.database.exception.DBException;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -29,7 +28,6 @@ public class User extends DBModelBase implements Databaseable<String> {
     private String lastName;
     private LocalDate dateOfBirth;
 
-    private String phone;
     private String address;
 
     private String irdNumber;
@@ -37,14 +35,13 @@ public class User extends DBModelBase implements Databaseable<String> {
     private boolean ownsHome;
     private String carRego;
 
-    public User(String username, String password, String email, String firstName, String lastName, LocalDate dateOfBirth, String phone) {
+    public User(String username, String password, String email, String firstName, String lastName, LocalDate dateOfBirth) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.phone = phone;
 
         this.address = null;
         this.irdNumber = null;
@@ -53,7 +50,7 @@ public class User extends DBModelBase implements Databaseable<String> {
         this.carRego = null;
     }
 
-    public User(String username, String password, String email, String firstName, String lastName, LocalDate dateOfBirth, String phone, boolean passPreHashed) {
+    public User(String username, String password, String email, String firstName, String lastName, LocalDate dateOfBirth, boolean passPreHashed) {
         this.username = username;
         if (passPreHashed) {
             this.password = password;
@@ -64,7 +61,6 @@ public class User extends DBModelBase implements Databaseable<String> {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.phone = phone;
 
         this.address = null;
         this.irdNumber = null;
@@ -126,13 +122,6 @@ public class User extends DBModelBase implements Databaseable<String> {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -178,8 +167,7 @@ public class User extends DBModelBase implements Databaseable<String> {
                         rs.getString("email"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),
-                        rs.getDate("dateOfBirth").toLocalDate(),
-                        rs.getString("phone")
+                        rs.getDate("dateOfBirth").toLocalDate()
                 );
 
                 if (rs.getString("address") != null && !rs.getString("address").equals("null")) {
@@ -223,8 +211,7 @@ public class User extends DBModelBase implements Databaseable<String> {
                         rs.getString("email"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),
-                        rs.getDate("dateOfBirth").toLocalDate(),
-                        rs.getString("phone")
+                        rs.getDate("dateOfBirth").toLocalDate()
                 );
 
                 if (rs.getString("address") != null && !rs.getString("address").equals("null")) {
@@ -259,11 +246,11 @@ public class User extends DBModelBase implements Databaseable<String> {
     @Override
     public boolean create(DBConnection db) {
         if (keyExists(db, username)) {
-            throw new DBException("User already exists");
+            throw new IllegalArgumentException("User already exists");
         }
 
         try(Statement stmt = db.getConnection().createStatement()) {
-            String query = String.format("INSERT INTO \"%s\" (username, password, email, firstName, lastName, dateOfBirth, phone, address, irdNumber, salary, ownsHome, carRego) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %f, %b, '%s')", TABLE_NAME, username, password, email, firstName, lastName, dateOfBirth, phone, address, irdNumber, salary, ownsHome, carRego);
+            String query = String.format("INSERT INTO \"%s\" (username, password, email, firstName, lastName, dateOfBirth, phone, address, irdNumber, salary, ownsHome, carRego) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %f, %b, '%s')", TABLE_NAME, username, password, email, firstName, lastName, dateOfBirth, address, irdNumber, salary, ownsHome, carRego);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -279,7 +266,7 @@ public class User extends DBModelBase implements Databaseable<String> {
         }
 
         try(Statement stmt = db.getConnection().createStatement()) {
-            stmt.executeUpdate("DELETE FROM " + TABLE_NAME + " WHERE username = '" + username + "'");
+            stmt.executeUpdate("DELETE FROM \"" + TABLE_NAME + "\" WHERE username = '" + username + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -293,7 +280,7 @@ public class User extends DBModelBase implements Databaseable<String> {
             create(db);
         } else {
             try (Statement stmt = db.getConnection().createStatement()) {
-                String query = String.format("UPDATE \"%s\" SET password = '%s', email = '%s', firstName = '%s', lastName = '%s', dateOfBirth = '%s', phone = '%s', address = '%s', irdNumber = '%s', salary = %s, ownsHome = %s, carRego = '%s' WHERE username = '%s'", TABLE_NAME, password, email, firstName, lastName, Date.valueOf(dateOfBirth), phone, address, irdNumber, salary, ownsHome, carRego, username);
+                String query = String.format("UPDATE \"%s\" SET password = '%s', email = '%s', firstName = '%s', lastName = '%s', dateOfBirth = '%s', address = '%s', irdNumber = '%s', salary = %s, ownsHome = %s, carRego = '%s' WHERE username = '%s'", TABLE_NAME, password, email, firstName, lastName, Date.valueOf(dateOfBirth), address, irdNumber, salary, ownsHome, carRego, username);
                 System.out.println(query);
                 stmt.executeUpdate(query);
             } catch (SQLException e) {
@@ -343,7 +330,6 @@ public class User extends DBModelBase implements Databaseable<String> {
         boolean firstNameEquals = firstName.equals(user.firstName);
         boolean lastNameEquals = lastName.equals(user.lastName);
         boolean dateOfBirthEquals = dateOfBirth.equals(user.dateOfBirth);
-        boolean phoneEquals = phone.equals(user.phone);
 
         boolean addressEquals = false;
         if (address != null && user.address != null) {
@@ -369,7 +355,7 @@ public class User extends DBModelBase implements Databaseable<String> {
             carRegoEquals = true;
         }
 
-        return usernameEquals && passwordEquals && emailEquals && firstNameEquals && lastNameEquals && dateOfBirthEquals && phoneEquals && addressEquals && irdNumberEquals && salaryEquals && ownsHomeEquals && carRegoEquals;
+        return usernameEquals && passwordEquals && emailEquals && firstNameEquals && lastNameEquals && dateOfBirthEquals && addressEquals && irdNumberEquals && salaryEquals && ownsHomeEquals && carRegoEquals;
     }
 
     public static String hash(String password) {
@@ -395,7 +381,6 @@ public class User extends DBModelBase implements Databaseable<String> {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", irdNumber='" + irdNumber + '\'' +
                 ", salary=" + salary +
@@ -415,7 +400,6 @@ public class User extends DBModelBase implements Databaseable<String> {
                     new Column("lastName", ColumnType.STRING, 255, false),
 
                     new Column("dateOfBirth", ColumnType.DATE, 0, false),
-                    new Column("phone", ColumnType.STRING, 255, false),
                     new Column("address", ColumnType.STRING, 255, true),
 
                     new Column("irdNumber", ColumnType.STRING, 255, true),
@@ -427,71 +411,3 @@ public class User extends DBModelBase implements Databaseable<String> {
         );
     }
 }
-
-
-//    public static List<String> getUsernames() {
-////        Debug.log("User: getUsernames()");
-//        List<String> takenUsernames = new ArrayList<>();
-//        for (User user : users) {
-//            takenUsernames.add(user.getUsername().toLowerCase());
-//        }
-//        return takenUsernames;
-//    }
-//
-//    public boolean passwordCorrect(String attempted) {
-//        return this.password.equals(hash(attempted));
-//    }
-//
-//    public static String hash(String password) {
-////        Debug.log("User: hash()");
-//        MessageDigest md5;
-//        try {
-//            md5 = MessageDigest.getInstance("MD5");
-//        } catch (NoSuchAlgorithmException e) {
-//            System.err.println("No MD5 algorithm found");
-//            return null;
-//        }
-//
-//        md5.update(StandardCharsets.UTF_8.encode(password));
-//
-//        return String.format("%032x", new BigInteger(1, md5.digest()));
-//    }
-
-//    public static User getUser(String username) {
-//        Debug.log("User: getUser()");
-//        for (User user : users) {
-//            if (user.getUsername().equals(username)) {
-//                return user;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public static void logout() {
-//        currentUser = null;
-//    }
-//
-//    public void addCharge(Charge charge) {
-//        this.charges.add(charge);
-//    }
-//
-//    public List<Charge> getCharges() {
-//        List<Charge> charges = new ArrayList<>();
-//        for (Charge charge : Charge.chargeList) {
-//            if (charge.getUser().equals(this)) {
-//                charges.add(charge);
-//            }
-//        }
-//        return charges;
-//    }
-//
-//    public List<Charge> getPendingCharges() {
-//        List<Charge> charges = new ArrayList<>();
-//        for (Charge charge : Charge.chargeList) {
-//            if (charge.getUser().equals(this) && !charge.getIsPaid()) {
-//                charges.add(charge);
-//            }
-//        }
-//        return charges;
-//    }
-//}

@@ -2,6 +2,7 @@ package a2.tabs.gui.model;
 
 import a2.tabs.gui.controller.Config;
 import a2.tabs.gui.database.*;
+import a2.tabs.gui.model.util.ChargeType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -143,6 +144,9 @@ public class Charge implements Databaseable<Integer> {
             e.printStackTrace();
         }
 
+        // sort charges newest to oldest
+        charges.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
         return charges;
     }
 
@@ -164,6 +168,8 @@ public class Charge implements Databaseable<Integer> {
             e.printStackTrace();
         }
 
+        charges.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
         return charges;
     }
 
@@ -184,7 +190,13 @@ public class Charge implements Databaseable<Integer> {
             e.printStackTrace();
         }
 
+        charges.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
         return charges;
+    }
+
+    public boolean isOverdue() {
+        return getDate().isBefore(LocalDate.now());
     }
 
     @Override

@@ -83,6 +83,26 @@ public enum TimeConstants {
         return mDay + " " + mon[mMonth] + " " + mYear;
     }
 
+    public static String timeMillisToDateTimeString(long currentTimeMillis) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(currentTimeMillis);
+
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        int mHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int mMinute = calendar.get(Calendar.MINUTE);
+//        int mSecond = calendar.get(Calendar.SECOND);
+
+        String mHourString = (mHour < 10 ? "0" : "") + mHour;
+        String mMinuteString = (mMinute < 10 ? "0" : "") + mMinute;
+//        String mSecondString = (mSecond < 10 ? "0" : "") + mSecond;
+
+        String[] mon ={"January", "February", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+        return mDay + " " + mon[mMonth] + " " + mYear + " " + mHourString + ":" + mMinuteString;
+    }
+
     public static String timeMillisToTimeString(Long ms) {
         long days = ((ms - (ms % DAY.millis)) / DAY.millis);
         long dayRemainder = (ms - (days * DAY.millis));
